@@ -1,0 +1,20 @@
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.link {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 15px;
+
+  a {
+    color: #e91e63; // Cor accent para combinar com o botão de register (accent é rosa/pink no tema Material)
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

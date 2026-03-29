@@ -1,0 +1,155 @@
+/* O :host refere-se ao próprio <app-home> */
+:host {
+  outline: 2px solid red !important;
+}
+
+.user-menu-container {
+  display: inline-block;
+}
+
+/* Garante que o card não herda larguras estranhas */
+.user-menu-card {
+  width: 340px;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 1000;
+  /* ... resto do teu código ... */
+}
+.user-menu-card
+{
+  width: 340px;
+  background: #e9eef6;
+  border-radius: 28px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 16px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+
+  .menu-header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 20px;
+
+    span {
+      font-size: 14px;
+      color: #444;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 0;
+      top: -5px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .main-profile
+  {
+    text-align: center;
+    background: #f8fafd;
+    border-radius: 24px 24px 4px 4px;
+    padding: 20px;
+
+    .profile-img-container {
+      position: relative;
+      display: inline-block;
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+
+      .camera-icon {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: white;
+        border-radius: 50%;
+        padding: 4px;
+        font-size: 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 15px 0;
+      font-weight: 400;
+    }
+
+    .manage-btn {
+      background: transparent;
+      border: 1px solid #747775;
+      padding: 10px 24px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .accounts-section
+  {
+    background: white;
+    border-radius: 4px 4px 24px 24px;
+    margin-top: 4px;
+    padding: 8px;
+
+    .account-item, .action-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+
+      &:hover {
+        background: #f2f2f2;
+        border-radius: 12px;
+      }
+
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        font-weight: bold;
+        color: white;
+
+        &.pink {
+          background: #e91e63;
+        }
+      }
+
+      .account-info {
+        display: flex;
+        flex-direction: column;
+
+        .name {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .email, .tag {
+          font-size: 12px;
+          color: #5f6368;
+        }
+
+        .tag {
+          background: #d3e3fd;
+          padding: 2px 8px;
+          border-radius: 4px;
+          width: fit-content;
+        }
+      }
+    }
+  }
+}

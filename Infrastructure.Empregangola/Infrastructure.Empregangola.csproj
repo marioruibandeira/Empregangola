@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Auditing\**" />
+    <EmbeddedResource Remove="Auditing\**" />
+    <None Remove="Auditing\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Dreamlearner\Application.Empregangola.csproj" />
+    <ProjectReference Include="..\Domain.Dreamlearner\Domain.Empregangola.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Pacotes compatíveis com .NET 8.0 -->
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <!-- Útil para stored procedures e queries raw -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Mantém as tuas pastas organizadas -->
+    <Folder Include="Migrations\" />
+    <Folder Include="Persistence\StoredProcedures\" />
+    <!-- para auditing negócio -->
+  </ItemGroup>
+
+</Project>

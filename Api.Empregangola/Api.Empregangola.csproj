@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-DreamLearner.Api-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</UserSecretsId> <!-- opcional, gera com dotnet user-secrets init -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Dreamlearner\Application.Empregangola.csproj" />
+    <ProjectReference Include="..\Infrastructure.Dreamlearner\Infrastructure.Empregangola.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Pacotes compatíveis com .NET 8.0 (versões estáveis jan/2026) -->
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjectionFixed" Version="5.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MediatR" Version="14.1.0" /> <!-- versão compatível com net8.0 -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" /> <!-- Swagger para testar endpoints -->
+  <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
+  </ItemGroup>
+
+</Project>

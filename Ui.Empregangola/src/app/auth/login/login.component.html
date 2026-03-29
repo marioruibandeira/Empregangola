@@ -1,0 +1,28 @@
+<app-auth-layout>
+  <span title>Login</span>
+
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="email" name="email" required email>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="loading">
+      @if (!loading) {
+        <span>Entrar</span>
+      }
+      @if (loading) {
+        <mat-spinner diameter="20"></mat-spinner>
+      }
+    </button>
+
+    <div class="link">
+      Não tens conta? <a routerLink="/register">Regista-te aqui</a>
+    </div>
+  </form>
+</app-auth-layout>

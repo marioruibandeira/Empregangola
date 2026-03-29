@@ -1,0 +1,6 @@
+@Api.Dreamlearner_HostAddress = http://localhost:5146
+
+GET {{Api.Dreamlearner_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
