@@ -5,8 +5,10 @@ namespace Domain.Empregangola.Entities
     public class AppUser : IdentityUser
     {
         public string FullName { get; private set; } = string.Empty;
+        public int TipoUtilizador { get; private set; } 
 
-        public static AppUser Create(string fullName, string email)
+
+        public static AppUser Create(string fullName, string email, int tipoUtilizador)
         {
             if (string.IsNullOrWhiteSpace(fullName))
                 throw new ArgumentException("FullName é obrigatório.", nameof(fullName));
@@ -22,6 +24,7 @@ namespace Domain.Empregangola.Entities
                 FullName = fullName.Trim(),
                 UserName = email,
                 Email = email,
+                TipoUtilizador = tipoUtilizador,
                 EmailConfirmed = false
             };
         }

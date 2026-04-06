@@ -4,12 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-DreamLearner.Api-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</UserSecretsId> <!-- opcional, gera com dotnet user-secrets init -->
+    <UserSecretsId>aspnet-Empregangola.Api-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</UserSecretsId> <!-- opcional, gera com dotnet user-secrets init -->
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application.Dreamlearner\Application.Empregangola.csproj" />
-    <ProjectReference Include="..\Infrastructure.Dreamlearner\Infrastructure.Empregangola.csproj" />
+    <ProjectReference Include="..\Application.Empregangola\Application.Empregangola.csproj" />
+    <ProjectReference Include="..\Infrastructure.Empregangola\Infrastructure.Empregangola.csproj" />
   </ItemGroup>
 
   <ItemGroup>

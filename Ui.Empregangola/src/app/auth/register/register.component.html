@@ -5,7 +5,7 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Nome Completo</mat-label>
-      <input matInput name="fullName" [(ngModel)]="fullName" required />
+      <input matInput name="fullName" [(ngModel)]="fullName" required/>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
@@ -14,12 +14,22 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Password</mat-label>
+      <mat-label>Tipo de utilizador</mat-label>
+      <mat-select name="tipoUtilizador" [(ngModel)]="tipoUtilizador" required>
+        <mat-option value="1">Utilizador Normal</mat-option>
+        <mat-option value="2">Centro de Formação</mat-option>
+        <mat-option value="3">Entidade Empregadora</mat-option>
+        <mat-option value="4">Profissionais Indempendetes</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Senha</mat-label>
       <input matInput type="password" name="password" [(ngModel)]="password" required minlength="6" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Confirmar Password</mat-label>
+      <mat-label>Confirmar Senha</mat-label>
       <input matInput type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required />
     </mat-form-field>
 

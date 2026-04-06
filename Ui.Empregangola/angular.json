@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Ui.Dreamlearner": {
+    "Ui.Empregangola": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/ui.dreamlearner",
+            "outputPath": "dist/ui.empregangola",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -76,10 +76,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Ui.Dreamlearner:build:production"
+              "buildTarget": "Ui.Empregangola:build:production"
             },
             "development": {
-              "buildTarget": "Ui.Dreamlearner:build:development"
+              "buildTarget": "Ui.Empregangola:build:development"
             }
           },
           "defaultConfiguration": "development",

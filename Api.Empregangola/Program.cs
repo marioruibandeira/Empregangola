@@ -71,7 +71,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "DreamLearner API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empregangola API", Version = "v1" });
 });
 
 var app = builder.Build();
@@ -82,7 +82,7 @@ app.MapControllers();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DreamLearner API v1"));
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Empregangola API v1"));
 }
 
 app.UseHttpsRedirection();

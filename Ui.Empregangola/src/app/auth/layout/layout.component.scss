@@ -1,22 +1,52 @@
 .auth-container {
   min-height: 100vh;
   display: flex;
+  /* Isso força o texto 'Empregangola' a ficar ACIMA do card */
+  flex-direction: column;
+  /* Centraliza horizontalmente */
   align-items: center;
+  /* Centraliza o grupo (texto + card) verticalmente na tela */
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: url('/imagens/empregangolaBG.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+
+/* Estilização para o texto da Logo */
+.auth-logo {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 24px; /* Distância entre o nome e o card */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .auth-card {
   width: 100%;
   max-width: 420px;
-  padding: 32px 24px;
   border-radius: 16px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.link {
+  margin-top: 20px;
+  text-align: center;
+}
+
 .title {
   text-align: center;
-  font-size: 32px;
-  font-weight: 500;
-  margin-bottom: 24px;
+  font-size: 24px;     
+  margin-top: 30 !important;      
+  margin-bottom: 20px;  
+  display: block;       
+  color: #333;          
 }

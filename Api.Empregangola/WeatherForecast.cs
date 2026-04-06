@@ -1,4 +1,4 @@
-namespace Api.Dreamlearner
+namespace Api.Empregangola
 {
     public class WeatherForecast
     {
