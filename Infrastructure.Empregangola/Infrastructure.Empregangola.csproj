@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application.Dreamlearner\Application.Empregangola.csproj" />
-    <ProjectReference Include="..\Domain.Dreamlearner\Domain.Empregangola.csproj" />
+    <ProjectReference Include="..\Application.Empregangola\Application.Empregangola.csproj" />
+    <ProjectReference Include="..\Domain.Empregangola\Domain.Empregangola.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +27,7 @@
     </PackageReference>
     <!-- Útil para stored procedures e queries raw -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.5" />
   </ItemGroup>
 
   <ItemGroup>

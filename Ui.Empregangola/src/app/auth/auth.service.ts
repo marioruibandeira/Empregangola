@@ -17,9 +17,10 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest {
-  email: string;
-  password: string;
   fullName: string;
+  email: string;
+  tipoUtilizador: string;
+  password: string;  
 }
 
 @Injectable({

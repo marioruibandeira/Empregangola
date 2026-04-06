@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Dreamlearner.Controllers
+namespace Api.Empregangola.Controllers
 {
     [ApiController]
     [Route("[controller]")]

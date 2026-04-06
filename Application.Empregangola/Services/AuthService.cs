@@ -20,10 +20,15 @@ namespace Application.Empregangola.Services
 
         public async Task<AuthResponse?> RegisterAsync(RegisterRequest request)
         {
-            var user = AppUser.Create(request.FullName, request.Email);
+            var user = AppUser.Create(request.FullName, request.Email, request.tipoUtilizador);
 
             var result = await _userManager.CreateAsync(user, request.Password);
-            if (!result.Succeeded) return null;
+            if (!result.Succeeded)
+            {
+                var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+                throw new Exception(errors);
+                //return null;
+            }
 
             var token = _tokenService.GenerateToken(user);
             return new AuthResponse(token, user.Email, user.FullName);

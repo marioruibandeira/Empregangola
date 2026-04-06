@@ -11,25 +11,15 @@ public class AppDbContext : IdentityDbContext<AppUser>
     {
     }
 
-    // Mantém o DbSet se quiseres acesso direto (opcional, pois Identity já tem)
-    public DbSet<AppUser> Users => Set<AppUser>();
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Configurações adicionais do Identity (opcional, mas recomendado)
         modelBuilder.Entity<AppUser>(entity =>
         {
             entity.Property(u => u.FullName)
                   .HasMaxLength(150)
                   .IsRequired(false);
         });
-
-        // Se quiseres renomear tabelas do Identity (exemplo)
-        // modelBuilder.Entity<IdentityUser>().ToTable("Users");
-        // modelBuilder.Entity<IdentityRole>().ToTable("Roles");
-
-        // Aqui podes adicionar configurações de outras entidades no futuro
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Dreamlearner.Common
+namespace Application.Empregangola.Common
 {
     internal class Error
     {

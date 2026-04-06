@@ -12,6 +12,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AuthLayoutComponent } from '../layout/layout.component';
 import { AuthService, RegisterRequest } from '../../auth/auth.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,8 @@ import { AuthService, RegisterRequest } from '../../auth/auth.service';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    MatSelectModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -34,6 +36,7 @@ export class RegisterComponent {
 
   fullName = '';
   email = '';
+  tipoUtilizador = ''
   password = '';
   confirmPassword = '';
   loading = false;
@@ -49,7 +52,7 @@ export class RegisterComponent {
 
     if (this.loading) return;
 
-    if (!this.fullName || !this.email || !this.password || !this.confirmPassword) {
+    if (!this.fullName || !this.email || !this.tipoUtilizador || !this.password || !this.confirmPassword) {
       this.snackBar.open('Preenche todos os campos', 'Fechar', { duration: 4000 });
       return;
     }
@@ -62,6 +65,7 @@ export class RegisterComponent {
     const data: RegisterRequest = {
       fullName: this.fullName,
       email: this.email,
+      tipoUtilizador: this.tipoUtilizador,
       password: this.password
     };
 

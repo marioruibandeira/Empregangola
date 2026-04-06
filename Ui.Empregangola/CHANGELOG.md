@@ -4,9 +4,9 @@ The following tools were used to generate this project:
 - Angular CLI (ng)
 
 The following steps were used to generate this project:
-- Create Angular project with ng: `ng new Ui.Dreamlearner --defaults --skip-install --skip-git --no-standalone `.
+- Create Angular project with ng: `ng new Ui.Empregangola --defaults --skip-install --skip-git --no-standalone `.
 - Update angular.json with port.
-- Create project file (`Ui.Dreamlearner.esproj`).
+- Create project file (`Ui.Empregangola.esproj`).
 - Create `launch.json` to enable debugging.
 - Update package.json to add `jest-editor-support`.
 - Update `start` script in `package.json` to specify host.
