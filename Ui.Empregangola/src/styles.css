@@ -48,6 +48,105 @@ h3 {
   page-break-after: avoid;
 }
 
+.bg-header {
+  background-image: url(/imagens/header-footer.png);
+  background-position: center center;
+  background-size: cover;
+}
+
+.bg-bannder {
+  background-image: url(/imagens/Banner-Principal-Emprega-Angola.png) !important;
+  background-position: center center;
+  background-size: cover;
+}
+
+.bg-p-publicidade {
+  background-image: url(/imagens/primeira-publicidade.png) !important;
+  background-position: center center;
+  background-size: cover;
+}
+
+.bg-bannder-empresa {
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/imagens/ASSSS-scaled.png') !important;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card-extendido {
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+  border-top: 4px solid #ff6600!important;
+}
+
+  .card-extendido:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    cursor: pointer;
+  }
+
+.empresa-link a {
+  display: inline-block !important;
+  margin-top: 10px !important;
+  padding: 8px 18px !important;
+  background: #0d6efd !important;
+  color: #fff !important;
+  border-radius: 20px !important;
+  text-decoration: none !important;
+  transition: 0.3s !important;
+}
+
+  .empresa-link a:hover {
+    background: #0b5ed7 !important;
+  }
+
+.logo-img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .logo-img {
+  transform: scale(1.1);
+}
+
+.card-body-extencao {
+  padding: 25px !important;
+}
+
+.main-title {
+  margin-bottom: 20px !important;
+  color:#000 !important;
+  font-weight:bolder;
+  font-size:22px;
+}
+
+.main-title::after
+{
+    content: "";
+    display: block !important;
+    width: 60px !important;
+    height: 4px !important;
+    background: #0d6efd !important;
+    margin: 10px auto !important;
+    border-radius: 2px !important;
+}
+
+.m-subtitle{padding:10px;}
+
+.more-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: 600;
+  color: #000;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.more-link:hover {
+    color: #0d6efd;
+    transform: translateX(5px);
+}
+
 .product-action {
   position: absolute;
   width: 100%;
@@ -60,7 +159,7 @@ h3 {
   transition: .5s;
 }
 
-  .product-action a.btn {
+.product-action a.btn {
     position: relative;
     margin: 0 3px;
     margin-top: 100px;
@@ -194,8 +293,8 @@ h3 {
 }
 
 .bg-light {
-  background-color: #FFFFFF !important;
-  border:#ccc 1px solid !important;
+  background-color: #4b8a98 !important;
+  border: #ccc 1px solid !important;
 }
 
 .d-none {
@@ -260,10 +359,6 @@ h3 {
   color: rgb(229 130 13) !important;
 }
 
-.bg-dark {
-  background-color: #3D464D !important;
-}
-
 .d-lg-block {
   display: block !important;
 }
@@ -323,13 +418,13 @@ h3 {
 }
 
 .bg-light {
-  background-color: #FFFFFF !important;
+  background-color: #4b8a98 !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
 button.bg-light:focus {
-  background-color: #e6e6e6 !important;
+  background-color: #4b8a98 !important;
 }
 
 /**/
@@ -485,6 +580,8 @@ button.bg-secondary:focus {
   .navbar-dark .navbar-nav .nav-link.active {
     color: #ff6a00;
 }
+
+.login-link{color:#fff !important; }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
 .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
