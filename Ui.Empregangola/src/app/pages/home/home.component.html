@@ -1,428 +1,884 @@
 
+<style>
+  .marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-wrapper-1 {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-content {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: scroll-left 16s linear infinite;
+  }
+
+  .marquee-content-1 {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: scroll-left 70s linear infinite;
+  }
+
+  .item {
+    margin: 0 15px 0 15px;
+  }
+
+  .item-1 {
+    margin: 0px;
+  }
+
+  .item img {
+    width: 200px;
+    height: 50%;
+  }
+
+  .item-1 img {
+    /*width: 200px;
+    height: 150%;*/
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .girl {
+    position: absolute;
+    bottom: -186px; /* faz “sentar” no fundo */
+    right: -10px; /* ajusta a posição */
+    height: 650px !important; /* ajuste proporcional */
+    z-index: 3;
+  }
+  /***/
+  .capa-div {
+    background-image: url('/imagens/Barry_Hundeyin-Mautin.jpg');
+    background-size: cover; /* Faz a imagem cobrir todo o div */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição */
+    height: 100%; /* Ajusta conforme necessário */
+    min-height: 225px; /* Garante altura mínima */
+    border-radius: 5px 0px 0px 5px;
+  }
+
+  .capa-div-two {
+    background-image: url('/imagens/foto-homem.jpg');
+    background-size: cover; /* Faz a imagem cobrir todo o div */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição */
+    height: 100%; /* Ajusta conforme necessário */
+    min-height: 225px; /* Garante altura mínima */
+    border-radius: 5px 0px 0px 5px;
+  }
+
+  /**/
+  .card-custom {
+    position: relative;
+    padding-top: 30px; /* espaço para o logo */
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .logo-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%; /* deixa redondo */
+    border: 2px solid #ccc; /* borda branca tipo avatar */
+    background-color: #fff;
+  }
+
+
+  .btn-square img {
+    width: 40px; /* ou o tamanho que quiseres */
+    height: 40px;
+  }
+
+  .btn-square:hover {
+    transform: translateY(-8px);
+    background-color: red;
+  }
+
+
+  .social-logos-animation {
+    display: inline-block; /* ESSENCIAL */
+    transition: transform 0.3s ease;
+  }
+
+    .social-logos-animation:hover {
+      transform: translateY(-6px);
+    }
+</style>
+
 <app-header></app-header>
 
 <!-- Offer Start -->
-  <div class="container-fluid pt-5 pb-3">
-    <div class="row px-xl-5">
-      <div class="col-md-6">
-        <div class="product-offer mb-30" style="height: 300px;">
-          <img class="img-fluid" src="img/offer-1.jpg" alt="">
-          <div class="offer-text">
-            <h6 class="text-white text-uppercase">Popar 20%</h6>
-            <h3 class="text-white mb-3">Oferta Especiais</h3>
-            <a href="" class="btn btn-primary btnprimary">Comprar Agora</a>
+<div class="container-fluid pt-5 pb-3 bg-bannder">
+  <div class="row px-xl-5">
+    <div class="col-md-4 pb-4">
+      <div class=" " style="height: 500px; background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <h2>O maior portal de emprego de Angola</h2>
+        <div class="row">
+          <div class="col-12">
+            <div class="mb-3">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="O que procura?">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="mb-3">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Onde?">
+            </div>
+          </div>
+          <div class="col-12"> Ou filtrar por categoria e zona: </div>
+          <div class="col-12">
+            <div class="mb-3">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Todas as categorias</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="mb-3">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Todas as zonas</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12"> Tipo horario: </div>
+          <div class="col-12">
+            <div class="mb-3">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Todo os tipos</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="mb-3">
+              <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none" /><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
+                  Pesquisar
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
-      <div class="col-md-6">
-        <div class="product-offer mb-30" style="height: 300px;">
-          <img class="img-fluid" src="img/offer-2.jpg" alt="">
-          <div class="offer-text">
-            <h6 class="text-white text-uppercase">Popar 20%</h6>
-            <h3 class="text-white mb-3">Oferta Especiais</h3>
-            <a href="" class="btn btn-primary btnprimary">Comprar Agora</a>
+    </div>
+    <div class="col-md-8"> <img src="/imagens/jovem-sentada.png" class="img-fluid girl" alt="" style="height:auto;"></div>
+  </div>
+</div>
+<!-- Offer End -->
+<!-- carrocel de empresas -->
+<div class="container-fluid pt-5 pb-3" style="background:#ccc;" style="height:75px; padding-top: 1rem !important;box-shadow: 0 6px 6px -2px rgba(0,0,0,0.3);">
+  <div class="row px-xl-5" style="padding-right: 0rem !important; padding-left: 0rem !important; padding-top: 0px !important; ">
+
+    <div class="marquee-wrapper">
+      <div class="marquee-content">
+        <!-- BLOCO 1 -->
+        <div class="item"><img src="/imagens/ncr.png"></div>
+        <div class="item"><img src="/imagens/sistec.png"></div>
+        <div class="item"><img src="/imagens/agt.png"></div>
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item"><img src="/imagens/ncr.png"></div>
+        <div class="item"><img src="/imagens/sistec.png"></div>
+        <div class="item"><img src="/imagens/agt.png"></div>
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item"><img src="/imagens/ncr.png"></div>
+        <div class="item"><img src="/imagens/sistec.png"></div>
+        <div class="item"><img src="/imagens/agt.png"></div>
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item"><img src="/imagens/ncr.png"></div>
+        <div class="item"><img src="/imagens/sistec.png"></div>
+        <div class="item"><img src="/imagens/agt.png"></div>
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item"><img src="/imagens/ncr.png"></div>
+        <div class="item"><img src="/imagens/sistec.png"></div>
+        <div class="item"><img src="/imagens/agt.png"></div>
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item"><img src="/imagens/ncr.png"></div>
+        <div class="item"><img src="/imagens/sistec.png"></div>
+        <div class="item"><img src="/imagens/agt.png"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container-fluid pt-5 pb-3">
+  <div class="row px-xl-5">
+
+    <div style="width:100%; text-align:center;padding-bottom:30px;font-size:30px!important;"> <h2> Vagas em destaque </h2> </div>
+    
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+      <div class="card h-100 shadow-sm" role="button">
+        <div class="card-body d-flex flex-column">
+
+          <!-- TÍTULO -->
+          <h5 class="card-title mb-2">
+            Técnico de Manutenção de Eletricidade (m/f)
+          </h5>
+
+          <!-- EMPRESA -->
+          <div class="d-flex align-items-center mb-2 text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#155DFC" class="me-2" viewBox="0 0 24 24">
+              <path d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" />
+            </svg>
+            <span>Tech Hidráulico</span>
+          </div>
+
+          <!-- META INFO -->
+          <div class="d-flex flex-wrap gap-3 mb-3 small text-secondary">
+
+            <span class="d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#31C950" class="me-1" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              </svg>
+              Luanda
+            </span>
+
+            <span>Tempo inteiro</span>
+            <span>3+ anos experiência</span>
+          </div>
+
+          <!-- DESCRIÇÃO -->
+          <p class="card-text mb-4">
+            Manutenção elétrica industrial, diagnóstico de avarias e suporte preventivo em ambiente fabril.
+          </p>
+
+          <!-- FOOTER -->
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" fill="#ff4200" class="me-1" viewBox="0 0 20 20">
+                <path d="M15.5 4H14V2h-1.5v2h-5V2H6v2H4.5C3.67 4 3 4.68 3 5.5v11C3 17.32 3.67 18 4.5 18h11c.83 0 1.5-.68 1.5-1.5v-11z" />
+              </svg>
+              16-04-2026
+            </small>
+
+            <a href="#" class="btn btn-primary btn-sm">
+              Ver detalhes →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+      <div class="card h-100 shadow-sm" role="button">
+        <div class="card-body d-flex flex-column">
+
+          <!-- TÍTULO -->
+          <h5 class="card-title mb-2">
+            Técnico de Manutenção de Eletricidade (m/f)
+          </h5>
+
+          <!-- EMPRESA -->
+          <div class="d-flex align-items-center mb-2 text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#155DFC" class="me-2" viewBox="0 0 24 24">
+              <path d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" />
+            </svg>
+            <span>Tech Hidráulico</span>
+          </div>
+
+          <!-- META INFO -->
+          <div class="d-flex flex-wrap gap-3 mb-3 small text-secondary">
+
+            <span class="d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#31C950" class="me-1" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              </svg>
+              Luanda
+            </span>
+
+            <span>Tempo inteiro</span>
+            <span>3+ anos experiência</span>
+          </div>
+
+          <!-- DESCRIÇÃO -->
+          <p class="card-text mb-4">
+            Manutenção elétrica industrial, diagnóstico de avarias e suporte preventivo em ambiente fabril.
+          </p>
+
+          <!-- FOOTER -->
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" fill="#ff4200" class="me-1" viewBox="0 0 20 20">
+                <path d="M15.5 4H14V2h-1.5v2h-5V2H6v2H4.5C3.67 4 3 4.68 3 5.5v11C3 17.32 3.67 18 4.5 18h11c.83 0 1.5-.68 1.5-1.5v-11z" />
+              </svg>
+              16-04-2026
+            </small>
+
+            <a href="#" class="btn btn-primary btn-sm">
+              Ver detalhes →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+
+      <div class="card h-100 shadow-sm" role="button">
+        <div class="card-body d-flex flex-column">
+
+          <!-- TÍTULO -->
+          <h5 class="card-title mb-2">
+            Técnico de Manutenção de Eletricidade (m/f)
+          </h5>
+
+          <!-- EMPRESA -->
+          <div class="d-flex align-items-center mb-2 text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#155DFC" class="me-2" viewBox="0 0 24 24">
+              <path d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" />
+            </svg>
+            <span>Tech Hidráulico</span>
+          </div>
+
+          <!-- META INFO -->
+          <div class="d-flex flex-wrap gap-3 mb-3 small text-secondary">
+
+            <span class="d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#31C950" class="me-1" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              </svg>
+              Luanda
+            </span>
+
+            <span>Tempo inteiro</span>
+            <span>3+ anos experiência</span>
+          </div>
+
+          <!-- DESCRIÇÃO -->
+          <p class="card-text mb-4">
+            Manutenção elétrica industrial, diagnóstico de avarias e suporte preventivo em ambiente fabril.
+          </p>
+
+          <!-- FOOTER -->
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" fill="#ff4200" class="me-1" viewBox="0 0 20 20">
+                <path d="M15.5 4H14V2h-1.5v2h-5V2H6v2H4.5C3.67 4 3 4.68 3 5.5v11C3 17.32 3.67 18 4.5 18h11c.83 0 1.5-.68 1.5-1.5v-11z" />
+              </svg>
+              16-04-2026
+            </small>
+
+            <a href="#" class="btn btn-primary btn-sm">
+              Ver detalhes →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div style="width: 100%; text-align: right; padding: 10px 30px 30px 0px; ">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="30px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" /></svg>
+      <a href="#" style="color: #f28507;">Mais Vagas</a>
+    </div>
+
+  </div>
+</div>
+<!-- Products End -->
+
+<div class="container-fluid pt-5 pb-3 bg-bannder-empresa">
+  <div class="row px-xl-5">
+
+    <div style="width:100%;padding-bottom:80px;text-align:center;">
+      <h2> Empresas em Destaque </h2>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+      <div class="card card-custom card-extendido" >
+
+        <div class="logo-wrapper"> <img src="/imagens/unitel.jpg" class="logo-img" alt="logo"> </div>
+
+        <div class="card-body text-center mt-4 empresa-link card-body-extencao">
+          <span class="card-title main-title">Unitel</span>
+          <h6 class="card-subtitle m-subtitle mb-2 text-muted">Telecomunicação</h6>
+          <p class="card-text"> Some quick example text to build on the card title. </p>
+          <a href="#" class="">Saber Mais</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+      <div class="card card-custom card-extendido ">
+        <div class="logo-wrapper"> <img src="/imagens/sonangol.jpg" class="logo-img" alt="logo"> </div>
+
+        <div class="card-body text-center mt-4 empresa-link card-body-extencao">
+          <span class="card-title main-title">Sonangol</span>
+          <h6 class="card-subtitle m-subtitle mb-2 text-muted">Petrolifa</h6>
+          <p class="card-text">
+            Some quick example text to build on the card title.
+          </p>
+          <a href="#" class="card-link">Saber Mais</a>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+
+      <div class="card card-custom card-extendido empresa-link">
+
+        <div class="logo-wrapper">
+          <img src="/imagens/Candando.jpg" class="logo-img" alt="logo">
+        </div>
+
+        <div class="card-body text-center mt-4 empresa-link card-body-extencao">
+          <span class="card-title main-title">Candando</span>
+          <h6 class="card-subtitle m-subtitle mb-2 text-muted">Supermercado</h6>
+          <p class="card-text">
+            Some quick example text to build on the card title.
+          </p>
+          <a href="#" class="card-link">Saber Mais</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div style=" width: 100%; text-align: center; padding-top: 30px; padding-bottom: 30px;">
+      <a href="#" class="more-link">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="30px" fill="#161515"><path d="M0 0h24v24H0z" fill="none" /><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" /></svg>
+        Mais Empresas
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Products End -->
+
+<div class="container-fluid pt-5 pb-3">
+  <h2 class="section-title position-relative mx-xl-5 mb-4">
+    <span class="bgsecondary pr-3" style="font-size:30px;">Profissionais em Destaque</span>
+  </h2>
+  <div class="row px-xl-5">
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+      <div class="card mb-3 h-98 shadow-sm profissional-card" role="button">
+        <div class="row g-0">
+
+          <!-- IMAGEM / CAPA -->
+          <div class="col-md-4 capa-div">
+            <!-- background-image via CSS -->
+          </div>
+
+          <!-- CONTEÚDO -->
+          <div class="col-md-8">
+            <div class="card-body d-flex flex-column h-100">
+
+              <h6 class="card-title fw-bold mb-1">
+                Marta Castelo
+              </h6>
+
+              <small class="text-muted mb-2">
+                Advogada
+              </small>
+
+              <p class="card-text small mb-3">
+                Especializada em direito civil e laboral, com atendimento personalizado.
+              </p>
+
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <small class="text-muted">
+                  📍 Luanda
+                </small>
+
+                <a href="#" class="text-primary fw-semibold text-decoration-none">
+                  Ver perfil →
+                </a>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Offer End -->
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
 
-  <!-- Featured Start -->
-  <div class="container-fluid pt-5">
-    <div class="row px-xl-5 pb-3">
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-          <svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="#d95327"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
-          <h5 class="font-weight-semi-bold m-0">Qualidade</h5>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-          <svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="#d95327"><path d="m437-398 227-226-57-57-170 170-85-85-56 56 141 142ZM40-120v-80h880v80H40Zm120-120q-33 0-56.5-23.5T80-320v-440q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v440q0 33-23.5 56.5T800-240H160Zm0-80h640v-440H160v440Zm0 0v-440 440Z" /></svg>
-          <h5 class="font-weight-semi-bold m-0">Disponível 24h</h5>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-          <svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="#d95327"><path d="M280-200v-80h284q63 0 109.5-40T720-420q0-60-46.5-100T564-560H312l104 104-56 56-200-200 200-200 56 56-104 104h252q97 0 166.5 63T800-420q0 94-69.5 157T564-200H280Z" /></svg>
-          <h5 class="font-weight-semi-bold m-0">Devolução 30 dias</h5>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-          <svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="#d95327"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440ZM331.5-411.5Q320-423 320-440t11.5-28.5Q343-480 360-480t28.5 11.5Q400-457 400-440t-11.5 28.5Q377-400 360-400t-28.5-11.5Zm240 0Q560-423 560-440t11.5-28.5Q583-480 600-480t28.5 11.5Q640-457 640-440t-11.5 28.5Q617-400 600-400t-28.5-11.5ZM241-462q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z" /></svg>
-          <h5 class="font-weight-semi-bold m-0">Supporte 24/7 </h5>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Featured End -->
+      <div class="card mb-3 h-98 shadow-sm profissional-card" role="button">
+        <div class="row g-0">
 
-  <!-- Products Start -->
-  <div class="container-fluid pt-5 pb-3">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bgsecondary pr-3">Featured Products</span></h2>
-    <div class="row px-xl-5">
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-            <img class="img-fluid w-100" src="/imagens/product-1.jpg" alt="">
-            <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart">1</i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i>2</a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt">3</i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search">4</i></a>
-            </div>
+          <!-- IMAGEM / CAPA -->
+          <div class="col-md-4 capa-div">
+            <!-- background-image via CSS -->
           </div>
-          <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-            <div class="d-flex align-items-center justify-content-center mt-2">
-              <h5>AO123.00</h5><h6 class="text-muted ml-2"><del>AO123.00</del></h6>
-            </div>
-            <div class="d-flex align-items-center justify-content-center mb-1">
-              <small class="fa fa-star text-primary mr-1">1</small>
-              <small class="fa fa-star text-primary mr-1">2</small>
-              <small class="fa fa-star text-primary mr-1">3</small>
-              <small class="fa fa-star text-primary mr-1">4</small>
-              <small class="fa fa-star text-primary mr-1">5</small>
-              <small>(99)</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-            <img class="img-fluid w-100" src="/imagens/product-1.jpg" alt="">
-            <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-            </div>
-          </div>
-          <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-            <div class="d-flex align-items-center justify-content-center mt-2">
-              <h5>AO123.00</h5><h6 class="text-muted ml-2"><del>AO123.00</del></h6>
-            </div>
-            <div class="d-flex align-items-center justify-content-center mb-1">
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star-half-alt text-primary mr-1"></small>
-              <small>(99)</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-            <img class="img-fluid w-100" src="/imagens/product-1.jpg" alt="">
-            <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-            </div>
-          </div>
-          <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-            <div class="d-flex align-items-center justify-content-center mt-2">
-              <h5>AO123.00</h5><h6 class="text-muted ml-2"><del>AO123.00</del></h6>
-            </div>
-            <div class="d-flex align-items-center justify-content-center mb-1">
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star-half-alt text-primary mr-1"></small>
-              <small class="far fa-star text-primary mr-1"></small>
-              <small>(99)</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-            <img class="img-fluid w-100" src="/imagens/product-1.jpg" alt="">
-            <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-            </div>
-          </div>
-          <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-            <div class="d-flex align-items-center justify-content-center mt-2">
-              <h5>AO123.00</h5><h6 class="text-muted ml-2"><del>AO123.00</del></h6>
-            </div>
-            <div class="d-flex align-items-center justify-content-center mb-1">
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="far fa-star text-primary mr-1"></small>
-              <small class="far fa-star text-primary mr-1"></small>
-              <small>(99)</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-            <img class="img-fluid w-100" src="/imagens/product-1.jpg" alt="">
-            <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-            </div>
-          </div>
-          <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-            <div class="d-flex align-items-center justify-content-center mt-2">
-              <h5>AO123.00</h5><h6 class="text-muted ml-2"><del>AO123.00</del></h6>
-            </div>
-            <div class="d-flex align-items-center justify-content-center mb-1">
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small>(99)</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-            <img class="img-fluid w-100" src="/imagens/product-1.jpg" alt="">
-            <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-            </div>
-          </div>
-          <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-            <div class="d-flex align-items-center justify-content-center mt-2">
-              <h5>AO123.00</h5><h6 class="text-muted ml-2"><del>AO123.00</del></h6>
-            </div>
-            <div class="d-flex align-items-center justify-content-center mb-1">
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star-half-alt text-primary mr-1"></small>
-              <small>(99)</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-            <img class="img-fluid w-100" src="/imagens/product-1.jpg" alt="">
-            <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-            </div>
-          </div>
-          <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-            <div class="d-flex align-items-center justify-content-center mt-2">
-              <h5>AO123.00</h5><h6 class="text-muted ml-2"><del>AO123.00</del></h6>
-            </div>
-            <div class="d-flex align-items-center justify-content-center mb-1">
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star-half-alt text-primary mr-1"></small>
-              <small class="far fa-star text-primary mr-1"></small>
-              <small>(99)</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-            <img class="img-fluid w-100" src="/imagens/product-1.jpg" alt="">
-            <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-            </div>
-          </div>
-          <div class="text-center py-4">
-            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-            <div class="d-flex align-items-center justify-content-center mt-2">
-              <h5>AO123.00</h5><h6 class="text-muted ml-2"><del>AO123.00</del></h6>
-            </div>
-            <div class="d-flex align-items-center justify-content-center mb-1">
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="fa fa-star text-primary mr-1"></small>
-              <small class="far fa-star text-primary mr-1"></small>
-              <small class="far fa-star text-primary mr-1"></small>
-              <small>(99)</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Products End -->
 
-  <!-- Categories Start -->
-  <div class="container-fluid pt-5">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bgsecondary pr-3">Categories</span></h2>
-    <div class="row px-xl-5 pb-3">
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <a class="text-decoration-none" href="">
-          <div class="cat-item d-flex align-items-center mb-4 border-geral">
-            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-              <img class="img-fluid" src="/imagens/cat-2.jpg" alt="">
-            </div>
-            <div class="flex-fill pl-3">
-              <h6>Canto</h6>
-              <small class="text-body">100 Products</small>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <a class="text-decoration-none" href="">
-          <div class="cat-item img-zoom d-flex align-items-center mb-4 border-geral">
-            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-              <img class="img-fluid" src="/imagens/cat-2.jpg" alt="">
-            </div>
-            <div class="flex-fill pl-3">
-              <h6> Produção Musical</h6>
-              <small class="text-body">100 Products</small>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <a class="text-decoration-none" href="">
-          <div class="cat-item img-zoom d-flex align-items-center mb-4 border-geral">
-            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-              <img class="img-fluid" src="/imagens/cat-2.jpg" alt="">
-            </div>
-            <div class="flex-fill pl-3">
-              <h6>Piano</h6>
-              <small class="text-body">100 Products</small>
+          <!-- CONTEÚDO -->
+          <div class="col-md-8">
+            <div class="card-body d-flex flex-column h-100">
+
+              <h6 class="card-title fw-bold mb-1">
+                Marta Castelo
+              </h6>
+
+              <small class="text-muted mb-2">
+                Advogada
+              </small>
+
+              <p class="card-text small mb-3">
+                Especializada em direito civil e laboral, com atendimento personalizado.
+              </p>
+
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <small class="text-muted">
+                  📍 Luanda
+                </small>
+
+                <a href="#" class="text-primary fw-semibold text-decoration-none">
+                  Ver perfil →
+                </a>
+              </div>
+
             </div>
           </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <a class="text-decoration-none" href="">
-          <div class="cat-item img-zoom d-flex align-items-center mb-4 border-geral">
-            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-              <img class="img-fluid" src="/imagens/cat-2.jpg" alt="">
-            </div>
-            <div class="flex-fill pl-3">
-              <h6>Viola Baixo</h6>
-              <small class="text-body">100 Products</small>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <a class="text-decoration-none" href="">
-          <div class="cat-item img-zoom d-flex align-items-center mb-4 border-geral">
-            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-              <img class="img-fluid" src="/imagens/cat-2.jpg" alt="">
-            </div>
-            <div class="flex-fill pl-3">
-              <h6>Vila</h6>
-              <small class="text-body">100 Products</small>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <a class="text-decoration-none" href="">
-          <div class="cat-item img-zoom d-flex align-items-center mb-4 border-geral">
-            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-              <img class="img-fluid" src="/imagens/cat-2.jpg" alt="">
-            </div>
-            <div class="flex-fill pl-3">
-              <h6>Flauta</h6>
-              <small class="text-body">100 Products</small>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <a class="text-decoration-none" href="">
-          <div class="cat-item img-zoom d-flex align-items-center mb-4 border-geral">
-            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-              <img class="img-fluid" src="/imagens/cat-2.jpg" alt="">
-            </div>
-            <div class="flex-fill pl-3">
-              <h6>Bateria</h6>
-              <small class="text-body">100 Products</small>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-        <a class="text-decoration-none" href="">
-          <div class="cat-item img-zoom d-flex align-items-center mb-4 border-geral">
-            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-              <img class="img-fluid" src="/imagens/cat-2.jpg" alt="">
-            </div>
-            <div class="flex-fill pl-3">
-              <h6>Percução</h6>
-              <small class="text-body">100 Products</small>
-            </div>
-          </div>
-        </a>
+        </div>
       </div>
 
     </div>
-  </div>
-  <!-- Categories End -->
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
 
-  <!-- Vendor Start -->
-  <div class="container-fluid py-5">
-    <div class="row px-xl-5">
-      <div class="col-lg-2 col-md-2 col-sm-6 pb-1">
-        <img src="/imagens/vendor-1.jpg" alt="" class="border-geral">
+      <div class="card mb-3 h-98 shadow-sm profissional-card" role="button">
+        <div class="row g-0">
+
+          <!-- IMAGEM / CAPA -->
+          <div class="col-md-4 capa-div">
+            <!-- background-image via CSS -->
+          </div>
+
+          <!-- CONTEÚDO -->
+          <div class="col-md-8">
+            <div class="card-body d-flex flex-column h-100">
+
+              <h6 class="card-title fw-bold mb-1">
+                Marta Castelo
+              </h6>
+
+              <small class="text-muted mb-2">
+                Advogada
+              </small>
+
+              <p class="card-text small mb-3">
+                Especializada em direito civil e laboral, com atendimento personalizado.
+              </p>
+
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <small class="text-muted">
+                  📍 Luanda
+                </small>
+
+                <a href="#" class="text-primary fw-semibold text-decoration-none">
+                  Ver perfil →
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-6 pb-1">
-        <img src="/imagens/vendor-1.jpg" alt="" class="border-geral">
+
+    </div>
+
+    <div style="width: 100%; text-align: right; padding: 0px 30px 0px 0px; ">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="30px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" /></svg>
+      <a href="#" style="color: #f28507;">Mais Profissionais</a>
+    </div>
+  </div>
+</div>
+<!-- Products End -->
+
+<div class="container-fluid pt-5 pb-3">
+  <h2 class="section-title position-relative mx-xl-5 mb-4">
+    <span class="bgsecondary pr-3" style="font-size:30px;">Cursos em Destaque</span>
+  </h2>
+  <div class="row px-xl-5">
+
+
+    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+      <div class="card" style="width: 100%;">
+        <div style="position:absolute; top:0; right:0; z-index:3; padding:5px;">
+          <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#ff0000"><rect fill="none" height="24" width="24" /><path d="M21,7h-2v2h-2V7h-2V5h2V3h2v2h2V7z M19,21l-7-3l-7,3V5c0-1.1,0.9-2,2-2l7,0c-0.63,0.84-1,1.87-1,3c0,2.76,2.24,5,5,5 c0.34,0,0.68-0.03,1-0.1V21z" /></svg>
+        </div>
+        <img src="/imagens/emprego.png" class="card-img-top" alt="...">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><g><rect fill="none" height="24" width="24" x="0" /><polygon points="14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10" /></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><g><rect fill="none" height="24" width="24" x="0" /><polygon points="14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10" /></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><g><rect fill="none" height="24" width="24" x="0" /><polygon points="14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10" /></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+          </li>
+          <li class="list-group-item">
+            <b>Curso de Designer Gráfico Online</b>
+          </li>
+        </ul>
+        <div class="card-body">
+          <span style="font-weight:bolder;color:#ff0000;font-size:larger;">AO 123.00</span>
+          <a href="#" class="card-link" style="float:right;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#ff4200"><path d="M0 0h24v24H0zm18.31 6l-2.76 5z" fill="none" /><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" /></svg></a>
+        </div>
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-6 pb-1">
-        <img src="/imagens/vendor-1.jpg" alt="" class="border-geral">
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+      <div class="card" style="width: 100%;">
+        <div style="position:absolute; top:0; right:0; z-index:3; padding:5px;">
+          <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#ff0000"><rect fill="none" height="24" width="24" /><path d="M21,7h-2v2h-2V7h-2V5h2V3h2v2h2V7z M19,21l-7-3l-7,3V5c0-1.1,0.9-2,2-2l7,0c-0.63,0.84-1,1.87-1,3c0,2.76,2.24,5,5,5 c0.34,0,0.68-0.03,1-0.1V21z" /></svg>
+        </div>
+        <img src="/imagens/emprego.png" class="card-img-top" alt="...">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+          </li>
+          <li class="list-group-item">
+            <b>Curso de Designer Gráfico Online</b>
+          </li>
+        </ul>
+        <div class="card-body">
+          <span style="font-weight:bolder;color:#ff0000;font-size:larger;">AO 330.123,00</span>
+          <a href="#" class="card-link" style="float:right;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#ff4200"><path d="M0 0h24v24H0zm18.31 6l-2.76 5z" fill="none" /><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" /></svg></a>
+        </div>
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-6 pb-1">
-        <img src="/imagens/vendor-1.jpg" alt="" class="border-geral">
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+      <div class="card" style="width: 100%;">
+        <div style="position:absolute; top:0; right:0; z-index:3; padding:5px;">
+          <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#ff0000"><rect fill="none" height="24" width="24" /><path d="M21,7h-2v2h-2V7h-2V5h2V3h2v2h2V7z M19,21l-7-3l-7,3V5c0-1.1,0.9-2,2-2l7,0c-0.63,0.84-1,1.87-1,3c0,2.76,2.24,5,5,5 c0.34,0,0.68-0.03,1-0.1V21z" /></svg>
+        </div>
+        <img src="/imagens/emprego.png" class="card-img-top" alt="...">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+          </li>
+          <li class="list-group-item">
+            <b>Curso de Designer Gráfico Online</b>
+          </li>
+        </ul>
+        <div class="card-body">
+          <span style="font-weight:bolder;color:#ff0000;font-size:larger;">AO 1.023,00</span>
+          <a href="#" class="card-link" style="float:right;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#ff4200"><path d="M0 0h24v24H0zm18.31 6l-2.76 5z" fill="none" /><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" /></svg></a>
+        </div>
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-6 pb-1">
-        <img src="/imagens/vendor-1.jpg" alt="" class="border-geral">
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+      <div class="card" style="width: 100%;">
+        <div style="position:absolute; top:0; right:0; z-index:3; padding:5px;">
+          <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#ff0000"><rect fill="none" height="24" width="24" /><path d="M21,7h-2v2h-2V7h-2V5h2V3h2v2h2V7z M19,21l-7-3l-7,3V5c0-1.1,0.9-2,2-2l7,0c-0.63,0.84-1,1.87-1,3c0,2.76,2.24,5,5,5 c0.34,0,0.68-0.03,1-0.1V21z" /></svg>
+        </div>
+        <img src="/imagens/emprego.png" class="card-img-top" alt="...">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" /></svg>
+          </li>
+          <li class="list-group-item">
+            <b>Curso de Designer Gráfico Online</b>
+          </li>
+        </ul>
+        <div class="card-body">
+          <span style="font-weight:bolder;color:#ff0000;font-size:larger;">AO 45.263,00</span>
+          <a href="#" class="card-link" style="float:right;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#ff4200"><path d="M0 0h24v24H0zm18.31 6l-2.76 5z" fill="none" /><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" /></svg></a>
+        </div>
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-6 pb-1" style="padding-right:0px !important;">
-        <img src="/imagens/vendor-1.jpg" alt="" class="border-geral">
+    </div>
+
+
+    <div style=" width: 100%; text-align: right; padding: 10px 30px 0px 0px;">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="30px" fill="#f28507"><path d="M0 0h24v24H0z" fill="none" /><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" /></svg>
+      <a href="#" style="color: #f28507;">Mais Cursos</a>
+    </div>
+
+
+
+  </div>
+
+
+</div>
+<!-- Products End -->
+
+
+<div class="container-fluid pt-5 pb-3">
+  <div class="row px-xl-5">
+    <div class="col-12 pb-1">
+      <div class="card" style="width: 100%; background: linear-gradient( to bottom, rgba(251, 110, 19, 1) 0%, rgba(251, 110, 19, 0) 100% ); height: 300px; border: 0px; padding: 20px 0px 0px 0px; ">
+
+        <div class="row px-xl-5" style="padding-right  : 0rem !important; padding-left: 0rem !important; ">
+          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center">
+            <div class="card" style="width: 100%; background: transparent !important; border: 0px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#8F3A00"><path d="M0 0h24v24H0zm10 5h4v2h-4zm0 0h4v2h-4z" fill="none" /><path d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-6 0h-4V5h4v2z" /></svg>
+                </h5>
+                <h5 class="card-title" style="font-size: 40px; color: #8F3A00;">{{ counterA | number }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" style="color: #8F3A00 !important;">Ofertas Activas</h6>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center">
+
+
+            <div class="card" style="width: 100%; background: transparent !important; border: 0px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" height="48px" viewBox="0 0 20 20" width="48px" fill="#8F3A00"><g><rect fill="none" height="20" width="20" /></g><g><path d="M14,9V4H7v3H3v9h7v-3h1v3h6V9H14z M6,14H5v-1h1V14z M6,12H5v-1h1V12z M6,10H5V9h1V10z M10,11H9v-1h1V11z M10,9H9V8h1V9z M10,7H9V6h1V7z M12,11h-1v-1h1V11z M12,9h-1V8h1V9z M12,7h-1V6h1V7z M15,14h-1v-1h1V14z M15,12h-1v-1h1V12z" /></g></svg>
+                </h5>
+                <h5 class="card-title" style="font-size: 40px; color: #8F3A00;">{{ counterB | number }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" style="color: #8F3A00 !important;">Empresas Registadas</h6>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center">
+
+
+            <div class="card" style="width: 100%; background: transparent !important; border:0px;">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#8F3A00"><path d="M0 0h24v24H0z" fill="none" /><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z" /></svg>
+                </h5>
+                <h5 class="card-title" style="font-size: 40px; color: #8F3A00;">{{ counterC | number }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" style="color: #8F3A00 !important;">Candidatos Registados</h6>
+
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div style="text-align:center;padding-top:30px;">
+          <h5 class="card-title" style="font-size: 40px; color: #8F3A00;">
+            O maior portal de emprego de Angola
+          </h5>
+
+        </div>
+
+
+
       </div>
     </div>
   </div>
-  <!-- Vendor End -->
+</div>
+<!-- Products End -->
+<!-- carrocel de empresas -->
+<div class="container-fluid pt-5 pb-0" style="background:#ccc;" style="height:215px; padding-top: 1rem !important;">
+  <div class="row px-xl-5" style="padding-right: 0rem !important; padding-left: 0rem !important; padding-top: 0px !important; ">
 
-  <app-footer></app-footer>
+
+    <div class="marquee-wrapper-1">
+      <div class="marquee-content-1">
+
+        <!-- BLOCO 1 -->
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+
+        <!-- BLOCO 2 (duplicado para scroll contínuo) -->
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+        <div class="item-1"><img src="/imagens/emprega-angola-capa-scroll.png"></div>
+
+      </div>
+    </div>
 
 
 
- 
+  </div>
+</div>
+<!-- carrocel de empresas End -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counterElement = document.getElementById("counter");
+    const targetNumber = 60989;   // change this to any number
+    const duration = 2000;       // total animation time in ms (2 seconds)
+
+    let start = 0;
+    const startTime = performance.now();
+
+    function updateCounter(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const currentValue = Math.floor(progress * targetNumber);
+      counterElement.textContent = currentValue.toLocaleString();
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        counterElement.textContent = targetNumber.toLocaleString();
+      }
+    }
+
+    requestAnimationFrame(updateCounter);
+  });
+</script>
+
+
+
+<app-footer></app-footer>
+
+
+
+
+
+
+
