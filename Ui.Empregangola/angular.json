@@ -33,19 +33,37 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap-utilities.min.css"
+              "src/assets/css/plugins.min.css",
+              "src/assets/css/kaiadmin.min.css",
+              "src/assets/css/fonts.min.css"
             ],
             "scripts": [
-              "node_modules/@popperjs/core/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-              /*"public/js/main.js"*/
+              "src/assets/js/core/jquery-3.7.1.min.js",
+              "src/assets/js/core/popper.min.js",
+              "src/assets/js/core/bootstrap.min.js",
+              "src/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js",
+              "src/assets/js/plugin/chart.js/chart.min.js",
+              "src/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js",
+              "src/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js",
+              "src/assets/js/plugin/jsvectormap/jsvectormap.min.js",
+              "src/assets/js/plugin/jsvectormap/world.js",
+              "src/assets/js/plugin/sweetalert/sweetalert.min.js",
+              "src/assets/js/plugin/webfont/webfont.min.js",
+              "src/assets/js/kaiadmin.min.js",
+              "src/assets/js/setting-demo.js"
             ]
           },
           "configurations": {

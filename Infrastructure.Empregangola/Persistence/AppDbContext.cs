@@ -22,4 +22,6 @@ public class AppDbContext : IdentityDbContext<AppUser>
                   .IsRequired(false);
         });
     }
+
+    public DbSet<UserDetailsTable> UserDetails { get; set; }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Empregangola.Services
+namespace Application.Empregangola.Features.Users.Commands.CreateUser
 {
-    internal class UserService
+    internal class CreateUserCommandValidator
     {
     }
 }
