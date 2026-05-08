@@ -9,5 +9,6 @@ namespace Application.Empregangola.Interfaces
     {
         Task<AuthResponse?> RegisterAsync(RegisterRequest request);
         Task<AuthResponse?> LoginAsync(string email, string password);
+        //Task RegisterAsync(RegisterRequest request);
     }
 }

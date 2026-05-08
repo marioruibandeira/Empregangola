@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Empregangola.Interfaces
+namespace Application.Empregangola.Features.Users.Queries.ListingUsers
 {
-    internal interface IUserService
+    internal class ListUserQuery
     {
     }
 }
