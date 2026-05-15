@@ -25,7 +25,7 @@ public class UserDetailsTable
 
     public string Location { get; set; } = string.Empty;
 
-    public string PhotoPrifile {  get; set; } = string.Empty;
+    public string PhotoProfile {  get; set; } = string.Empty;
 
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
