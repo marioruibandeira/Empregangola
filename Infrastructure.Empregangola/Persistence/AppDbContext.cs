@@ -21,6 +21,10 @@ public class AppDbContext : IdentityDbContext<AppUser>
                   .HasMaxLength(150)
                   .IsRequired(false);
         });
+
+        modelBuilder.Entity<UserDetailsTable>()
+            .HasIndex(u => u.AppUserId)
+            .IsUnique();
     }
 
     public DbSet<UserDetailsTable> UserDetails { get; set; }

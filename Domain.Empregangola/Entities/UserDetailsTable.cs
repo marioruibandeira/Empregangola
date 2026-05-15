@@ -13,16 +13,20 @@ public class UserDetailsTable
     public string AppUserId { get; set; } = string.Empty;
 
     [Required]
-    public string Names { get; set; } = string.Empty;
-
-    [Required]
-    public string LastName { get; set; } = string.Empty;
-
-    public string Code { get; set; } = string.Empty;
-    public int Telefone { get; set; }
-
-    [Required]
     public DateTime DateOfBirth { get; set; }
+
+    [Required]
+    public string Address { get; set; } = string.Empty;
+
+    [Required]
+    public string PostalCode { get; set; } = string.Empty;
+
+    public string Country { get; set; } = string.Empty;
+
+    public string Location { get; set; } = string.Empty;
+
+    public string PhotoProfile {  get; set; } = string.Empty;
+
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
     public AppUser AppUser { get; set; } = null!;

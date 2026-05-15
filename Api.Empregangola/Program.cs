@@ -1,11 +1,16 @@
-using Application.Empregangola.DTOs.Requests;
-using Application.Empregangola.DTOs.Responses;
+using Api.Empregangola.Middleware;
+using Application.Empregangola.Behaviors;
 using Application.Empregangola.Interfaces;
 using Application.Empregangola.Services;
 using Domain.Empregangola.Entities;
+using Domain.Empregangola.Interfaces;
+using FluentValidation;
 using Infrastructure.Empregangola.Identity;
 using Infrastructure.Empregangola.Persistence;
+using Infrastructure.Empregangola.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -19,6 +24,17 @@ builder.Services.AddControllers(); // opcional por agora
 
 // DbContext + EF Core
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// MediatR
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(Application.Empregangola.AssemblyReference).Assembly));
+
+// FluentValidation
+builder.Services.AddValidatorsFromAssembly(typeof(Application.Empregangola.AssemblyReference).Assembly);
+
+// ValidationBehavior
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
 
 // Identity com AppUser
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -72,7 +88,34 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empregangola API", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme 
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+    
 });
+
+
 
 var app = builder.Build();
 
@@ -84,6 +127,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Empregangola API v1"));
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
