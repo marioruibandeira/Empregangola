@@ -26,8 +26,13 @@ public class UserDetailsTable
     public string Location { get; set; } = string.Empty;
 
     public string PhotoProfile {  get; set; } = string.Empty;
+    public int Genero { get; set; } = 2;
+
+    [Column(TypeName = "nvarchar(500)")]
+    public string SobreMim {  get; set; } = string.Empty;
 
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
     public AppUser AppUser { get; set; } = null!;
+
 }

@@ -4,7 +4,7 @@ namespace Domain.Empregangola.Entities
 {
     public class AppUser : IdentityUser
     {
-        public string FullName { get; private set; } = string.Empty;
+        public string FullName { get; set; } = string.Empty;
         public int TipoUtilizador { get; private set; } 
 
 

@@ -665,6 +665,8 @@ button.bg-secondary:focus {
   color: #434343;
 }
 
+.div-erro{ display:none}
+
 @media (max-width: 576px) {
   .navbar-expand-sm > .container,
   .navbar-expand-sm > .container-fluid, .navbar-expand-sm > .container-sm, .navbar-expand-sm > .container-md, .navbar-expand-sm > .container-lg, .navbar-expand-sm > .container-xl {
