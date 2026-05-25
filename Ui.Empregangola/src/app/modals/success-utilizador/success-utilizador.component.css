@@ -1,0 +1,20 @@
+.dialog-header {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px 16px 10px 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.dialog-content {
+  padding-top: 20px;
+  font-size: 16px;
+}
+
+mat-dialog-actions {
+  padding: 16px;
+}
+
+:host ::ng-deep .mat-mdc-dialog-container {
+  border-radius: 10px !important;
+}

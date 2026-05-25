@@ -112,4 +112,21 @@ export class AuthService
   get currentUserValue() {
     return this.currentUserSubject.value;
   }
+
+  //Get para verificar a existencia do utilizador
+  getUserIdFromToken(): string | null {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (!token) return null;
+
+    const payload = token.split('.')[1];
+    const decoded = JSON.parse(atob(payload));
+
+    return (
+      decoded.sub ||
+      decoded.nameid ||
+      decoded.uid ||
+      decoded.id ||
+      null
+    );
+  }
 }

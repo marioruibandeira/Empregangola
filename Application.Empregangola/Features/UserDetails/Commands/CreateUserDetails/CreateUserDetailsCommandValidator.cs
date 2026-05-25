@@ -30,5 +30,8 @@ public class CreateUserDetailsCommandValidator : AbstractValidator<CreateUserDet
 
         RuleFor(x => x.PhotoProfile)
             .MaximumLength(500).WithMessage("Photo profile URL must not exceed 500 characters.");
+
+        RuleFor(x => x.SobreMim)
+            .MaximumLength(500).WithMessage("Sobre mim cannot exceed 500 characters.");
     }
 }
