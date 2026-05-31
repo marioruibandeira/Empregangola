@@ -25,7 +25,16 @@ public class AppDbContext : IdentityDbContext<AppUser>
         modelBuilder.Entity<UserDetailsTable>()
             .HasIndex(u => u.AppUserId)
             .IsUnique();
+
+        modelBuilder.Entity<PaisTable>(entity =>
+        {
+            entity.Property(u => u.Pais)
+                .HasMaxLength(50)
+                .IsRequired(true);
+        });
+            
     }
 
     public DbSet<UserDetailsTable> UserDetails { get; set; }
+    public DbSet<PaisTable> Pais { get; set; }
 }
