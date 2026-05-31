@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
 import { MatDialog } from '@angular/material/dialog'
 import { SuccessUtilizadorComponent } from '../../modals/success-utilizador/success-utilizador.component';
+import { BesidebarComponent } from '../../shared/besidebar/besidebar.component';
+import { BeheaderComponent } from '../../shared/beheader/beheader.component';
+import { BefooterComponent } from '../../shared/befooter/befooter.component';
 
 
 
@@ -15,6 +18,7 @@ import {
   AbstractControl,
   ValidationErrors,
   ValidatorFn
+
 } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
@@ -63,7 +67,9 @@ export function idadeMinimaValidator(idadeMinima: number): ValidatorFn {
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    HttpClientModule
+    BesidebarComponent,
+    BeheaderComponent,
+    BefooterComponent
   ],
   providers: [FormBuilder],
   templateUrl: './utilizador.component.html',
