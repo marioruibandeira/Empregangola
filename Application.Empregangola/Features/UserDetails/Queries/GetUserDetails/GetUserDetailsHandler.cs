@@ -24,21 +24,26 @@ public class GetUserDetailsHandler : IRequestHandler<GetUserProfileQuery, UserDe
         if (user == null)
             return null;
 
-        return new UserDetailsDto
+        if (details != null)
         {
-            AppUserId = user.Id,
-            UserName = user.UserName,
-            FullName = user.FullName,
-            Email = user.Email,
-            PhoneNumber = user.PhoneNumber,
-            Address = details.Address,
-            PostalCode = details.PostalCode,
-            Country = details.Country,
-            Location = details.Location,
-            DateOfBirth = details.DateOfBirth,
-            PhotoProfile = details.PhotoProfile,
-            Genero = details.Genero,
-            SobreMim = details.SobreMim,
-        };
+            return new UserDetailsDto
+            {
+                AppUserId = user.Id,
+                UserName = user.UserName,
+                FullName = user.FullName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Address = details.Address,
+                PostalCode = details.PostalCode,
+                Country = details.Country,
+                Location = details.Location,
+                DateOfBirth = details.DateOfBirth,
+                PhotoProfile = details.PhotoProfile,
+                Genero = details.Genero,
+                SobreMim = details.SobreMim,
+            };
+        }
+
+        return null;
     }
 }

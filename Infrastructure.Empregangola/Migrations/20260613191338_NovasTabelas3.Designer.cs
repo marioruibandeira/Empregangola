@@ -4,6 +4,7 @@ using Infrastructure.Empregangola.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Empregangola.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260613191338_NovasTabelas3")]
+    partial class NovasTabelas3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +27,9 @@ namespace Infrastructure.Empregangola.Migrations
 
             modelBuilder.Entity("Domain.Empregangola.Entities.ActivitySectorTable", b =>
                 {
-                    b.Property<int>("ActivitySectorId")
+                    b.Property<Guid>("ActivitySectorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActivitySectorId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ActivitySector")
                         .IsRequired()
@@ -113,11 +114,9 @@ namespace Infrastructure.Empregangola.Migrations
 
             modelBuilder.Entity("Domain.Empregangola.Entities.CompanyInterestTable", b =>
                 {
-                    b.Property<int>("CompanyInterestId")
+                    b.Property<Guid>("CompanyInterestId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompanyInterestId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
@@ -126,8 +125,8 @@ namespace Infrastructure.Empregangola.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("InterestId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("InterestId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CompanyInterestId");
 
@@ -153,9 +152,8 @@ namespace Infrastructure.Empregangola.Migrations
                     b.Property<int>("ActivitySectorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ActivitySectorId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -169,11 +167,20 @@ namespace Infrastructure.Empregangola.Migrations
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<Guid>("CountryPaidId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("EmployeeCountId")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("EmployeeCountId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("InterestId")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("InterestId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Municipality")
                         .IsRequired()
@@ -189,9 +196,11 @@ namespace Infrastructure.Empregangola.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PositionId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("PositionId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Provincy")
                         .IsRequired()
@@ -205,49 +214,47 @@ namespace Infrastructure.Empregangola.Migrations
 
                     b.HasKey("CompanyId");
 
-                    b.HasIndex("ActivitySectorId");
-
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("ActivitySectorId1");
 
                     b.HasIndex("CompanyId")
                         .IsUnique();
 
-                    b.HasIndex("CountryId");
+                    b.HasIndex("CountryPaidId");
 
-                    b.HasIndex("EmployeeCountId");
+                    b.HasIndex("EmployeeCountId1");
+
+                    b.HasIndex("InterestId1");
+
+                    b.HasIndex("PositionId1");
 
                     b.ToTable("Company");
                 });
 
             modelBuilder.Entity("Domain.Empregangola.Entities.CountryTable", b =>
                 {
-                    b.Property<int>("CountryId")
+                    b.Property<Guid>("PaidId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"));
-
-                    b.Property<string>("Acronym")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
+                    b.Property<string>("Pais")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("CountryId");
+                    b.Property<string>("Sigla")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PaidId");
 
                     b.ToTable("Country");
                 });
 
             modelBuilder.Entity("Domain.Empregangola.Entities.EmployeeCountTable", b =>
                 {
-                    b.Property<int>("EmployeeCountId")
+                    b.Property<Guid>("EmployeeCountId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeCountId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmployeeCount")
                         .IsRequired()
@@ -260,11 +267,9 @@ namespace Infrastructure.Empregangola.Migrations
 
             modelBuilder.Entity("Domain.Empregangola.Entities.InterestTable", b =>
                 {
-                    b.Property<int>("InterestId")
+                    b.Property<Guid>("InterestId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InterestId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Interest")
                         .IsRequired()
@@ -277,11 +282,9 @@ namespace Infrastructure.Empregangola.Migrations
 
             modelBuilder.Entity("Domain.Empregangola.Entities.PositionTable", b =>
                 {
-                    b.Property<int>("PositionId")
+                    b.Property<Guid>("PositionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PositionId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Position")
                         .IsRequired()
@@ -507,35 +510,43 @@ namespace Infrastructure.Empregangola.Migrations
                 {
                     b.HasOne("Domain.Empregangola.Entities.ActivitySectorTable", "ActivitySector")
                         .WithMany()
-                        .HasForeignKey("ActivitySectorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Empregangola.Entities.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
+                        .HasForeignKey("ActivitySectorId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Empregangola.Entities.CountryTable", "Country")
                         .WithMany()
-                        .HasForeignKey("CountryId")
+                        .HasForeignKey("CountryPaidId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Empregangola.Entities.EmployeeCountTable", "EmployeeCount")
                         .WithMany()
-                        .HasForeignKey("EmployeeCountId")
+                        .HasForeignKey("EmployeeCountId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Empregangola.Entities.InterestTable", "Interest")
+                        .WithMany()
+                        .HasForeignKey("InterestId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Empregangola.Entities.PositionTable", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ActivitySector");
 
-                    b.Navigation("AppUser");
-
                     b.Navigation("Country");
 
                     b.Navigation("EmployeeCount");
+
+                    b.Navigation("Interest");
+
+                    b.Navigation("Position");
                 });
 
             modelBuilder.Entity("Domain.Empregangola.Entities.UserDetailsTable", b =>

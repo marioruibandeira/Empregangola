@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilizadorService } from '../../services/utilizador/utilizador.service';
-import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
-import { MatDialog } from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog';
 import { SuccessUtilizadorComponent } from '../../modals/success-utilizador/success-utilizador.component';
 import { BesidebarComponent } from '../../shared/besidebar/besidebar.component';
 import { BeheaderComponent } from '../../shared/beheader/beheader.component';
 import { BefooterComponent } from '../../shared/befooter/befooter.component';
-
-
 
 import {
   ReactiveFormsModule,
@@ -108,6 +105,7 @@ export class UtilizadorComponent implements OnInit
         idadeMinimaValidator(18)
       ]],
       genero: ['2', Validators.required],
+      endereco:['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       sobreMim:[''],
     });
   }
@@ -135,7 +133,7 @@ export class UtilizadorComponent implements OnInit
       Email: dados.email,
       PhoneNumber: dados.telefone,
       DateOfBirth: this.formatarData(dados.dataNascimento),
-      Address: dados.sobreMim ?? "",
+      Address: dados.endereco,
       PostalCode: dados.caixaPostal ?? "",
       Country: dados.pais,
       Location: dados.local,
@@ -179,12 +177,13 @@ export class UtilizadorComponent implements OnInit
           appUserId: appUserId,
           nomeUtilizador: res.userName,
           nomeCompleto: res.fullName,
+          dataNascimento: this.converterDataParaDDMMYYYY(res.dateOfBirth),
+          endereco: res.address,
           email: res.email,
           telefone: res.phoneNumber,
           caixaPostal: res.postalCode,
           pais: res.country,
           local: res.location,
-          dataNascimento: this.converterDataParaDDMMYYYY(res.dateOfBirth),
           genero: String(res.genero),
           sobreMim: res.sobreMim
         });

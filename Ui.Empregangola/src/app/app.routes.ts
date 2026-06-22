@@ -13,6 +13,10 @@ export const routes: Routes = [
   {
     path: 'utilizador',
     loadComponent: () => import('./utilizadores/utilizador/utilizador.component').then(m => m.UtilizadorComponent) 
+  },
+  {
+    path: 'empresa',
+    loadComponent: () => import('./utilizadores/empresa/empresa.component').then(m => m.EmpresaComponent)
   }
 ];
 

@@ -1,0 +1,139 @@
+<!-- utilizador.component.html -->
+<div class="wrapper">
+  <app-besidebar />
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Mário'"
+                  [emailUtilizador]="'info@lea.co.ao'"
+                  [notificacoes]="4" />
+
+      <div class="container">
+        <div class="page-inner">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Criar Perfil da Empresa</div>
+                </div>
+
+                <form [formGroup]="form" (ngSubmit)="guardar()">
+
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-12">
+                        <div class="form-group">
+                          <label for="nomeEmpresa">Nome da Empresa</label>
+                          <input type="text" class="form-control" id="nomeEmpresa" placeholder="Nome da Empresa" formControlName="nomeEmpresa" />
+                          <div class="text-danger" *ngIf="form.get('nomeEmpresa')?.touched && form.get('nomeEmpresa')?.hasError('required')">O nome da empresa é obrigatório.</div>
+                          <div class="text-danger" *ngIf="form.get('nomeEmpresa')?.touched && form.get('nomeEmpresa')?.hasError('minlength')">O nome deve ter pelo menos 3 caracteres.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="nif">NIF</label>
+                          <input type="text" class="form-control" id="nif" placeholder="NIF" formControlName="nif" />
+                          <div class="text-danger" *ngIf="form.get('nif')?.touched && form.get('nif')?.hasError('required')">O NIF é obrigatório.</div>
+                          <div class="text-danger" *ngIf="form.get('nif')?.touched && form.get('nif')?.hasError('minlength')">O NIF deve ter pelo menos 3 caracteres.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="sectorActividade">Sector de Actividade</label>
+                          <select class="form-select" id="sectorActividade" formControlName="sectorActividade">
+                            <option value="">Selecione um sector</option>
+                            <option value="1">Oil & Gas</option>
+                            <option value="2">Construção</option>
+                            <option value="3">Logística</option>
+                            <option value="4">Tecnologia</option>
+                            <option value="5">Saúde</option>
+                            <option value="6">Educação</option>
+                            <option value="7">Outro</option>
+                          </select>
+                          <div class="text-danger" *ngIf="form.get('sectorActividade')?.touched && form.get('sectorActividade')?.hasError('required')">O Sector de Actividade é obrigatório.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="nColaboradores">Nº de Colaboradores</label>
+                          <select class="form-select" id="nColaboradores" formControlName="nColaboradores">
+                            <option value="">Selecione Nº de Colaboradores</option>
+                            <option value="1">1–10</option>
+                            <option value="2">11–50</option>
+                            <option value="3">51–200</option>
+                            <option value="4">200+</option>
+                          </select>
+                          <div class="text-danger" *ngIf="form.get('nColaboradores')?.touched && form.get('nColaboradores')?.hasError('required')">O Sector de Actividade é obrigatório.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="pais">País</label>
+                          <select class="form-select" id="pais" formControlName="pais">
+                            <option value="">Selecione País</option>
+                            <option value="2">Angola</option>
+                            <option value="3">Portugal</option>
+                            <option value="4">Brasil</option>
+                            <option value="5">Moçambique</option>
+                          </select>
+                          <div class="text-danger" *ngIf="form.get('pais')?.touched && form.get('pais')?.hasError('required')">O País é obrigatório.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="provincia">Província</label>
+                          <input type="text" class="form-control" id="provincia" placeholder="Província" formControlName="provincia" />
+                          <div class="text-danger" *ngIf="form.get('provincia')?.touched && form.get('provincia')?.hasError('required')">A Província é obrigatório.</div>
+                          <div class="text-danger" *ngIf="form.get('Província')?.touched && form.get('Província')?.hasError('minlength')">A Província deve ter pelo menos 3 caracteres.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="municipio">Município</label>
+                          <input type="text" class="form-control" id="municipio" placeholder="Município" formControlName="municipio" />
+                          <div class="text-danger" *ngIf="form.get('municipio')?.touched && form.get('municipio')?.hasError('required')">O Município é obrigatório.</div>
+                          <div class="text-danger" *ngIf="form.get('municipio')?.touched && form.get('municipio')?.hasError('minlength')">O Município deve ter pelo menos 3 caracteres.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="nomeResponsavel">Nome do Responsável</label>
+                          <input type="text" class="form-control" id="nomeResponsavel" placeholder="Nome do Responsável" formControlName="nomeResponsavel" />
+                          <div class="text-danger" *ngIf="form.get('nomeResponsavel')?.touched && form.get('nomeResponsavel')?.hasError('required')">O Nome do Responsável é obrigatório.</div>
+                          <div class="text-danger" *ngIf="form.get('nomeResponsavel')?.touched && form.get('nomeResponsavel')?.hasError('minlength')">O Nome do Responsável deve ter pelo menos 3 caracteres.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="cargo">Cargo</label>
+                          <input type="text" class="form-control" id="cargo" placeholder="Cargo" formControlName="cargo" />
+                          <div class="text-danger" *ngIf="form.get('cargo')?.touched && form.get('cargo')?.hasError('required')">O Cargo é obrigatório.</div>
+                          <div class="text-danger" *ngIf="form.get('cargo')?.touched && form.get('cargo')?.hasError('minlength')">O Cargo deve ter pelo menos 3 caracteres.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="emailCorporativo">Email Corporativo</label>
+                          <input type="text" class="form-control" id="emailCorporativo" placeholder="Email Corporativo" formControlName="emailCorporativo" />
+                          <div class="text-danger" *ngIf="form.get('emailCorporativo')?.touched && form.get('emailCorporativo')?.hasError('required')">O email corporativo é obrigatório.</div>
+                          <div class="text-danger" *ngIf="form.get('emailCorporativo')?.touched && form.get('emailCorporativo')?.hasError('email')">Email inválido.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="telefone">Telefone</label>
+                          <input type="text" class="form-control" id="telefone" placeholder="Telefone" formControlName="telefone" />
+                          <div class="text-danger" *ngIf="form.get('telefone')?.touched && form.get('telefone')?.hasError('required')">O Telefone é obrigatório.</div>
+                          <div class="text-danger" *ngIf="form.get('telefone')?.touched && form.get('telefone')?.hasError('pattern')">O telefone deve começar com + e conter exatamente 12 dígitos.</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="interesse">O que pretende?</label><br />
+                          <label class="interesse-espaco"><input type="checkbox" [checked]="isInteresseSelecionado(1)" (change)="onCheckboxChange($event)" value="1" /> Publicar vagas</label>
+                          <label class="interesse-espaco"><input type="checkbox" [checked]="isInteresseSelecionado(2)" (change)="onCheckboxChange($event)" value="2" /> Recrutamento & Seleção</label>
+                          <label class="interesse-espaco"><input type="checkbox" [checked]="isInteresseSelecionado(3)" (change)="onCheckboxChange($event)" value="3" /> Agenciamento de Mão de Obra</label>
+                          <label class="interesse-espaco"><input type="checkbox" [checked]="isInteresseSelecionado(4)" (change)="onCheckboxChange($event)" value="4" /> Pesquisa de Clima Organizacional</label>
+                          <label class="interesse-espaco"><input type="checkbox" [checked]="isInteresseSelecionado(5)" (change)="onCheckboxChange($event)" value="5" /> Estudos de Mercado / Trends</label>
+                          <label class="interesse-espaco"><input type="checkbox" [checked]="isInteresseSelecionado(6)" (change)="onCheckboxChange($event)" value="6" /> Employer Branding</label>
+                          <label class="interesse-espaco"><input type="checkbox" [checked]="isInteresseSelecionado(7)" (change)="onCheckboxChange($event)" value="7" /> Apenas conhecer a plataforma</label>
+                        </div>
+                        <div class="form-group">
+                          <label for="sobreEmpresa">Sobre a Empresa</label>
+                          <textarea class="form-control" id="sobreEmpresa" rows="5" formControlName="sobreEmpresa"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-action">
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <app-befooter />
+  </div>
+</div>
+
