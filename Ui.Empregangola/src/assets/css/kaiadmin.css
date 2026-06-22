@@ -6818,6 +6818,8 @@ body {
       padding: 13px 25px;
       animation-delay: 2.5s; }
 
+    .interesse-espaco{ margin-right: 5px;}
+
 @media screen and (max-width: 576px) {
   .wrapper.not-found h1 {
     font-size: 65px !important; }
