@@ -1,0 +1,133 @@
+<!-- utilizador.component.html -->
+<div class="wrapper">
+  <app-besidebar />
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Pedro'"
+                  [emailUtilizador]="'info@lea.co.ao'"
+                  [notificacoes]="4" />
+
+      <div class="container">
+        <div class="page-inner">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="alert alert-warning" role="alert"> Lerui Imoveis </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Nova Vaga</div>
+                </div>
+                  
+                  <form>
+                    
+                    <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                              
+                              <div class="form-group">
+                                <label for="nomeUtilizador">TItulo</label>
+                                <input type="text" class="form-control" placeholder="Titulo" formControlName="titulo" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="nomeUtilizador">Posição / Cargo</label>
+                                <input type="text" class="form-control" placeholder="Posição" formControlName="posicao" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="nomeUtilizador">Sector</label>
+                                <select class="form-select" id="local" formControlName="local">
+                                  <option value="">Selecione um sector</option>
+                                  <option value="1">Oil & Gas</option>
+                                  <option value="2">Construção</option>
+                                  <option value="3">Logística</option>
+                                  <option value="4">Tecnologia</option>
+                                  <option value="5">Saúde</option>
+                                  <option value="6">Educação</option>
+                                  <option value="7">Outro</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="local">Provincia</label>
+                                <select class="form-select" id="local" formControlName="local">
+                                  <option>Luanda</option>
+                                  <option>Lisboa</option>
+                                  <option>Lubango</option>
+                                  <option>Cidade da Praia</option>
+                                  <option>Maputo</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="nomeUtilizador">Local / Cidade</label>
+                                <input type="text" class="form-control" placeholder="Local / Cidade" formControlName="local" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="local">Número de vagas</label>
+                                <select class="form-select" id="local" formControlName="local">
+                                  <option>1 Vaga</option>
+                                  <option>2 Vagas</option>
+                                  <option>3-5 Vagas</option>
+                                  <option>6-10 Vagas</option>
+                                  <option>11-15 Vagas</option>
+                                  <option>16-20 Vagas</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="local">Educação Minima</label>
+                                <select class="form-select" id="local" formControlName="local">
+                                  <option>7º / 8º Classe</option>
+                                  <option>9º / 10º Classe</option>
+                                  <option>11º / 13º Classe</option>
+                                  <option>Medio</option>
+                                  <option>Bacharel</option>
+                                  <option>Licenciatura ou Equivalente</option>
+                                  <option>Mestrado</option>
+                                  <option>Doutoramento</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="sobreEmpresa">Descrição</label>
+                                <textarea class="form-control" id="sobreEmpresa" rows="5" formControlName="sobreEmpresa"></textarea>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="nomeUtilizador">
+                                  Requisitos
+                                  <select class="form-select" id="local" formControlName="local">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                  <option>6</option>
+                                  <option>7</option>
+                                  <option>8</option>
+                                </select>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Primeiro reuqisito" formControlName="local" />
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-action">
+                          <button class="btn btn-success" type="submit">Guardar</button>
+                        </div>
+                      </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <app-befooter />
+  </div>
+</div>
+
+

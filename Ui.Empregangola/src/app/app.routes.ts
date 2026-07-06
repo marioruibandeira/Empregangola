@@ -17,6 +17,10 @@ export const routes: Routes = [
   {
     path: 'empresa',
     loadComponent: () => import('./utilizadores/empresa/empresa.component').then(m => m.EmpresaComponent)
+  },
+  {
+    path: 'empresa/novas-vagas',
+    loadComponent: () => import('./utilizadores/empresa/novas-vagas/novas-vagas.component').then(m => m.NovasVagasComponent)
   }
 ];
 
