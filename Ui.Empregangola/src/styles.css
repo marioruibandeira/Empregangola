@@ -80,11 +80,11 @@ h3 {
   border-top: 4px solid #ff6600!important;
 }
 
-  .card-extendido:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    cursor: pointer;
-  }
+.card-extendido:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
 
 .empresa-link a {
   display: inline-block !important;
@@ -119,6 +119,13 @@ h3 {
   font-weight:bolder;
   font-size:22px;
 }
+
+/**/
+.dropdown-menu {
+  transition: opacity 0.15s ease-in-out;
+}
+
+
 
 .main-title::after
 {
@@ -539,9 +546,50 @@ button.bg-light:focus {
   border: #fa933b 1px solid !important;
   border-radius: 0px !important;
 } 
-/**/
+
+/* Menu principal*/
 .bg-secondary {
   background-color: #F5F5F5 !important;
+}
+.dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px;
+  line-height: 1;
+  margin-bottom: 6px !important;
+}
+
+.d-item-mt {
+  margin-top: 6px !important;
+}
+
+.navbar-nav .dropdown {
+  position: relative  !important;
+}
+
+.navbar-nav .dropdown-menu {
+  left: 0  !important;
+  right: auto;
+  margin-left: 0;
+  min-width: 200px;
+  padding-left: 0;
+}
+
+.dropdown-item svg {
+  display: block;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.btn-dark {
+  display: inline-flex;
+  align-items: center !important;
+  gap: 8px;
+}
+
+.btn-dark svg {
+  flex-shrink: 0;
 }
 
 .bgsecondary {
@@ -572,8 +620,9 @@ button.bg-secondary:focus {
 .form-control{border-radius:0px !important; }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #fff;
+  color: #fff !important;
   outline: none;
+  font-size: 16px !important;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -666,6 +715,17 @@ button.bg-secondary:focus {
 }
 
 .div-erro{ display:none}
+
+@media (min-width: 992px) {
+  .navbar-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0; /* evita o gap que corta o hover */
+  }
+
+  .navbar-nav .dropdown > .dropdown-toggle:active {
+    pointer-events: none; /* evita fechar ao clicar */
+  }
+}
 
 @media (max-width: 576px) {
   .navbar-expand-sm > .container,

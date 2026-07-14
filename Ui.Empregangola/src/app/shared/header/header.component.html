@@ -9,30 +9,132 @@
           <nav class="navbar navbar-expand-lg navbar-dark py-3 py-lg-0 px-0">
             <div class="collapse navbar-collapse justify-content-between">
               <div class="navbar-nav mr-auto py-0">
-                <a href="index.html" class="nav-item nav-link activo">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none" /><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
-                  Pesquisar Ofertas
-                </a>
-                <a href="shop.html" class="nav-item nav-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><rect fill="none" height="24" width="24" /><g><path d="M12,12.75c1.63,0,3.07,0.39,4.24,0.9c1.08,0.48,1.76,1.56,1.76,2.73L18,18H6l0-1.61c0-1.18,0.68-2.26,1.76-2.73 C8.93,13.14,10.37,12.75,12,12.75z M4,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C2,12.1,2.9,13,4,13z M5.13,14.1 C4.76,14.04,4.39,14,4,14c-0.99,0-1.93,0.21-2.78,0.58C0.48,14.9,0,15.62,0,16.43V18l4.5,0v-1.61C4.5,15.56,4.73,14.78,5.13,14.1z M20,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C18,12.1,18.9,13,20,13z M24,16.43c0-0.81-0.48-1.53-1.22-1.85 C21.93,14.21,20.99,14,20,14c-0.39,0-0.76,0.04-1.13,0.1c0.4,0.68,0.63,1.46,0.63,2.29V18l4.5,0V16.43z M12,6c1.66,0,3,1.34,3,3 c0,1.66-1.34,3-3,3s-3-1.34-3-3C9,7.34,10.34,6,12,6z" /></g></svg>
-                  Candidatos
-                </a>
-                <a href="detail.html" class="nav-item nav-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" height="20px" viewBox="0 0 20 20" width="20px" fill="#FFFFFF"><g><rect fill="none" height="20" width="20" /></g><g><path d="M14,9V4H7v3H3v9h7v-3h1v3h6V9H14z M6,14H5v-1h1V14z M6,12H5v-1h1V12z M6,10H5V9h1V10z M10,11H9v-1h1V11z M10,9H9V8h1V9z M10,7H9V6h1V7z M12,11h-1v-1h1V11z M12,9h-1V8h1V9z M12,7h-1V6h1V7z M15,14h-1v-1h1V14z M15,12h-1v-1h1V12z" /></g></svg>
-                  Empresas
-                </a>
-                <a href="detail.html" class="nav-item nav-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none" /><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z" /></svg>
-                  Formação
-                </a>
-                <a href="contact.html" class="nav-item nav-link">
+                <div class="nav-item dropdown">
+                  <a href="index.html" class="nav-item nav-link activo">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none" /><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
+                    Pesquisar Ofertas
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="pesquisaDropdown">
+                    <a class="dropdown-item d-item-mt" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000"><path d="M168-216v-9 9-432 432Zm0 72q-29.7 0-50.85-21.15Q96-186.3 96-216v-432q0-29.7 21.15-50.85Q138.3-720 168-720h168v-72.21Q336-822 357.18-843q21.17-21 50.91-21h144.17Q582-864 603-842.85q21 21.15 21 50.85v72h168q29.7 0 50.85 21.15Q864-677.7 864-648v187q-17-11-34.5-19.5T792-494v-154H168v432h289q2 18.93 6 36.97Q467-161 474-144H168Zm240-576h144v-72H408v72Zm176 615.77q-56-56.22-56-136Q528-320 584.23-376q56.22-56 136-56Q800-432 856-375.77q56 56.22 56 136Q912-160 855.77-104q-56.22 56-136 56Q640-48 584-104.23ZM720-144l108-108-34-34-50 50v-100h-48v100l-50-50-34 34 108 108Z"/></svg>
+                      Vagas Abertas
+                    </a>
+                  </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                  <a href="shop.html" class="nav-item nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><rect fill="none" height="24" width="24" /><g><path d="M12,12.75c1.63,0,3.07,0.39,4.24,0.9c1.08,0.48,1.76,1.56,1.76,2.73L18,18H6l0-1.61c0-1.18,0.68-2.26,1.76-2.73 C8.93,13.14,10.37,12.75,12,12.75z M4,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C2,12.1,2.9,13,4,13z M5.13,14.1 C4.76,14.04,4.39,14,4,14c-0.99,0-1.93,0.21-2.78,0.58C0.48,14.9,0,15.62,0,16.43V18l4.5,0v-1.61C4.5,15.56,4.73,14.78,5.13,14.1z M20,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C18,12.1,18.9,13,20,13z M24,16.43c0-0.81-0.48-1.53-1.22-1.85 C21.93,14.21,20.99,14,20,14c-0.39,0-0.76,0.04-1.13,0.1c0.4,0.68,0.63,1.46,0.63,2.29V18l4.5,0V16.43z M12,6c1.66,0,3,1.34,3,3 c0,1.66-1.34,3-3,3s-3-1.34-3-3C9,7.34,10.34,6,12,6z" /></g></svg>
+                    Candidatos
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="pesquisaDropdown">
+                    <a class="dropdown-item d-item-mt" href="/utilizador/">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#000"><path d="M160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm0-80h640v-440H600q0 33-23.5 56.5T520-520h-80q-33 0-56.5-23.5T360-600H160v440Zm80-80h240v-18q0-17-9.5-31.5T444-312q-20-9-40.5-13.5T360-330q-23 0-43.5 4.5T276-312q-17 8-26.5 22.5T240-258v18Zm320-60h160v-60H560v60Zm-157.5-77.5Q420-395 420-420t-17.5-42.5Q385-480 360-480t-42.5 17.5Q300-445 300-420t17.5 42.5Q335-360 360-360t42.5-17.5ZM560-420h160v-60H560v60ZM440-600h80v-200h-80v200Zm40 220Z"/></svg>
+                      Perfil
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000"><path d="M237-285q54-38 115.5-56.5T480-360q66 0 127.5 18.5T723-285q35-41 52-91t17-104q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 54 17 104t52 91Zm141-165q-42-42-42-102t42-102q42-42 102-42t102 42q42 42 42 102t-42 102q-42 42-102 42t-102-42ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm100-88.5q48-16.5 90-48.5-43-27-91-41t-99-14q-51 0-99.5 13.5T290-233q42 32 90 48.5T480-168q52 0 100-16.5ZM531-501q21-21 21-51t-21-51q-21-21-51-21t-51 21q-21 21-21 51t21 51q21 21 51 21t51-21Zm-51-51Zm0 319Z"/></svg>
+                      Registo
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000"><path d="m352-293 128-76 129 76-34-144 111-95-147-13-59-137-59 137-147 13 112 95-34 144ZM243-144l63-266L96-589l276-24 108-251 108 252 276 23-210 179 63 266-237-141-237 141Zm237-333Z"/></svg>
+                      Vagas Favoritas
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000"><path d="M168-432v72h624v-72H168Zm0-432h624q29.7 0 50.85 21.15Q864-821.7 864-792v432q0 29.7-21.15 50.85Q821.7-288 792-288H624v192l-144-96-144 96v-192H168q-29.7 0-50.85-21.15Q96-330.3 96-360v-432q0-29.7 21.15-50.85Q138.3-864 168-864Zm0 336h624v-264H168v264Zm0 168v-432 432Z"/></svg>
+                      Destacar Perfil
+                    </a>
+                  </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                  <a href="detail.html" class="nav-item nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" height="24px" viewBox="0 0 20 20" width="24px" fill="#FFFFFF"><g><rect fill="none" height="20" width="20" /></g><g><path d="M14,9V4H7v3H3v9h7v-3h1v3h6V9H14z M6,14H5v-1h1V14z M6,12H5v-1h1V12z M6,10H5V9h1V10z M10,11H9v-1h1V11z M10,9H9V8h1V9z M10,7H9V6h1V7z M12,11h-1v-1h1V11z M12,9h-1V8h1V9z M12,7h-1V6h1V7z M15,14h-1v-1h1V14z M15,12h-1v-1h1V12z" /></g></svg>
+                    Empresas
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="pesquisaDropdown">
+                    <a class="dropdown-item d-item-mt" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M444-288h72v-156h156v-72H516v-156h-72v156H288v72h156v156Zm36.28 192Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
+                      Publicar Oferta
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M216-216v-528 444-85 169Zm0 72q-29.7 0-50.85-21.15Q144-186.3 144-216v-528q0-29.7 21.15-50.85Q186.3-816 216-816h528q29.7 0 50.85 21.15Q816-773.7 816-744v312h-72v-312H216v528h264v72H216Zm475 48L556-232l51-51 84 85 170-170 51 51L691-96ZM349.5-454.29q10.5-10.29 10.5-25.5t-10.29-25.71q-10.29-10.5-25.5-10.5t-25.71 10.29q-10.5 10.29-10.5 25.5t10.29 25.71q10.29 10.5 25.5 10.5t25.71-10.29Zm0-156q10.5-10.29 10.5-25.5t-10.29-25.71q-10.29-10.5-25.5-10.5t-25.71 10.29q-10.5 10.29-10.5 25.5t10.29 25.71q10.29 10.5 25.5 10.5t25.71-10.29ZM432-444h240v-72H432v72Zm0-156h240v-72H432v72Z"/></svg>
+                      Ofertas Activas
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M444-192v-438L243-429l-51-51 288-288 288 288-51 51-201-201v438h-72Z"/></svg>
+                      Pacotes destaques
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="m480-276 144-144-51-51-57 57v-150h-72v150l-57-57-51 51 144 144ZM216-624v408h528v-408H216Zm0 480q-29.7 0-50.85-21.15Q144-186.3 144-216v-474q0-14 5.25-27T165-741l54-54q11-11 23.94-16 12.94-5 27.06-5h420q14.12 0 27.06 5T741-795l54 54q10.5 11 15.75 24t5.25 27v474q0 29.7-21.15 50.85Q773.7-144 744-144H216Zm6-552h516l-48-48H270l-48 48Zm258 276Z"/></svg>
+                      Ofertas Arquivadas
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M480-144 216-276v-240L48-600l432-216 432 216v312h-72v-276l-96 48v240L480-144Zm0-321 271-135-271-135-271 135 271 135Zm0 240 192-96v-159l-192 96-192-96v159l192 96Zm0-240Zm0 81Zm0 0Z"/></svg>
+                      Oferta de Formação
+                    </a>
+                    <a class="dropdown-item" href="/empresa">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M480.21-360Q510-360 531-381.21t21-51Q552-462 530.79-483t-51-21Q450-504 429-482.79t-21 51Q408-402 429.21-381t51 21ZM168-144q-29.7 0-50.85-21.15Q96-186.3 96-216v-432q0-29.7 21.15-50.85Q138.3-720 168-720h168v-72.21Q336-822 357.18-843q21.17-21 50.91-21h144.17Q582-864 603-842.85q21 21.15 21 50.85v72h168q29.7 0 50.85 21.15Q864-677.7 864-648v432q0 29.7-21.15 50.85Q821.7-144 792-144H168Zm0-72h624v-432H168v432Zm240-504h144v-72H408v72ZM168-216v-432 432Z"/></svg>
+                      Perfil da Empresa
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M195-96q-50 0-74.5-20T96-178q0-62 54-73t100-11h19v-52q0-32-1.5-53.5T262-400q-4-11-10.5-16.5T235-422q-6 0-11.5 1.5T213-416q-10 7-9 15.5t1 9.5q6 11 13 20.5t7 22.5q0 23-16.5 39.5T169-292q-23 0-39-16.5T114-348q0-29 16-46t37.5-25.5q21.5-8.5 43-10.5t33.5-2q77 0 113.5 23.5T394-303v137q0 18 4.5 26.5T413-131q11 0 18-17.5t9-52.5h10q-2 47-17.5 76T364-96q-40 0-63-12.5T272-146q-10 29-29 39.5T195-96Zm357 0q-20 0-30.5-16t-3.5-33l95-251q6-17 21-26.5t32-9.5q17 0 32 9.5t21 26.5l95 251q7 17-3.5 33T780-96q-11 0-21-6.5T745-120l-19-54H606l-19 54q-4 11-14 17.5T552-96Zm-312-27q16 0 22.5-24t6.5-41v-64q-28 0-37 17t-9 45v11q0 27 2 41.5t15 14.5Zm390-117h72l-36-106-36 106Zm-40-288q-51 0-74.5-35.5T492-644q0-96 61-158t159-62q15 0 51.5 4t36.5 27q0 6-2 11t-7 10q-7 8-14 10t-12 0q-7-2-23.5-5t-37.5-3q-72 0-109.5 48T557-647q0 21 8.5 43t34.5 22q29 0 44.5-27.5T668-660q8-21 12-38t11-53q2-11 9.5-16.5T722-773q26 0 29.5 12t1.5 18q-8 27-14.5 62t-6.5 63q0 23 6 29t14 6q13 0 23-9t24-26q1-1 14-7 10 1 12.5 8t2.5 15q0 30-32.5 52T736-528q-15 0-35.5-9T671-578q-14 23-34 36.5T590-528Zm-446 0v-204q0-55 38.5-93.5T276-864q55 0 93.5 38.5T408-732v204h-72v-72H216v72h-72Zm72-144h120v-60q0-25-17.5-42.5T276-792q-25 0-42.5 17.5T216-732v60Z"/></svg>
+                      Logo
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M144-96v-768l56 45 56-45 56 45 56-45 56 45 56-45 56 45 56-45 56 45 56-45 56 45 56-45v768l-56-45-56 45-56-45-56 45-56-45-56 45-56-45-56 45-56-45-56 45-56-45-56 45Zm144-216h384v-72H288v72Zm0-132h384v-72H288v72Zm0-132h384v-72H288v72Zm-72 360h528v-528H216v528Zm0-528v528-528Z"/></svg>
+                      Facturas
+                    </a>
+                  </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                  <a href="detail.html" class="nav-item nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none" /><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z" /></svg>
+                    Formação
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="pesquisaDropdown" style="width: 250px!important;">
+                    <a class="dropdown-item d-item-mt" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M168-96q-29.7 0-50.85-21.15Q96-138.3 96-168v-432q0-29.7 21.15-50.85Q138.3-672 168-672h216v-120q0-29.7 21.15-50.85Q426.3-864 456-864h48q29.7 0 50.85 21.15Q576-821.7 576-792v120h216q29.7 0 50.85 21.15Q864-629.7 864-600v432q0 29.7-21.15 50.85Q821.7-96 792-96H168Zm0-72h624v-432H576q0 30-21.15 51T504-528h-48q-29.7 0-50.85-21.15Q384-570.3 384-600H168v432Zm72-72h240v-23q0-17.63-9.5-32.67Q461-310.7 444-319q-20-8-40.5-12.5T360-336q-23 0-43.5 4.5T276-318.53q-17 7.53-26.5 22.66Q240-280.74 240-263v23Zm336-48h144v-72H576v72Zm-173.5-89.5Q420-395 420-420t-17.5-42.5Q385-480 360-480t-42.5 17.5Q300-445 300-420t17.5 42.5Q335-360 360-360t42.5-17.5ZM576-408h144v-72H576v72ZM456-600h48v-192h-48v192Zm24 216Z"/></svg>
+                      Perfil 
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M237-285q54-38 115.5-56.5T480-360q66 0 127.5 18.5T723-285q35-41 52-91t17-104q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 54 17 104t52 91Zm141-165q-42-42-42-102t42-102q42-42 102-42t102 42q42 42 42 102t-42 102q-42 42-102 42t-102-42ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm100-88.5q48-16.5 90-48.5-43-27-91-41t-99-14q-51 0-99.5 13.5T290-233q42 32 90 48.5T480-168q52 0 100-16.5ZM531-501q21-21 21-51t-21-51q-21-21-51-21t-51 21q-21 21-21 51t21 51q21 21 51 21t51-21Zm-51-51Zm0 319Z"/></svg>
+                      Registo
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M263.72-96Q234-96 213-117.15T192-168v-624q0-29.7 21.16-50.85Q234.32-864 264.04-864h432.24Q726-864 747-842.85T768-792v624q0 29.7-21.16 50.85Q725.68-96 695.96-96H263.72Zm.28-72h432v-624h-72v312l-96-48-96 48v-312H264v624Zm0 0v-624 624Zm168-312 96-48 96 48-96-48-96 48Z"/></svg>
+                      Formação Profissional
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M324-96q-55 0-93.5-38.5T192-228v-503q0-55.1 38.5-94.05Q269-864 324-864h444v576q-26 0-43 17.5T708-228q0 26 17 43.5t43 17.5v71H324Zm0-72h326q-7-14-10.5-28t-3.5-31.27q0-16.25 4-31.49Q644-274 651-288H324q-26 0-43 17.5T264-228q0 26 17 43t43 17Zm-60-177q14-7 28.5-11t31.5-4h372v-432H324q-25 0-42.5 17.79T264-731v386Zm83-87h49l25.72-73H538l25.68 73H614L505.96-720H455L347-432Zm90-115 42-119h2l42 119h-86ZM264-345v-447 447Z"/></svg>
+                      Academias
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M252-96q-45 0-76.5-31.5T144-204v-552q0-45 31.5-76.5T252-864h420v624H252q-15.3 0-25.65 10.29Q216-219.42 216-204.21t10.35 25.71Q236.7-168 252-168h492v-624h72v696H252Zm0-216h348v-480H252q-15.3 0-25.65 11Q216-770 216-756v451q8-3 16.87-5 8.86-2 19.13-2Zm22-96h50l26-73h116.28L492-408h50L433.61-696H382L274-408Zm91-115 41.95-120H409l42 120h-86ZM216-305v-487 487Z"/></svg>
+                      Institutos Técnicos e Politécnicos
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000"><path d="M480-144 216-276v-240L48-600l432-216 432 216v312h-72v-276l-96 48v240L480-144Zm0-321 271-135-271-135-271 135 271 135Zm0 240 192-96v-159l-192 96-192-96v159l192 96Zm0-240Zm0 81Zm0 0Z"/></svg>
+                      Universidades
+                    </a>
+                    <a class="dropdown-item" href="ofertas-full-time.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M216-792v624-624 168-168Zm0 696q-29.7 0-50.85-21.15Q144-138.3 144-168v-624q0-29.7 21.15-50.85Q186.3-864 216-864h312l192 192v149q-18-4-36-5t-36 1v-97H480v-168H216v624h248q12 21 28 39.5T528-96H216Zm524-123.77q28-27.78 28-68Q768-328 740.16-356q-27.84-28-68.16-28-32 0-64 24t-32 72q0 40.32 27.77 68.16 27.78 27.84 68 27.84Q712-192 740-219.77ZM861-48l-98-99q-20 13-43.03 20t-47.47 7Q602-120 553-169t-49-119q0-70 49-119t119-49q70 0 119 49t49 119q0 24.61-7 47.81Q826-217 813-197l99 98-51 51Z"/></svg>
+                      Pesquisar Formação
+                    </a>
+                  </div>
+                </div>
+
+                <!--<a href="contact.html" class="nav-item nav-link">
                   <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none" /><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
                   Work in Angola
-                </a>
-                <a href="contact.html" class="nav-item nav-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none" /><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
-                  Contactos
-                </a>
+                </a>-->
+                 <div class="nav-item dropdown">
+                  <a href="contact.html" class="nav-item nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none" /><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
+                    Contactos
+                  </a>
+                </div>
               </div>
              
             </div>
