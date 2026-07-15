@@ -1,0 +1,54 @@
+.contact-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #fff3e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    transition: background 0.3s ease;
+  }
+
+.contact-card {
+    text-align: center;
+    padding: 35px 20px;
+    border: 0;
+    border-radius: 12px;
+    border-top: 3px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-top 0.3s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    border-top: 3px solid #f28507;
+  }
+
+    .contact-card:hover .contact-icon-wrapper {
+    background: #f28507;
+  }
+
+  .contact-card:hover .contact-icon-wrapper svg {
+    fill: #FFFFFF !important;
+  }
+
+  .contact-form-card {
+    padding: 30px;
+  }
+
+  .social-box {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #f28507;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .social-box:hover {
+    transform: translateY(-6px);
+    background: #ff4200;
+  }
