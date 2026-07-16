@@ -12,6 +12,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contactos/contactos.component').then(m => m.ContactosComponent)
   },
   {
+    path: 'quem-somos',
+    loadComponent: () => import('./pages/quemsomos/quemsomos.component').then(m => m.QuemsomosComponent)
+  },
+  {
     path: 'register', loadComponent: () => import('./auth/register/register.component').then(m => m.RegisterComponent)
   },
   {
