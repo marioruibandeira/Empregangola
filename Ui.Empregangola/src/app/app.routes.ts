@@ -16,6 +16,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/quemsomos/quemsomos.component').then(m => m.QuemsomosComponent)
   },
   {
+    path: 'privacidade',
+    loadComponent: () => import('./pages/privacidade/privacidade.component').then(m => m.PrivacidadeComponent)
+  },
+  {
     path: 'register', loadComponent: () => import('./auth/register/register.component').then(m => m.RegisterComponent)
   },
   {
