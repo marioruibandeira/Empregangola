@@ -1,0 +1,170 @@
+.vagas-hero {
+  position: relative;
+  padding: 70px 0 90px;
+  overflow: hidden;
+  background: #1a1207 url('/assets/img/vagas/fundo_vagas.jpg') center / cover no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      100deg,
+      rgba(26, 18, 7, 0.88) 15%,
+      rgba(124, 29, 10, 0.55) 60%,
+      rgba(242, 165, 7, 0.25) 100%
+    );
+  }
+}
+
+.vagas-hero .container-fluid {
+  position: relative;
+  z-index: 2;
+}
+
+.vagas-hero-titulo {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  color: #ffffff;
+  text-align: center;
+}
+
+.vagas-pesquisa-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px 24px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.vagas-pesquisa-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3a3a3a;
+  margin-bottom: 6px;
+}
+
+.vagas-pesquisa-btn {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2a507;
+  border: none;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #f2670c;
+  }
+}
+
+/*Destaques*/
+.bg-white {
+  background-color: #ffffff;
+}
+
+.empresas-destaque-titulo {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #1a1207;
+}
+
+.empresa-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  height: 100%;
+}
+
+.empresa-card-banner {
+  position: relative;
+  height: 90px;
+  background-image: url('/assets/img/vagas/images_2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+/* Variação de cores para os banners, enquanto não há imagens/logos reais */
+.empresa-banner-1 { background-color: #f2a507; }
+.empresa-banner-2 { background-color: #7c1d0a; }
+.empresa-banner-3 { background-color: #1a1207; }
+.empresa-banner-4 { background-color: #c2410c; }
+.empresa-banner-5 { background-color: #3a2a12; }
+
+.empresa-card-logo {
+  position: absolute;
+  left: 20px;
+  bottom: -22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #1a1207;
+}
+
+.empresa-card-corpo {
+  padding: 34px 16px 18px;
+}
+
+.empresa-card-nome {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #1a1207;
+  margin-bottom: 16px;
+}
+
+.empresa-card-vagas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+.vaga-titulo {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1a1207;
+}
+
+.vaga-modalidade {
+  display: block;
+  font-size: 0.78rem;
+  color: #f2670c;
+  margin-top: 2px;
+}
+
+.bder-top {
+  border-top: solid 5px #f2a507;
+}
+
+.pd-bttn{ padding-bottom: 3rem !important;}
+
+@media (max-width: 991px) {
+  .vagas-hero {
+    padding: 50px 0 70px;
+  }
+}

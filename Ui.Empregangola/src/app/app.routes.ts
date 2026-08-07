@@ -24,6 +24,30 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/servicos/servicos.component').then(m => m.ServicosComponent)
   },
   {
+    path: 'vagas',
+    loadComponent: () => import('./pages/vagas/vagas.component').then(m => m.VagasComponent)
+  },
+  {
+    path: 'formulario',
+    loadComponent: () => import('./pages/vaga/formulario/formulario.component').then(m => m.FormularioComponent)
+  },
+  {
+    path: 'vaga',
+    loadComponent: () => import('./pages/vaga/vaga.component').then(m => m.VagaComponent)
+  },
+  {
+    path: 'formulario',
+    loadComponent: () => import('./pages/vaga/formulario/formulario.component').then(m => m.FormularioComponent)
+  },
+  {
+    path: 'formacao',
+    loadComponent: () => import('./pages/formacao/formacao.component').then(m => m.FormacaoComponent)
+  },
+  {
+    path: 'formacao-detalhes',
+    loadComponent: () => import('./pages/formacao-detalhes/formacao-detalhes.component').then(m => m.FormacaoDetalhesComponent)
+  },
+  {
     path: 'register', loadComponent: () => import('./auth/register/register.component').then(m => m.RegisterComponent)
   },
   {
