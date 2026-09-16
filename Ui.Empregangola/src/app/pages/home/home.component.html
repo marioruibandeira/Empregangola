@@ -1,134 +1,111 @@
-
-<style>
-  .marquee-wrapper {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .marquee-wrapper-1 {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .marquee-content {
-    display: inline-flex;
-    white-space: nowrap;
-    animation: scroll-left 16s linear infinite;
-  }
-
-  .marquee-content-1 {
-    display: inline-flex;
-    white-space: nowrap;
-    animation: scroll-left 70s linear infinite;
-  }
-
-  .item {
-    margin: 0 15px 0 15px;
-  }
-
-  .item-1 {
-    margin: 0px;
-  }
-
-  .item img {
-    width: 200px;
-    height: 50%;
-  }
-
-  .item-1 img {
-    /*width: 200px;
-    height: 150%;*/
-  }
-
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .girl {
-    position: absolute;
-    bottom: -186px; /* faz “sentar” no fundo */
-    right: -10px; /* ajusta a posição */
-    height: 650px !important; /* ajuste proporcional */
-    z-index: 3;
-  }
-  /***/
-  .capa-div {
-    background-image: url('/imagens/Barry_Hundeyin-Mautin.jpg');
-    background-size: cover; /* Faz a imagem cobrir todo o div */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita repetição */
-    height: 100%; /* Ajusta conforme necessário */
-    min-height: 225px; /* Garante altura mínima */
-    border-radius: 5px 0px 0px 5px;
-  }
-
-  .capa-div-two {
-    background-image: url('/imagens/foto-homem.jpg');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    height: 100%; 
-    min-height: 225px; 
-    border-radius: 5px 0px 0px 5px;
-  }
-
-  /**/
-  .card-custom {
-    position: relative;
-    padding-top: 30px; 
-  }
-
-  .logo-wrapper {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .logo-img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%; 
-    border: 2px solid #ccc; 
-    background-color: #fff;
-  }
-
-
-  .btn-square img {
-    width: 40px; 
-    height: 40px;
-  }
-
-  .btn-square:hover {
-    transform: translateY(-8px);
-    background-color: red;
-  }
-
-
-  .social-logos-animation {
-    display: inline-block; 
-    transition: transform 0.3s ease;
-  }
-
-    .social-logos-animation:hover {
-      transform: translateY(-6px);
-    }
-</style>
-
 <app-header></app-header>
+
+<header class="mobile-header d-flex d-lg-none align-items-center justify-content-between px-3">
+  <!-- Espaço do logo -->
+  <a href="" class="text-decoration-none">
+    <img src="/imagens/emprega-angola-logo.png" title="Empregangola" style="width:100px;" />
+  </a>
+
+  <!-- Hamburger -->
+  <button class="mobile-header__toggle"
+          [class.aberto]="menuAberto()"
+          type="button"
+          aria-label="Abrir menu"
+          [attr.aria-expanded]="menuAberto()"
+          (click)="toggleMenu()">
+    <span class="mobile-header__bar"></span>
+    <span class="mobile-header__bar"></span>
+    <span class="mobile-header__bar"></span>
+  </button>
+</header>
+
+<!-- Overlay + Drawer, FORA do header, como irmãos -->
+<div class="mobile-menu-overlay d-lg-none"
+     [class.aberto]="menuAberto()"
+     (click)="fecharMenu()">
+</div>
+
+<nav class="mobile-menu d-lg-none" [class.aberto]="menuAberto()">
+  <div class="mobile-menu__header d-flex align-items-center justify-content-between px-3">
+    <a href="/" class="mobile-menu__logo">
+      <img src="/imagens/emprega-angola-logo.png" title="Empregangola" style="width:100px;" />
+    </a>
+    <button class="mobile-menu__close" type="button" aria-label="Fechar menu" (click)="fecharMenu()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+
+  <ul class="mobile-menu__list">
+    <li class="mobile-menu__item">
+      <a href="/vagas" class="mobile-menu__link" (click)="fecharMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#000"><path d="M0 0h24v24H0z" fill="none" /><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
+        <span>Pesquisar Ofertas</span>
+      </a>
+    </li>
+
+    <li class="mobile-menu__item mobile-menu__item--accordion" [class.aberto]="candidatosAberto()">
+      <button class="mobile-menu__link mobile-menu__accordion-toggle" type="button" (click)="toggleCandidatos()">
+        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="20px" viewBox="0 0 24 24" width="20px" fill="#000"><rect fill="none" height="24" width="24" /><g><path d="M12,12.75c1.63,0,3.07,0.39,4.24,0.9c1.08,0.48,1.76,1.56,1.76,2.73L18,18H6l0-1.61c0-1.18,0.68-2.26,1.76-2.73 C8.93,13.14,10.37,12.75,12,12.75z M4,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C2,12.1,2.9,13,4,13z M5.13,14.1 C4.76,14.04,4.39,14,4,14c-0.99,0-1.93,0.21-2.78,0.58C0.48,14.9,0,15.62,0,16.43V18l4.5,0v-1.61C4.5,15.56,4.73,14.78,5.13,14.1z M20,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C18,12.1,18.9,13,20,13z M24,16.43c0-0.81-0.48-1.53-1.22-1.85 C21.93,14.21,20.99,14,20,14c-0.39,0-0.76,0.04-1.13,0.1c0.4,0.68,0.63,1.46,0.63,2.29V18l4.5,0V16.43z M12,6c1.66,0,3,1.34,3,3 c0,1.66-1.34,3-3,3s-3-1.34-3-3C9,7.34,10.34,6,12,6z" /></g></svg>
+        <span>Candidatos</span>
+        <i class="bi bi-chevron-down mobile-menu__chevron"></i>
+      </button>
+
+      <ul class="mobile-menu__submenu">
+        <li>
+          <a href="/perfil" class="mobile-menu__sublink" (click)="fecharMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#000"><path d="M160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm0-80h640v-440H600q0 33-23.5 56.5T520-520h-80q-33 0-56.5-23.5T360-600H160v440Zm80-80h240v-18q0-17-9.5-31.5T444-312q-20-9-40.5-13.5T360-330q-23 0-43.5 4.5T276-312q-17 8-26.5 22.5T240-258v18Zm320-60h160v-60H560v60Zm-157.5-77.5Q420-395 420-420t-17.5-42.5Q385-480 360-480t-42.5 17.5Q300-445 300-420t17.5 42.5Q335-360 360-360t42.5-17.5ZM560-420h160v-60H560v60ZM440-600h80v-200h-80v200Zm40 220Z" /></svg>
+            <span>Perfil</span>
+          </a>
+        </li>
+        <li>
+          <a href="/registo" class="mobile-menu__sublink" (click)="fecharMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000"><path d="M237-285q54-38 115.5-56.5T480-360q66 0 127.5 18.5T723-285q35-41 52-91t17-104q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 54 17 104t52 91Zm141-165q-42-42-42-102t42-102q42-42 102-42t102 42q42 42 42 102t-42 102q-42 42-102 42t-102-42ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm100-88.5q48-16.5 90-48.5-43-27-91-41t-99-14q-51 0-99.5 13.5T290-233q42 32 90 48.5T480-168q52 0 100-16.5ZM531-501q21-21 21-51t-21-51q-21-21-51-21t-51 21q-21 21-21 51t21 51q21 21 51 21t51-21Zm-51-51Zm0 319Z" /></svg>
+            <span>Registo</span>
+          </a>
+        </li>
+        <li>
+          <a href="/vagas-favoritas" class="mobile-menu__sublink" (click)="fecharMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000"><path d="m352-293 128-76 129 76-34-144 111-95-147-13-59-137-59 137-147 13 112 95-34 144ZM243-144l63-266L96-589l276-24 108-251 108 252 276 23-210 179 63 266-237-141-237 141Zm237-333Z" /></svg>
+            <span>Vagas Favoritas</span>
+          </a>
+        </li>
+        <li>
+          <a href="/destacar-perfil" class="mobile-menu__sublink" (click)="fecharMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000"><path d="M168-432v72h624v-72H168Zm0-432h624q29.7 0 50.85 21.15Q864-821.7 864-792v432q0 29.7-21.15 50.85Q821.7-288 792-288H624v192l-144-96-144 96v-192H168q-29.7 0-50.85-21.15Q96-330.3 96-360v-432q0-29.7 21.15-50.85Q138.3-864 168-864Zm0 336h624v-264H168v264Zm0 168v-432 432Z" /></svg>
+            <span>Destacar Perfil</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="mobile-menu__item">
+      <a href="/empresas" class="mobile-menu__link" (click)="fecharMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" height="24px" viewBox="0 0 20 20" width="24px" fill="#000"><g><rect fill="none" height="20" width="20" /></g><g><path d="M14,9V4H7v3H3v9h7v-3h1v3h6V9H14z M6,14H5v-1h1V14z M6,12H5v-1h1V12z M6,10H5V9h1V10z M10,11H9v-1h1V11z M10,9H9V8h1V9z M10,7H9V6h1V7z M12,11h-1v-1h1V11z M12,9h-1V8h1V9z M12,7h-1V6h1V7z M15,14h-1v-1h1V14z M15,12h-1v-1h1V12z" /></g></svg>
+        <span>Empresas</span>
+      </a>
+    </li>
+
+    <li class="mobile-menu__item">
+      <a href="/formacao" class="mobile-menu__link" (click)="fecharMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#000"><path d="M0 0h24v24H0z" fill="none" /><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z" /></svg>
+        <span>Formação</span>
+      </a>
+    </li>
+
+    <li class="mobile-menu__item">
+      <a href="/contactos" class="mobile-menu__link" (click)="fecharMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#000"><path d="M0 0h24v24H0z" fill="none" /><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
+        <span>Contactos</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
 <!-- Offer Start -->
 <div class="container-fluid pt-5 pb-3 bg-bannder">
-  <div class="row px-xl-5">
+  <div class="row px-xl-5 spaco">
     <div class="col-md-4 pb-4">
-      <div class=" " style="height: 500px; background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+      <div class=" " style="height: 530px; background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
         <h2>O maior portal de emprego de Angola</h2>
         <div class="row">
           <div class="col-12">
@@ -183,15 +160,15 @@
               </div>
             </div>
           </div>
-          
+
           <div class="col-12">
             <div class="mb-3">
               <ul class="list-group list-group-flush">
-              <li class="list-group-item"></li>
-            </ul>
+                <li class="list-group-item"></li>
+              </ul>
               <div class="d-grid gap-2">
                 <button class="btn btn-dark" type="button" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; position:relative;">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M168-144q-29.7 0-50.85-21.15Q96-186.3 96-216v-432q0-29.7 21.15-50.85Q138.3-720 168-720h120v-72.21Q288-822 309.15-843T360-864h240q29.7 0 50.85 21.15Q672-821.7 672-792v72h120q29.7 0 50.85 21.15Q864-677.7 864-648v432q0 29.7-21.15 50.85Q821.7-144 792-144H168Zm192-576h240v-72H360v72Zm432 348H600v84H360v-84H168v156h624v-156Zm-360 12h96v-96h-96v96Zm-264-84h192v-84h240v84h192v-204H168v204Zm312 38Z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M168-144q-29.7 0-50.85-21.15Q96-186.3 96-216v-432q0-29.7 21.15-50.85Q138.3-720 168-720h120v-72.21Q288-822 309.15-843T360-864h240q29.7 0 50.85 21.15Q672-821.7 672-792v72h120q29.7 0 50.85 21.15Q864-677.7 864-648v432q0 29.7-21.15 50.85Q821.7-144 792-144H168Zm192-576h240v-72H360v72Zm432 348H600v84H360v-84H168v156h624v-156Zm-360 12h96v-96h-96v96Zm-264-84h192v-84h240v84h192v-204H168v204Zm312 38Z" /></svg>
                   Work in Angola
                 </button>
               </div>
@@ -201,7 +178,7 @@
 
       </div>
     </div>
-    <div class="col-md-8"> <img src="/imagens/jovem-sentada.png" class="img-fluid girl" alt="" style="height:auto;"></div>
+    <div class="col-md-8 main-foto"> <img src="/imagens/jovem-sentada.png" class="img-fluid girl" alt="" style="height:auto;"></div>
   </div>
 </div>
 <!-- Offer End -->
@@ -243,63 +220,9 @@
 
 
 <div class="container-fluid pt-5 pb-3">
-  <div class="row px-xl-5">
+  <div class="row px-xl-5 spaco">
 
     <div style="width:100%; text-align:center;padding-bottom:30px;font-size:30px!important;"> <h2> Vagas em destaque </h2> </div>
-    
-    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
-      <div class="card h-100 shadow-sm" role="button">
-        <div class="card-body d-flex flex-column">
-
-          <!-- TÍTULO -->
-          <h5 class="card-title mb-2">
-            Técnico de Manutenção de Eletricidade (m/f)
-          </h5>
-
-          <!-- EMPRESA -->
-          <div class="d-flex align-items-center mb-2 text-muted">
-            <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#155DFC" class="me-2" viewBox="0 0 24 24">
-              <path d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" />
-            </svg>
-            <span>Tech Hidráulico</span>
-          </div>
-
-          <!-- META INFO -->
-          <div class="d-flex flex-wrap gap-3 mb-3 small text-secondary">
-
-            <span class="d-flex align-items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#31C950" class="me-1" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-              </svg>
-              Luanda
-            </span>
-
-            <span>Tempo inteiro</span>
-            <span>3+ anos experiência</span>
-          </div>
-
-          <!-- DESCRIÇÃO -->
-          <p class="card-text mb-4">
-            Manutenção elétrica industrial, diagnóstico de avarias e suporte preventivo em ambiente fabril.
-          </p>
-
-          <!-- FOOTER -->
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <small class="text-muted">
-              <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" fill="#ff4200" class="me-1" viewBox="0 0 20 20">
-                <path d="M15.5 4H14V2h-1.5v2h-5V2H6v2H4.5C3.67 4 3 4.68 3 5.5v11C3 17.32 3.67 18 4.5 18h11c.83 0 1.5-.68 1.5-1.5v-11z" />
-              </svg>
-              16-04-2026
-            </small>
-
-            <a href="#" class="btn btn-primary btn-sm">
-              Ver detalhes →
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </div>
 
     <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
       <div class="card h-100 shadow-sm" role="button">
@@ -355,7 +278,61 @@
       </div>
     </div>
 
-    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1 m-top">
+      <div class="card h-100 shadow-sm" role="button">
+        <div class="card-body d-flex flex-column">
+
+          <!-- TÍTULO -->
+          <h5 class="card-title mb-2">
+            Técnico de Manutenção de Eletricidade (m/f)
+          </h5>
+
+          <!-- EMPRESA -->
+          <div class="d-flex align-items-center mb-2 text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#155DFC" class="me-2" viewBox="0 0 24 24">
+              <path d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" />
+            </svg>
+            <span>Tech Hidráulico</span>
+          </div>
+
+          <!-- META INFO -->
+          <div class="d-flex flex-wrap gap-3 mb-3 small text-secondary">
+
+            <span class="d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" fill="#31C950" class="me-1" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              </svg>
+              Luanda
+            </span>
+
+            <span>Tempo inteiro</span>
+            <span>3+ anos experiência</span>
+          </div>
+
+          <!-- DESCRIÇÃO -->
+          <p class="card-text mb-4">
+            Manutenção elétrica industrial, diagnóstico de avarias e suporte preventivo em ambiente fabril.
+          </p>
+
+          <!-- FOOTER -->
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" fill="#ff4200" class="me-1" viewBox="0 0 20 20">
+                <path d="M15.5 4H14V2h-1.5v2h-5V2H6v2H4.5C3.67 4 3 4.68 3 5.5v11C3 17.32 3.67 18 4.5 18h11c.83 0 1.5-.68 1.5-1.5v-11z" />
+              </svg>
+              16-04-2026
+            </small>
+
+            <a href="#" class="btn btn-primary btn-sm">
+              Ver detalhes →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1 m-top">
 
       <div class="card h-100 shadow-sm" role="button">
         <div class="card-body d-flex flex-column">
@@ -420,14 +397,14 @@
 <!-- Products End -->
 
 <div class="container-fluid pt-5 pb-3 bg-bannder-empresa">
-  <div class="row px-xl-5">
+  <div class="row px-xl-5 spaco">
 
     <div style="width:100%;padding-bottom:80px;text-align:center;">
       <h2> Empresas em Destaque </h2>
     </div>
 
     <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
-      <div class="card card-custom card-extendido" >
+      <div class="card card-custom card-extendido">
 
         <div class="logo-wrapper"> <img src="/imagens/unitel.jpg" class="logo-img" alt="logo"> </div>
 
@@ -440,7 +417,7 @@
       </div>
     </div>
 
-    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1 m-top-xl">
       <div class="card card-custom card-extendido ">
         <div class="logo-wrapper"> <img src="/imagens/sonangol.jpg" class="logo-img" alt="logo"> </div>
 
@@ -456,7 +433,7 @@
       </div>
 
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
+    <div class="col-lg-4 col-md-4 col-sm-4 pb-1 m-top-xl">
 
       <div class="card card-custom card-extendido empresa-link">
 
@@ -492,13 +469,14 @@
   <h2 class="section-title position-relative mx-xl-5 mb-4">
     <span class="bgsecondary pr-3" style="font-size:30px;">Profissionais em Destaque</span>
   </h2>
-  <div class="row px-xl-5">
+  <div class="row px-xl-5 spaco">
+
     <div class="col-lg-4 col-md-4 col-sm-4 pb-1">
       <div class="card mb-3 h-98 shadow-sm profissional-card" role="button">
         <div class="row g-0">
 
           <!-- IMAGEM / CAPA -->
-          <div class="col-md-4 capa-div">
+          <div class="col-md-4 capa-div img-contorno">
             <!-- background-image via CSS -->
           </div>
 
@@ -539,7 +517,7 @@
         <div class="row g-0">
 
           <!-- IMAGEM / CAPA -->
-          <div class="col-md-4 capa-div">
+          <div class="col-md-4 capa-div img-contorno">
             <!-- background-image via CSS -->
           </div>
 
@@ -581,7 +559,7 @@
         <div class="row g-0">
 
           <!-- IMAGEM / CAPA -->
-          <div class="col-md-4 capa-div">
+          <div class="col-md-4 capa-div img-contorno">
             <!-- background-image via CSS -->
           </div>
 
@@ -630,7 +608,8 @@
   <h2 class="section-title position-relative mx-xl-5 mb-4">
     <span class="bgsecondary pr-3" style="font-size:30px;">Cursos em Destaque</span>
   </h2>
-  <div class="row px-xl-5">
+
+  <div class="row px-xl-5 spaco">
 
 
     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -746,13 +725,13 @@
 
 
 <div class="container-fluid pt-5 pb-3">
-  <div class="row px-xl-5">
+  <div class="row px-xl-5 spaco">
     <div class="col-12 pb-1">
-      <div class="card" style="width: 100%; background: linear-gradient( to bottom, rgba(251, 110, 19, 1) 0%, rgba(251, 110, 19, 0) 100% ); height: 300px; border: 0px; padding: 20px 0px 0px 0px; ">
+      <div class="resultados">
 
         <div class="row px-xl-5" style="padding-right  : 0rem !important; padding-left: 0rem !important; ">
-          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center">
-            <div class="card" style="width: 100%; background: transparent !important; border: 0px;">
+          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center resul-rodape-main">
+            <div class="" style="width: 100%; background: transparent !important; border: 0px !important;">
               <div class="card-body">
                 <h5 class="card-title">
                   <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#8F3A00"><path d="M0 0h24v24H0zm10 5h4v2h-4zm0 0h4v2h-4z" fill="none" /><path d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-6 0h-4V5h4v2z" /></svg>
@@ -763,25 +742,21 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center">
 
-
-            <div class="card" style="width: 100%; background: transparent !important; border: 0px;">
+          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center resul-rodape">
+            <div class="" style="width: 100%; background: transparent !important; border: 0px;">
               <div class="card-body">
                 <h5 class="card-title">
                   <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" height="48px" viewBox="0 0 20 20" width="48px" fill="#8F3A00"><g><rect fill="none" height="20" width="20" /></g><g><path d="M14,9V4H7v3H3v9h7v-3h1v3h6V9H14z M6,14H5v-1h1V14z M6,12H5v-1h1V12z M6,10H5V9h1V10z M10,11H9v-1h1V11z M10,9H9V8h1V9z M10,7H9V6h1V7z M12,11h-1v-1h1V11z M12,9h-1V8h1V9z M12,7h-1V6h1V7z M15,14h-1v-1h1V14z M15,12h-1v-1h1V12z" /></g></svg>
                 </h5>
                 <h5 class="card-title" style="font-size: 40px; color: #8F3A00;">{{ counterB | number }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted" style="color: #8F3A00 !important;">Empresas Registadas</h6>
-
               </div>
             </div>
-
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center">
 
-
-            <div class="card" style="width: 100%; background: transparent !important; border:0px;">
+          <div class="col-lg-4 col-md-4 col-sm-4 pb-1 text-center resul-rodape">
+            <div class="" style="width: 100%; background: transparent !important; border:0px;">
               <div class="card-body">
                 <h5 class="card-title">
                   <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#8F3A00"><path d="M0 0h24v24H0z" fill="none" /><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z" /></svg>
@@ -813,11 +788,9 @@
 </div>
 <!-- Products End -->
 <!-- carrocel de empresas -->
-<div class="container-fluid pt-5 pb-0" style="background:#ccc;" style="height:215px; padding-top: 1rem !important;">
+<div class="container-fluid pt-5 pb-0 carrocel-empresas" style="padding-top: 1rem !important;">
   <div class="row px-xl-5" style="padding-right: 0rem !important; padding-left: 0rem !important; padding-top: 0px !important; ">
-
-
-    <div class="marquee-wrapper-1">
+    <div class="marquee-wrapper-1 espaco-no-carrocel">
       <div class="marquee-content-1">
 
         <!-- BLOCO 1 -->
@@ -852,18 +825,15 @@
 
       </div>
     </div>
-
-
-
   </div>
 </div>
-<!-- carrocel de empresas End -->
 
+<!-- carrocel de empresas End -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const counterElement = document.getElementById("counter");
-    const targetNumber = 60989;   // change this to any number
-    const duration = 2000;       // total animation time in ms (2 seconds)
+    const targetNumber = 60989;
+    const duration = 2000;
 
     let start = 0;
     const startTime = performance.now();
@@ -883,10 +853,9 @@
     }
 
     requestAnimationFrame(updateCounter);
+
   });
 </script>
-
-
 
 <app-footer></app-footer>
 
