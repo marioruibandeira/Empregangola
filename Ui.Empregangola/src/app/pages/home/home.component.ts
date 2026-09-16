@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
+import { signal } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -54,6 +55,24 @@ export class HomeComponent implements OnInit {
     };
 
     requestAnimationFrame(step);
+  }
+
+
+  //mobile header
+  menuAberto = signal(false);
+  candidatosAberto = signal(false);
+
+  toggleMenu(): void {
+    this.menuAberto.update(valor => !valor);
+  }
+
+  fecharMenu(): void {
+    this.menuAberto.set(false);
+    this.candidatosAberto.set(false); // fecha o submenu também
+  }
+
+  toggleCandidatos(): void {
+    this.candidatosAberto.update(valor => !valor);
   }
 
 }
