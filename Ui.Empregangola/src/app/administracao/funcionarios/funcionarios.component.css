@@ -1,0 +1,22 @@
+.modo-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: #f5f6f8;
+  border: 1px solid #e2e5ea;
+  border-radius: 999px;
+}
+
+.modo-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a909b;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+  .modo-label.activo {
+    color: #1f2937;
+    font-weight: 600;
+  }
