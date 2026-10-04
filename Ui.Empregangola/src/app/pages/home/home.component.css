@@ -1,1 +1,374 @@
 
+.mobile-header {
+  display: none;
+}
+
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-wrapper-1 {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-content {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: scroll-left 16s linear infinite;
+}
+
+.marquee-content-1 {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: scroll-left 70s linear infinite;
+}
+
+.item {
+  margin: 0 15px 0 15px;
+}
+
+.item-1 {
+  margin: 0px;
+}
+
+.item img {
+  width: 200px;
+  height: 50%;
+}
+
+.item-1 img {
+  /*width: 200px;
+    height: 150%;*/
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.girl {
+  position: absolute;
+  bottom: -186px; /* faz “sentar” no fundo */
+  right: -10px; /* ajusta a posição */
+  height: 650px !important; /* ajuste proporcional */
+  z-index: 3;
+}
+/***/
+.capa-div {
+  background-image: url('/imagens/Barry_Hundeyin-Mautin.jpg');
+  background-size: cover; /* Faz a imagem cobrir todo o div */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetição */
+  height: 100%; /* Ajusta conforme necessário */
+  min-height: 225px; /* Garante altura mínima */
+  border-radius: 5px 0px 0px 5px;
+}
+
+.capa-div-two {
+  background-image: url('/imagens/foto-homem.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  min-height: 225px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+/**/
+.card-custom {
+  position: relative;
+  padding-top: 30px;
+}
+
+.logo-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: #fff;
+}
+
+
+.btn-square img {
+  width: 40px;
+  height: 40px;
+}
+
+.btn-square:hover {
+  transform: translateY(-8px);
+  background-color: red;
+}
+
+
+.social-logos-animation {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.social-logos-animation:hover {
+  transform: translateY(-6px);
+}
+
+.resultados {
+  width: 100%;
+  background: linear-gradient( to bottom, rgba(251, 110, 19, 1) 0%, rgba(251, 110, 19, 0) 100% );
+  height: 300px;
+  border: 0px;
+  padding: 20px 0px 0px 0px;
+  border-radius: 15px 15px 15px 15px;
+  padding-top: 75px !important;
+}
+
+@media only screen and (max-width: 600px)
+{
+  .main-foto {
+    display: none !important;
+  }
+  .spaco {
+    padding: 0px 0px 0px 0px !important;
+  }
+
+  .m-top{
+      margin-top:20px;
+  }
+
+  .m-top-xl {
+    margin-top: 60px;
+  }
+
+  .img-contorno {
+    border-radius: 15px !important;
+  }
+
+  .espaco-no-carrocel {
+    height: 615px !important;
+    margin-top: 515px;
+  }
+  .carrocel-empresas {
+    height: 725px;
+  }
+
+  .resul-rodape {
+    margin-top: 70px;
+  }
+  .resul-rodape-main {
+    margin-top: 75px;
+  }
+  .resultados {
+    padding-top: 0px !important;
+  }
+
+  /*Mobile Header*/
+  .mobile-header{
+      display:block;
+  }
+
+  .mobile-header {
+    height: 64px;
+    background-color: #1a1207;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+  }
+
+  .mobile-header__logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+    .mobile-header__logo img {
+      height: 32px;
+      width: auto;
+    }
+
+  .mobile-header__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  .mobile-header__bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #f2670c;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  /* Estado aberto (aplicar classe .aberto no botão via [class.aberto] no Angular) */
+  .mobile-header__toggle.aberto .mobile-header__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-header__toggle.aberto .mobile-header__bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-header__toggle.aberto .mobile-header__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+
+  /*menunu*/
+  /* Overlay escuro atrás do drawer */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(26, 18, 7, 0.6);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+    .mobile-menu-overlay.aberto {
+      opacity: 1;
+      visibility: visible;
+    }
+
+  /* Drawer */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 85%;
+    max-width: 320px;
+    background-color: #ffffff;
+    z-index: 1050;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.15);
+  }
+
+    .mobile-menu.aberto {
+      transform: translateX(0);
+    }
+
+  /* Cabeçalho do drawer */
+  .mobile-menu__header {
+    height: 64px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-menu__logo img {
+    height: 28px;
+    width: auto;
+  }
+
+  .mobile-menu__close {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    color: #1a1207;
+    padding: 8px;
+  }
+
+  /* Lista principal */
+  .mobile-menu__list {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+  }
+
+  .mobile-menu__link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 20px;
+    color: #1a1207;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    text-align: left;
+  }
+
+    .mobile-menu__link i {
+      font-size: 1.1rem;
+      color: #f2670c;
+      width: 20px;
+      text-align: center;
+    }
+
+    .mobile-menu__link:active,
+    .mobile-menu__sublink:active {
+      background-color: #fff4e8;
+    }
+
+  /* Accordion "Candidatos" */
+  .mobile-menu__accordion-toggle {
+    cursor: pointer;
+  }
+
+  .mobile-menu__chevron {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #7c1d0a !important;
+    transition: transform 0.25s ease;
+  }
+
+  .mobile-menu__item--accordion.aberto .mobile-menu__chevron {
+    transform: rotate(180deg);
+  }
+
+  .mobile-menu__submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    background-color: #fafafa;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-menu__item--accordion.aberto .mobile-menu__submenu {
+    max-height: 300px;
+  }
+
+  .mobile-menu__sublink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px 12px 40px;
+    color: #1a1207;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+    .mobile-menu__sublink i {
+      font-size: 1rem;
+      color: #f2a507;
+      width: 18px;
+      text-align: center;
+    }
+}
