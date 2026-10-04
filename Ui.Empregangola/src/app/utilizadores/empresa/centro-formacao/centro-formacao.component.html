@@ -1,0 +1,247 @@
+<div class="wrapper">
+  <app-besidebar />
+
+    <div class="main-panel">
+      <app-beheader [nomeUtilizador]="' Mário'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+
+      <div class="container">
+        <div class="page-inner">
+          <!-- Main Header -->
+          <div class="alert alert-warning" role="alert">
+            <div class="card-title">Cadastrar Nova Formação</div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="municipio">Centoro de Formação </label>
+                    <input type="text" id="municipio" class="form-control" placeholder="Emprega Angola" readonly />
+
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="municipio">NIF </label>
+                    <input type="text" id="municipio" class="form-control" placeholder="" readonly />
+                  </div>
+                </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Data de Registo </label>
+                  <input type="text" id="municipio" class="form-control" placeholder="" readonly />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Identificação</div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                          <label for="nomeEmpresa">Titulo</label>
+                          <input type="text" class="form-control" id="nomeEmpresa" placeholder="Titulo" />
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                          <label for="nif">Categoria</label>
+                          <select class="form-select" id="nColaboradores">
+                            <option value="">Selecione Categoria</option>
+                            <option value="1">Tecnoloagia</option>
+                            <option value="2">Gestão</option>
+                            <option value="3">Marketing</option>
+                            <option value="4">Softt Skills</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                          <label for="sectorActividade">Nível</label>
+                          <div class="d-flex gap-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero1" value="1" formControlName="genero" checked/>
+                              <label class="form-check-label" for="genero1">Iniciante</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero2" value="2" formControlName="genero"/>
+                              <label class="form-check-label" for="genero2">Intermédio</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero2" value="2" formControlName="genero"/>
+                              <label class="form-check-label" for="genero2">Avançado</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                          <label for="nColaboradores">Entidade Formadora</label>
+                          <input type="text" class="form-control" id="nomeEmpresa" placeholder="Entidade Formadora" />
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-12">
+                        <div class="form-group">
+                          <label for="pais">Descrição</label>
+                          <textarea class="form-control" id="sobreEmpresa" rows="5"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Logística</div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-12">
+                        <div class="form-group">
+                          <label for="nomeEmpresa">Modalidade</label>
+                          <div class="d-flex gap-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero1" value="1" formControlName="genero" />
+                              <label class="form-check-label" for="genero1">Online</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero2" value="2" formControlName="genero" checked/>
+                              <label class="form-check-label" for="genero2">Presencial</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero2" value="2" formControlName="genero" />
+                              <label class="form-check-label" for="genero2">Hibrido</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                          <label for="sectorActividade">Duração</label>
+                          <select class="form-select" id="sectorActividade">
+                            <option value="">1 Semana</option>
+                            <option value="1">2 Semana</option>
+                            <option value="2">3 Semana</option>
+                            <option value="3">4 Semana</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                          <label for="nColaboradores">Data de Inicio</label>
+                          <input type="text" class="form-control" id="nomeEmpresa" placeholder="Data de Inicio" />
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-12">
+                        <div class="form-group">
+                          <label for="pais">Carga Horária</label>
+                          <input type="text" class="form-control" id="nomeEmpresa" placeholder="Carga Horária" />
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-12">
+                        <div class="form-group">
+                          <label for="nif">Localização</label>
+                          <textarea class="form-control" id="sobreEmpresa" rows="5"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Comercial</div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-4">
+                        <div class="form-group">
+                          <label for="nomeEmpresa">Preço</label>
+                          <input type="text" class="form-control" id="nomeEmpresa" placeholder="Carga Horária" />
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-4">
+                        <div class="form-group">
+                          <label for="sectorActividade">Moeda</label>
+                          <div class="d-flex gap-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero1" value="1" formControlName="genero" checked />
+                              <label class="form-check-label" for="genero1">Kwanza</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero2" value="2" formControlName="genero" />
+                              <label class="form-check-label" for="genero2">Dolares</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-4">
+                        <div class="form-group">
+                          <label for="nColaboradores">Gratuito</label>
+                          <div class="d-flex gap-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero1" value="1" formControlName="genero" />
+                              <label class="form-check-label" for="genero1">Sim</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" id="genero2" value="2" formControlName="genero" checked/>
+                              <label class="form-check-label" for="genero2">Não</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Gestão</div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                          <label for="nomeEmpresa">Modalidade</label>
+                          <select class="form-select" id="nColaboradores">
+                            <option value="">Selecione Categoria</option>
+                            <option value="1">Ativo</option>
+                            <option value="2">Encerrado</option>
+                            <option value="3">Esgotado</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                          <label for="sectorActividade">Duração</label>
+                          <input type="text" class="form-control" id="nomeEmpresa" placeholder="26/05/2026" readonly/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-action">
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    <app-befooter />
+  </div>
+</div>
