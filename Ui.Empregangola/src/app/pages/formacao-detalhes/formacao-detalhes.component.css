@@ -6,7 +6,7 @@
 }
 
 .formacao-breadcrumb {
-  font-size: 0.8rem;
+  font-size: 1.05rem;
   margin-bottom: 16px;
 }
 
@@ -30,7 +30,7 @@
 
 .formacao-detalhe-titulo {
   font-family: 'Sora', sans-serif;
-  font-size: 2rem;
+  font-size: 2.18rem;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 16px;
@@ -240,7 +240,7 @@
   bottom: 12px;
   left: 16px;
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 1.65rem;
   font-weight: 600;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
@@ -271,18 +271,18 @@
 }
 
 .compra-opcao-titulo {
-  font-size: 0.88rem;
+  font-size: 1.18rem;
   color: #4a4038;
 }
 
 .compra-opcao-preco {
   font-family: 'Sora', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.45rem;
   color: #1a1207;
 }
 
 .compra-opcao-preco s {
-  font-size: 0.85rem;
+  font-size: 1.18rem;
   color: #9a9088;
   font-weight: 400;
 }
@@ -297,7 +297,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.82rem;
+  font-size: 1.10rem;
   color: #4a4038;
   margin-bottom: 8px;
 }
@@ -321,7 +321,7 @@
   border: none;
   border-radius: 8px;
   padding: 13px;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease;
