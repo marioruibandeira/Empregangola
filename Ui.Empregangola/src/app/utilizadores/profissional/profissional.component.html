@@ -1,0 +1,582 @@
+<div class="wrapper">
+    <app-besidebar />
+    <div class="main-panel">
+      <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+
+      <div class="container">
+        <div class="page-inner">
+
+          <div class="alert alert-warning" role="alert">
+            <h3 class="fw-bold mb-1">Dados Pessoais</h3>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Nome completo </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Empresa" readonly />
+
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Data de nascimento </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Utilizador" readonly />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Género </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Ultimo Log" readonly />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Nacionalidade </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Empresa" readonly />
+
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Email </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Utilizador" readonly />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Telefone </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Ultimo Log" readonly />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">País </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Empresa" readonly />
+
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Província </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Utilizador" readonly />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="municipio">Município </label>
+                  <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Ultimo Log" readonly />
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Perfil Profissional</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Título profissional </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder=" " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Sobre mim / Bio </label>
+                        <textarea class="form-control" id="endereco" rows="5" formControlName="endereco"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Área de atuação </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Tecnologia</option>
+                          <option>Saúde</option>
+                          <option>Educação</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Nível de experiência </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Anos de experiência </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>6 mese a 1 ano</option>
+                          <option>1 ano a 2 anos</option>
+                          <option>3 anos a 5 anos</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Pretensão salarial </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Disponibilidade </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Tecnologia</option>
+                          <option>Saúde</option>
+                          <option>Educação</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Tipo de contrato pretendido </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Modalidade de trabalho </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Tecnologia</option>
+                          <option>Saúde</option>
+                          <option>Educação</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Disponível para mudança de localidade? </label>
+                        <div class="row">
+                          <div class="col-md-2">
+                            <input class="form-check-input" type="radio" id="genero1" value="1" formControlName="genero" />
+                            <label class="form-check-label" for="genero1">Sim</label>
+                          </div>
+                          <div class="col-md-9">
+                            <input class="form-check-input" type="radio" id="genero2" value="2" formControlName="genero" />
+                            <label class="form-check-label" for="genero2">Nao</label>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Formação Académica</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Nível de escolaridade </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Tecnologia</option>
+                          <option>Saúde</option>
+                          <option>Educação</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Curso / Área de formação </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Instituição de ensino </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>6 mese a 1 ano</option>
+                          <option>1 ano a 2 anos</option>
+                          <option>3 anos a 5 anos</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Ano de conclusão </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Disponibilidade </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Tecnologia</option>
+                          <option>Saúde</option>
+                          <option>Educação</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Certificações / cursos complementares 1</label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Certificações / cursos complementares 2 </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Tecnologia</option>
+                          <option>Saúde</option>
+                          <option>Educação</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Certificações / cursos complementares 3 </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Experiência Profissional</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Empresa </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Cargo </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">IData de início </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Data de fim </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Descrição das funções</label>
+                        <textarea class="form-control" id="endereco" rows="5" formControlName="endereco"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Principais conquistas/resultados </label>
+                        <textarea class="form-control" id="endereco" rows="5" formControlName="endereco"></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Competências</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Competências técnicas </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Idiomas </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Competências comportamentais </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Anexos / Portfólio</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Upload do CV </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Link do portfólio </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Link do LinkedIn</label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Link do GitHub</label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Carta de apresentaçãob</label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Experiência Profissional</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Empresa </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Cargo </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">IData de início </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Data de fim </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Descrição das funções</label>
+                        <textarea class="form-control" id="endereco" rows="5" formControlName="endereco"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="municipio">Principais conquistas/resultados </label>
+                        <textarea class="form-control" id="endereco" rows="5" formControlName="endereco"></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Estado do Perfil</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Visibilidade </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Estado </label>
+                        <select class="form-select" id="local" formControlName="local">
+                          <option>Estagiário</option>
+                          <option>Júnior</option>
+                          <option>Pleno</option>
+                          <option>Sénior</option>
+                          <option>Especialista</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="municipio">Data da última atualização </label>
+                        <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " readonly />
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <button class="btn btn-success" type="submit">Guardar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+
+          <app-befooter />
+        </div>
+</div>

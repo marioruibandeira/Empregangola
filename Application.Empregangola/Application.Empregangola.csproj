@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\CompanyDetails\Commands\UpdateCompanyDetails\" />
+    <Folder Include="Features\Vacancy\Queries\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
 ﻿using Application.Empregangola.Features.UserDetails.Commands.CreateUserDetails;
-using Application.Empregangola.Features.UserDetails.Commands.UpdateUserDetails;
 using Application.Empregangola.Features.UserDetails.Queries.GetUserDetails;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -37,14 +36,4 @@ public class UserDetailsController : ControllerBase
 
         return Ok(result);
     }
-
-    /*
-    [HttpPut(Name = "UpdateUserDetails")]
-    [ProducesResponseType(typeof(UpdateUserDetailsResponse), StatusCodes.Status200OK)]
-    public async Task<IActionResult> UpdateUserDetails([FromBody] UpdateUserDetailsCommand command) 
-    {
-        var result = await _mediator.Send(command);
-        return Ok(result);
-    }*/
-
 }

@@ -111,13 +111,29 @@ namespace Infrastructure.Empregangola.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Empregangola.Entities.CompanyInterestTable", b =>
+            modelBuilder.Entity("Domain.Empregangola.Entities.CategoryTable", b =>
                 {
-                    b.Property<int>("CompanyInterestId")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompanyInterestId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.CompanyInterestTable", b =>
+                {
+                    b.Property<Guid>("CompanyInterestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
@@ -275,6 +291,24 @@ namespace Infrastructure.Empregangola.Migrations
                     b.ToTable("Interest");
                 });
 
+            modelBuilder.Entity("Domain.Empregangola.Entities.LanguagesTable", b =>
+                {
+                    b.Property<int>("LanguagesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LanguagesId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("LanguagesId");
+
+                    b.ToTable("Languages");
+                });
+
             modelBuilder.Entity("Domain.Empregangola.Entities.PositionTable", b =>
                 {
                     b.Property<int>("PositionId")
@@ -290,6 +324,24 @@ namespace Infrastructure.Empregangola.Migrations
                     b.HasKey("PositionId");
 
                     b.ToTable("Position");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.ProvinceTable", b =>
+                {
+                    b.Property<int>("ProvinceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProvinceId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ProvinceId");
+
+                    b.ToTable("Province");
                 });
 
             modelBuilder.Entity("Domain.Empregangola.Entities.UserDetailsTable", b =>
@@ -341,6 +393,193 @@ namespace Infrastructure.Empregangola.Migrations
                         .IsUnique();
 
                     b.ToTable("UserDetails");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacanciesTable", b =>
+                {
+                    b.Property<int>("VacanciesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VacanciesId"));
+
+                    b.Property<int>("ApplicationMethod")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationTarget")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ContractType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Deadline")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Diaspora")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("EducationLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinimumExperience")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Municipality")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("NegotiableSalary")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NumberOfVacancies")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProvinceId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("SalaryMax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SalaryMin")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("WorkMode")
+                        .HasColumnType("int");
+
+                    b.HasKey("VacanciesId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("Vacancies");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacancyBenefitsTable", b =>
+                {
+                    b.Property<int>("VacancyBenefitsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VacancyBenefitsId"));
+
+                    b.Property<string>("Benefit")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VacancyBenefitsId");
+
+                    b.HasIndex("VacancyId");
+
+                    b.ToTable("VacancyBenefits");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacancyRequirementsTable", b =>
+                {
+                    b.Property<int>("VacancyRequirementsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VacancyRequirementsId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VacancyRequirementsId");
+
+                    b.HasIndex("VacancyId");
+
+                    b.ToTable("VacancyRequirements");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacancyResponsibilitiesTable", b =>
+                {
+                    b.Property<int>("VacancyResponsibilitiesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VacancyResponsibilitiesId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VacanciesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VacancyResponsibilitiesId");
+
+                    b.HasIndex("VacanciesId");
+
+                    b.ToTable("VagaResponsabilidades");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacancySkillsTable", b =>
+                {
+                    b.Property<int>("VacancySkillsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VacancySkillsId"));
+
+                    b.Property<string>("Skill")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VacancySkillsId");
+
+                    b.HasIndex("VacancyId");
+
+                    b.ToTable("VacancySkills");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -476,6 +715,21 @@ namespace Infrastructure.Empregangola.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("VacancyLanguages", b =>
+                {
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VacancyId", "LanguageId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("VacancyLanguages", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Empregangola.Entities.CompanyInterestTable", b =>
                 {
                     b.HasOne("Domain.Empregangola.Entities.AppUser", "AppUser")
@@ -549,6 +803,77 @@ namespace Infrastructure.Empregangola.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacanciesTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.CategoryTable", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Empregangola.Entities.CompanyTable", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Empregangola.Entities.ProvinceTable", "Province")
+                        .WithMany()
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Province");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacancyBenefitsTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.VacanciesTable", "Vacancy")
+                        .WithMany("Benefits")
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vacancy");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacancyRequirementsTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.VacanciesTable", "Vacancy")
+                        .WithMany("Requirements")
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vacancy");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacancyResponsibilitiesTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.VacanciesTable", "Vacancy")
+                        .WithMany("Responsibilities")
+                        .HasForeignKey("VacanciesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vacancy");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacancySkillsTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.VacanciesTable", "Vacancy")
+                        .WithMany("Skills")
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vacancy");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -598,6 +923,32 @@ namespace Infrastructure.Empregangola.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("VacancyLanguages", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.LanguagesTable", null)
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Empregangola.Entities.VacanciesTable", null)
+                        .WithMany()
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.VacanciesTable", b =>
+                {
+                    b.Navigation("Benefits");
+
+                    b.Navigation("Requirements");
+
+                    b.Navigation("Responsibilities");
+
+                    b.Navigation("Skills");
                 });
 #pragma warning restore 612, 618
         }

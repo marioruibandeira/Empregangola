@@ -1,0 +1,363 @@
+<!-- utilizador.component.html -->
+<div class="wrapper">
+
+  <app-besidebar />
+
+  <div class="main-panel">
+
+    <app-beheader [nomeUtilizador]="'Mário'"
+                  [emailUtilizador]="'info@lea.co.ao'"
+                  [notificacoes]="4" />
+
+    <div class="container">
+      <div class="page-inner">
+
+        <!-- Main Header -->
+        <div class="alert alert-warning" role="alert">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="municipio">Empresa </label>
+                <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="Emprega Angola" readonly />
+
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="municipio">Data </label>
+                <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="" readonly />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="municipio">Opcoes</label>
+                <div class="demo-switch">
+                  <div class="switch">
+                    <label>OFF<input type="checkbox" checked><span class="lever"></span>ON</label>
+                  </div>
+                  <div class="switch">
+                    <label>DISABLED<input type="checkbox" disabled><span class="lever"></span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Form Ends Here -->
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Funcionarios</div>
+            <p class="nv-sub mb-0">O título e a categoria são o que os candidatos vêem primeiro na listagem.</p>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card mbttom">
+
+                <div class="body table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>NOME</th>
+                        <th>CATEGORIA</th>
+                        <th>TELEFONE</th>
+                        <th class="acc-wdth">ACCAO</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th class="tbl-wdth">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-80 310-250l57-57 73 73v-166h80v165l72-73 58 58L480-80ZM250-310 80-480l169-169 57 57-72 72h166v80H235l73 72-58 58Zm460 0-57-57 73-73H560v-80h165l-73-72 58-58 170 170-170 170ZM440-560v-166l-73 73-57-57 170-170 170 170-57 57-73-73v166h-80Z" /></svg>
+
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="tbl-wdth">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="tbl-wdth">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="tbl-wdth">4</th>
+                        <td>Larry</td>
+                        <td>Jellybean</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="tbl-wdth">5</th>
+                        <td>Larry</td>
+                        <td>Kikat</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- #END# Striped Rows -->
+        </div>
+
+
+        <!-- Dados Pessoais -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Dados pessoais</div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Nome completo </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Data de nascimento </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Sexo </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Estado civil </label>
+                      <div class="demo-radio-button">
+                        <input name="group1" type="radio" id="radio_1" checked />
+                        <label for="radio_1">Radio - 1</label>
+                        <input name="group1" type="radio" id="radio_2" />
+                        <label for="radio_2">Radio - 2</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Nacionalidade </label>
+                      <select class="form-select" id="local" formControlName="local">
+                        <option>Estagiário</option>
+                        <option>Júnior</option>
+                        <option>Pleno</option>
+                        <option>Sénior</option>
+                        <option>Especialista</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Naturalidade </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " readonly />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fim dos Dados Pessoais -->
+        <!-- Documentação -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Documentação</div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Nº do Bilhete de Identidade</label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">NIF </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Nº de INSS </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Carta de condução </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fim Documentação -->
+        <!-- Contactos -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Contactos</div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Telefone principal</label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Telefone alternativo </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Email</label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Contacto de emergência </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Endereco </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fim Contactos -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Dados profissionais</div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Código</label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Cargo/função</label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Departamento</label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Chefia directa</label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Data de admissão </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Tipo de contrato </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Regime </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="municipio">Estado </label>
+                      <input type="text" id="municipio" class="form-control" formControlName="municipio" placeholder="80 000 " />
+                    </div>
+                  </div>
+                  <div class="card-action">
+                    <button class="btn btn-label-secondary" type="submit">Funcionarios</button>
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <app-befooter />
+
+  </div>
+</div>
+
