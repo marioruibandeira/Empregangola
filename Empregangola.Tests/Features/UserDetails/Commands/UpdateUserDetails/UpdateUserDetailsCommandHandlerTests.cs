@@ -1,4 +1,4 @@
-﻿using Application.Empregangola.Features.UserDetails.Commands.UpdateUserDetails;
+﻿using Application.Empregangola.Features.UserDetails.UpdateUserDetails;
 using Domain.Empregangola.Entities;
 using Domain.Empregangola.Interfaces;
 using Moq;
