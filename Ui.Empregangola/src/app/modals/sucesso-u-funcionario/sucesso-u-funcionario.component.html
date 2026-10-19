@@ -1,0 +1,21 @@
+<!-- Modal Resultado (sucesso / erro) -->
+@if (aberto()) {
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background: rgba(0,0,0,.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        @if (tipo() === 'sucesso') {
+        <h5 class="modal-title text-success">Sucesso</h5>
+        } @else {
+        <h5 class="modal-title text-danger">Erro</h5>
+        }
+        <button type="button" class="btn-close" aria-label="Fechar" (click)="fechar.emit()"></button>
+      </div>
+      <div class="modal-body">{{ mensagem() }}</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="fechar.emit()">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+}

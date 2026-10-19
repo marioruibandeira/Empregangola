@@ -140,53 +140,64 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Nome completo </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Nome completo</mat-label>
+                          <input matInput placeholder="Nome completo">
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Data de nascimento </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="w-100 my-date-field">
+                          <mat-label>Data de Nascimento</mat-label>
+                          <input class="form-control" matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY">
+                          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
+                      <div class="form-group ng-r-p-l"><mat-label>Genero</mat-label></div>
                       <div class="form-group">
-                        <label for="municipio">Sexo </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-radio-group [formControl]="floatLabelControl">
+                          <mat-radio-button value="1">Masculino</mat-radio-button>
+                          <mat-radio-button value="1">Feminino</mat-radio-button>
+                        </mat-radio-group>
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="municipio">Estado civil </label>
-                        <div class="demo-radio-button">
-                          <input name="group1" type="radio" id="radio_1" checked />
-                          <label for="radio_1">Radio - 1</label>
-                          <input name="group1" type="radio" id="radio_2" />
-                          <label for="radio_2">Radio - 2</label>
+                        <div class="form-group ng-r-p-l"><mat-label>Estado Civil</mat-label></div>
+                        <div class="form-group">
+                          <mat-radio-group [formControl]="floatLabelControl">
+                            <mat-radio-button value="1">Solteiro/a</mat-radio-button>
+                            <mat-radio-button value="2">Casado/a</mat-radio-button>
+                            <mat-radio-button value="3">Divorciado/a</mat-radio-button>
+                            <mat-radio-button value="4">Viuvo/a</mat-radio-button>
+                          </mat-radio-group>
                         </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Nacionalidade</mat-label>
+                          <mat-select required>
+                            <mat-option value="">-- None --</mat-option>
+                            <mat-option value="option1">Option 1</mat-option>
+                            <mat-option value="option2">Option 2</mat-option>
+                          </mat-select>
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Nacionalidade </label>
-                        <select class="form-select" id="local" >
-                          <option>Estagiário</option>
-                          <option>Júnior</option>
-                          <option>Pleno</option>
-                          <option>Sénior</option>
-                          <option>Especialista</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="municipio">Naturalidade </label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " readonly />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Naturalidade</mat-label>
+                          <input matInput placeholder="Naturalidade">
+                        </mat-form-field>
                       </div>
                     </div>
                   </div>
@@ -195,6 +206,7 @@
             </div>
           </div>
           <!-- fim dos Dados Pessoais -->
+
           <!-- Documentação -->
           <div class="row">
             <div class="col-md-12">
@@ -207,28 +219,36 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Nº do Bilhete de Identidade</label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Nº do Bilhete de Identidade</mat-label>
+                          <input matInput placeholder="Nº do Bilhete de Identidade">
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">NIF </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>NIF</mat-label>
+                          <input matInput placeholder="NIF">
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Nº de INSS </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Nº de INSS</mat-label>
+                          <input matInput placeholder="Nº de INSS">
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Carta de condução </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Carta de Condução</mat-label>
+                          <input matInput placeholder="Carta de Condução">
+                        </mat-form-field>
                       </div>
                     </div>
                   </div>
@@ -237,6 +257,7 @@
             </div>
           </div>
           <!-- fim Documentação -->
+
           <!-- Contactos -->
           <div class="row">
             <div class="col-md-12">
@@ -249,34 +270,44 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Telefone principal</label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Telefone</mat-label>
+                          <input matInput placeholder="Telefone">
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Telefone alternativo </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Telefone alternativo</mat-label>
+                          <input matInput placeholder="Telefone alternativo">
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Email</label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Email</mat-label>
+                          <input matInput placeholder="Email">
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Contacto de emergência </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Contacto de emergência</mat-label>
+                          <input matInput placeholder="Contacto de emergência">
+                        </mat-form-field>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-group">
-                        <label for="municipio">Endereco </label>
-                        <input type="text" id="municipio" class="form-control" placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Endereço</mat-label>
+                          <textarea matInput rows="5" name="endereco" placeholder="Digite o endereço completo"></textarea>
+                        </mat-form-field>
                       </div>
                     </div>
                   </div>
@@ -297,54 +328,73 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Código</label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Código</mat-label>
+                          <input matInput placeholder="Código">
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Cargo/função</label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Cargo/função</mat-label>
+                          <input matInput placeholder="Cargo/função">
+                        </mat-form-field>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Departamento</label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Departamento</mat-label>
+                          <input matInput placeholder="Departamento">
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Chefia directa</label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Chefia directa</mat-label>
+                          <input matInput placeholder="Chefia directa">
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Data de admissão </label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Data de admissão</mat-label>
+                          <input matInput placeholder="Data de admissão">
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Tipo de contrato </label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Tipo de contrato</mat-label>
+                          <input matInput placeholder="Tipo de contrato">
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="municipio">Regime </label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " />
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Regime</mat-label>
+                          <input matInput placeholder="Regime">
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="municipio">Estado </label>
-                        <input type="text" id="municipio" class="form-control"  placeholder="80 000 " />
+                      <div class="form-group ng-r-p-l" style="padding-bottom:0px !important;">
+                        <label for="municipio">Estado: </label>
                       </div>
-                    </div>
+                        <div class="form-group" style="padding-top:0px !important;">
+                          <mat-radio-group [formControl]="floatLabelControl">
+                            <mat-radio-button value="1">Activo</mat-radio-button>
+                            <mat-radio-button value="2">Inactivo</mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
                     <div class="card-action">
                       <button class="btn btn-success" type="submit">Guardar</button>
                     </div>

@@ -199,6 +199,48 @@ public class AppDbContext : IdentityDbContext<AppUser>
                     join.ToTable("VacancyLanguages");
                     join.HasKey("VacancyId", "LanguageId");
                 });
+
+        modelBuilder.Entity<PremiumServicesTable>(entity =>
+        {
+            entity.Property(x => x.ServiceName)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            entity.Property(x => x.Description)
+                .HasMaxLength(500);
+
+            entity.Property(x => x.Price)
+                .HasColumnType("decimal(18,2)");
+        });
+
+        modelBuilder.Entity<PremiumSubscriptionTable>()
+            .HasOne(x => x.PremiumService)
+            .WithMany()
+            .HasForeignKey(x => x.PremiumServiceId);
+
+        modelBuilder.Entity<PremiumVacanciesTable>()
+            .HasOne(x => x.PremiumSubscription)
+            .WithMany()
+            .HasForeignKey(x => x.PremiumSubscriptionId);
+
+        modelBuilder.Entity<PremiumVacanciesTable>()
+            .HasOne(x => x.Vacancy)
+            .WithMany()
+            .HasForeignKey(x => x.VacancyId);
+
+        modelBuilder.Entity<EmployeeTable>()
+            .Property(x => x.Gender)
+            .HasConversion<int>();
+
+        modelBuilder.Entity<EmployeeTable>()
+            .Property(x => x.MaritalStatus)
+            .HasConversion<int>();
+
+        modelBuilder.Entity<EmployeeTable>(entity =>
+        {
+            entity.Property(x => x.FullName)
+                .HasMaxLength (150);
+        });
     }
 
     public DbSet<UserDetailsTable> UserDetails { get; set; }
@@ -234,4 +276,14 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<CategoryTable> Categories { get; set; }
 
     public DbSet<ProvinceTable> Provinces { get; set; }
+
+    //Planos
+    public DbSet<PremiumServicesTable> PremiumServices { get; set; }
+
+    public DbSet<PremiumSubscriptionTable> PremiumSubscriptions { get; set; }
+
+    public DbSet<PremiumVacanciesTable> PremiumVacancies { get; set; }
+
+    //Employee
+    public DbSet<EmployeeTable> Employee { get; set; }
 }

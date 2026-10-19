@@ -12,6 +12,15 @@
             <p class="nv-sub mb-0">Preencha os campos obrigatórios. Pode guardar como rascunho e continuar mais tarde.</p>
           </div>
 
+          @if (vagaEncerrada()) {
+            <div class="alert alert-danger" role="alert">Esta vaga está encerrada e não pode ser editada.</div>
+          } @else if (vagaPublicada()) {
+            <div class="alert alert-info" role="alert">
+              Vaga publicada: só pode alterar a descrição, as responsabilidades, os requisitos, as competências,
+              os idiomas, os benefícios, o prazo e a candidatura.
+            </div>
+          }
+
           <form [formGroup]="form" (ngSubmit)="guardarNovaVaga()">
             <div class="row g-2 g-xl-4">
 
@@ -77,36 +86,36 @@
 
                       <div class="col-md-6">
                         <div class="form-group">
-                          <span class="nv-rotulo">Tipo de contrato</span>
-                          <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Tipo de contrato">
-                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato1" value="Efectivo" />
-                            <label class="nv-pilula" for="contrato1">Efectivo</label>
-                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato2" value="Prazo certo" />
-                            <label class="nv-pilula" for="contrato2">Prazo certo</label>
-                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato3" value="Estágio" />
-                            <label class="nv-pilula" for="contrato3">Estágio</label>
-                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato4" value="Freelance" />
-                            <label class="nv-pilula" for="contrato4">Freelance</label>
+                          <span class="nv-rotulo">Modalidade</span>
+                          <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Modalidade">
+                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade1" [value]="1" />
+                            <label class="nv-pilula" for="modalidade1">Presencial</label>
+                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade2" [value]="2" />
+                            <label class="nv-pilula" for="modalidade2">Híbrido</label>
+                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade3" [value]="3" />
+                            <label class="nv-pilula" for="modalidade3">Remoto</label>
                           </div>
-                          @if (contrato?.invalid && contrato?.touched) {
-                          <div class="invalid-feedback d-block">Escolha o tipo de contrato.</div>
+                          @if (modalidade?.invalid && modalidade?.touched) {
+                          <div class="invalid-feedback d-block">Escolha a modalidade.</div>
                           }
                         </div>
                       </div>
 
                       <div class="col-md-6">
                         <div class="form-group">
-                          <span class="nv-rotulo">Modalidade</span>
-                          <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Modalidade">
-                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade1" value="Presencial" />
-                            <label class="nv-pilula" for="modalidade1">Presencial</label>
-                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade2" value="Híbrido" />
-                            <label class="nv-pilula" for="modalidade2">Híbrido</label>
-                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade3" value="Remoto" />
-                            <label class="nv-pilula" for="modalidade3">Remoto</label>
+                          <span class="nv-rotulo">Tipo de contrato</span>
+                          <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Tipo de contrato">
+                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato1" [value]="1" />
+                            <label class="nv-pilula" for="contrato1">Efectivo</label>
+                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato2" [value]="2" />
+                            <label class="nv-pilula" for="contrato2">Prazo certo</label>
+                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato3" [value]="3" />
+                            <label class="nv-pilula" for="contrato3">Estágio</label>
+                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato4" [value]="4" />
+                            <label class="nv-pilula" for="contrato4">Freelance</label>
                           </div>
-                          @if (modalidade?.invalid && modalidade?.touched) {
-                          <div class="invalid-feedback d-block">Escolha a modalidade.</div>
+                          @if (contrato?.invalid && contrato?.touched) {
+                          <div class="invalid-feedback d-block">Escolha o tipo de contrato.</div>
                           }
                         </div>
                       </div>
@@ -130,11 +139,11 @@
                                   [class.is-invalid]="provincia?.invalid && provincia?.touched">
                             <option value="">Seleccione</option>
                             @for (p of provincias; track p.provinceId) {
-                              <option [value]="p.provinceId">{{ p.name }}</option>
+                            <option [value]="p.provinceId">{{ p.name }}</option>
                             }
                           </select>
                           @if (provincia?.invalid && provincia?.touched) {
-                            <div class="invalid-feedback d-block">A província é obrigatória.</div>
+                          <div class="invalid-feedback d-block">A província é obrigatória.</div>
                           }
                         </div>
                       </div>
@@ -178,7 +187,7 @@
                       <div class="col-12">
                         <div class="form-group">
                           <label for="descricao">Sobre a vaga <span class="nv-obrig">*</span></label>
-                          <textarea id="descricao" formControlName="descricao" class="form-control" rows="4"
+                          <textarea id="descricao" formControlName="descricao" class="form-control" rows="7"
                                     placeholder="Explique em poucas linhas o contexto da vaga e o que a equipa faz."
                                     [class.is-invalid]="descricao?.invalid && descricao?.touched"></textarea>
                           @if (descricao?.invalid && descricao?.touched) {
@@ -186,18 +195,16 @@
                           }
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <div class="form-group">
                           <label for="responsabilidades">Responsabilidades</label>
-                          <textarea id="responsabilidades" formControlName="responsabilidades" class="form-control" rows="5"
-                                    placeholder="Uma responsabilidade por linha."></textarea>
+                          <textarea id="responsabilidades" formControlName="responsabilidades" class="form-control" rows="7" placeholder="Uma responsabilidade por linha."></textarea>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <div class="form-group">
                           <label for="requisitos">Requisitos</label>
-                          <textarea id="requisitos" formControlName="requisitos" class="form-control" rows="5"
-                                    placeholder="Uma exigência por linha."></textarea>
+                          <textarea id="requisitos" formControlName="requisitos" class="form-control" rows="7" placeholder="Uma exigência por linha."></textarea>
                         </div>
                       </div>
                     </div>
@@ -216,15 +223,15 @@
                         <div class="form-group">
                           <label for="escolaridade">Nível de escolaridade</label>
                           <select id="escolaridade" class="form-select" formControlName="escolaridade">
-                            <option>Indiferente</option>
-                            <option>7º / 8º Classe</option>
-                            <option>9º / 10º Classe</option>
-                            <option>11º / 13º Classe</option>
-                            <option>Médio</option>
-                            <option>Bacharel</option>
-                            <option>Licenciatura ou equivalente</option>
-                            <option>Mestrado</option>
-                            <option>Doutoramento</option>
+                            <option [ngValue]="0">Indiferente</option>
+                            <option [ngValue]="1">7º / 8º Classe</option>
+                            <option [ngValue]="2">9º / 10º Classe</option>
+                            <option [ngValue]="3">11º / 13º Classe</option>
+                            <option [ngValue]="4">Médio</option>
+                            <option [ngValue]="5">Bacharel</option>
+                            <option [ngValue]="6">Licenciatura ou equivalente</option>
+                            <option [ngValue]="7">Mestrado</option>
+                            <option [ngValue]="8">Doutoramento</option>
                           </select>
                         </div>
                       </div>
@@ -232,11 +239,11 @@
                         <div class="form-group">
                           <label for="experiencia">Experiência mínima</label>
                           <select id="experiencia" class="form-select" formControlName="experiencia">
-                            <option>Sem experiência</option>
-                            <option>1 ano</option>
-                            <option>2 a 3 anos</option>
-                            <option>4 a 5 anos</option>
-                            <option>Mais de 5 anos</option>
+                            <option [ngValue]="0">Sem experiência</option>
+                            <option [ngValue]="1">1 ano</option>
+                            <option [ngValue]="2">2 a 3 anos</option>
+                            <option [ngValue]="3">4 a 5 anos</option>
+                            <option [ngValue]="4">Mais de 5 anos</option>
                           </select>
                         </div>
                       </div>
@@ -304,8 +311,8 @@
                           <span class="nv-rotulo">Benefícios</span>
                           <div class="d-flex flex-wrap gap-2" formArrayName="beneficios">
                             @for (beneficio of beneficiosDisponiveis; track beneficio; let i = $index) {
-                              <input type="checkbox" class="btn-check" [formControlName]="i" [id]="'beneficio' + i" />
-                              <label class="nv-chip" [for]="'beneficio' + i">{{ beneficio }}</label>
+                            <input type="checkbox" class="btn-check" [formControlName]="i" [id]="'beneficio' + i" />
+                            <label class="nv-chip" [for]="'beneficio' + i">{{ beneficio }}</label>
                             }
                           </div>
                         </div>
@@ -328,7 +335,7 @@
                           <input type="date" id="prazo" class="form-control" formControlName="prazo"
                                  [class.is-invalid]="prazo?.invalid && prazo?.touched" />
                           @if (prazo?.invalid && prazo?.touched) {
-                            <div class="invalid-feedback d-block">O prazo limite é obrigatório.</div>
+                          <div class="invalid-feedback d-block">O prazo limite é obrigatório.</div>
                           }
                         </div>
                       </div>
@@ -337,24 +344,46 @@
                         <div class="form-group">
                           <span class="nv-rotulo">Como se candidatar</span>
                           <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Forma de candidatura">
-                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura1" value="Plataforma" />
+                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura1" [value]="1" />
                             <label class="nv-pilula" for="candidatura1">Na plataforma</label>
-                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura2" value="Email" />
+                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura2" [value]="2" />
                             <label class="nv-pilula" for="candidatura2">Por email</label>
-                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura3" value="Link" />
+                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura3" [value]="3" />
                             <label class="nv-pilula" for="candidatura3">Link externo</label>
                           </div>
                         </div>
                       </div>
 
-                      <div class="col-12">
-                        <div class="form-group">
-                          <label for="candidaturaDestino">Email ou link para candidaturas</label>
-                          <input type="text" id="candidaturaDestino" formControlName="candidaturaDestino" class="form-control"
-                                 placeholder="rh@empresa.co.ao ou https://..." />
-                          <small class="nv-sub">Só é necessário se escolher "Por email" ou "Link externo".</small>
+                      @if (candidatura?.value === 2 || candidatura?.value === 3) {
+                        <div class="col-12">
+                          <div class="form-group">
+                            <label for="candidaturaDestino">
+                              Email ou link para candidaturas <span class="nv-obrig">*</span>
+                            </label>
+                            <input type="text" id="candidaturaDestino" formControlName="candidaturaDestino" class="form-control"
+                                   maxlength="200"
+                                   [placeholder]="candidatura?.value === 2 ? 'rh@empresa.co.ao' : 'https://empresa.co.ao/vagas'"
+                                   [class.is-invalid]="candidaturaDestino?.invalid && candidaturaDestino?.touched" />
+
+                            @if (candidaturaDestino?.touched) {
+                            @if (candidaturaDestino?.errors?.['required']) {
+                            <div class="invalid-feedback d-block">
+                              {{ candidatura?.value === 2 ? 'Indique o email para candidaturas.' : 'Indique o link para candidaturas.' }}
+                            </div>
+                            }
+                            @if (candidaturaDestino?.errors?.['email']) {
+                            <div class="invalid-feedback d-block">O email não é válido. Exemplo: rh@empresa.co.ao</div>
+                            }
+                            @if (candidaturaDestino?.errors?.['pattern']) {
+                            <div class="invalid-feedback d-block">O link deve começar por http:// ou https://.</div>
+                            }
+                            }
+
+                            <small class="nv-sub">Só é necessário se escolher "Por email" ou "Link externo".</small>
+                          </div>
                         </div>
-                      </div>
+                      }
+
                     </div>
                   </div>
                 </div>
@@ -375,43 +404,56 @@
                         <div class="d-flex gap-3">
                           <div class="nv-vaga__logo"><i class="bi bi-building"></i></div>
                           <div>
-                            <h6 class="nv-vaga__titulo nv-vazio">Título da vaga</h6>
+                            <h6 class="nv-vaga__titulo" [class.nv-vazio]="!previsao().titulo">
+                              {{ previsao().titulo || 'Título da vaga' }}
+                            </h6>
                             <div class="nv-sub">Nome da empresa</div>
                           </div>
                         </div>
 
                         <div class="d-flex flex-wrap gap-2 my-3">
-                          <span class="nv-etiqueta">Efectivo</span>
-                          <span class="nv-etiqueta">Presencial</span>
+                          @if (previsao().contrato) {
+                          <span class="nv-etiqueta">{{ previsao().contrato }}</span>
+                          }
+                          @if (previsao().modalidade) {
+                          <span class="nv-etiqueta">{{ previsao().modalidade }}</span>
+                          }
                         </div>
 
                         <dl class="nv-vaga__dados">
                           <dt>Local</dt>
-                          <dd class="nv-vazio">Por definir</dd>
+                          <dd [class.nv-vazio]="!previsao().local">{{ previsao().local || 'Por definir' }}</dd>
                           <dt>Salário</dt>
-                          <dd class="nv-vazio">Não indicado</dd>
+                          <dd [class.nv-vazio]="!previsao().salario">{{ previsao().salario || 'Não indicado' }}</dd>
                           <dt>Candidaturas até</dt>
-                          <dd class="nv-vazio">Por definir</dd>
+                          <dd [class.nv-vazio]="!previsao().prazo">{{ previsao().prazo || 'Por definir' }}</dd>
                         </dl>
                       </div>
 
                       <div class="mt-4">
                         <div class="d-flex justify-content-between mb-1">
                           <small>Campos obrigatórios</small>
-                          <small class="fw-bold">0 de 6</small>
+                          <small class="fw-bold">{{ progresso().preenchidos }} de {{ progresso().total }}</small>
                         </div>
                         <div class="progress nv-progresso">
-                          <div class="progress-bar" role="progressbar" style="width: 0%"
-                               aria-valuenow="0" aria-valuemin="0" aria-valuemax="6"></div>
+                          <div class="progress-bar" role="progressbar"
+                               [style.width.%]="progresso().percentagem"
+                               [attr.aria-valuenow]="progresso().percentagem"
+                               aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
 
                     </div>
                     <div class="card-action">
-                      <button type="submit" class="btn nv-btn-publicar w-100" [disabled]="form.invalid">
-                        Publicar vaga
+                      <button type="submit" class="btn nv-btn-publicar w-100" [disabled]="form.invalid || vagaEncerrada()">
+                        {{ modoEdicao() ? 'Guardar alterações' : 'Publicar vaga' }}
                       </button>
-                      <button type="button" class="btn btn-outline-secondary w-100 mt-2">Guardar rascunho</button>
+                      @if (!modoEdicao()) {
+                      <button type="button" class="btn btn-outline-secondary w-100 mt-2" (click)="guardarRascunho()">
+                        Guardar rascunho
+                      </button>
+                      }
+                      <a href="empresa/vagas-disponivel" class="btn btn-outline-secondary w-100 mt-2">Todas Vagas</a>
                       <p class="nv-sub text-center mt-3 mb-0">Depois de publicada, pode editar ou encerrar a vaga no painel.</p>
                     </div>
                   </div>
@@ -421,7 +463,7 @@
             </div>
           </form>
 
-      </div>
+        </div>
     </div>
 
     <app-befooter />

@@ -24,3 +24,32 @@
 .mbttom {
   margin-bottom: 0px !important;
 }
+
+.r-spaco-r{
+    padding-right:20px;
+}
+.r-spaco-l {
+  padding-left: 5px;
+}
+
+/* Modern way (Angular Material 15+) */
+.my-date-field {
+  width: 100%;
+}
+
+:host ::ng-deep .my-date-field .mdc-notched-outline__leading,
+:host ::ng-deep .my-date-field .mdc-notched-outline__notch,
+:host ::ng-deep .my-date-field .mdc-notched-outline__trailing {
+  border-color: #ccc !important;
+}
+
+:host ::ng-deep .my-date-field.mat-focused .mdc-notched-outline__leading,
+:host ::ng-deep .my-date-field.mat-focused .mdc-notched-outline__notch,
+:host ::ng-deep .my-date-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #ccc !important;
+}
+
+.ng-r-p-l {
+  padding: 0px !important;
+  padding-left: 13px !important;
+}

@@ -1,0 +1,47 @@
+.acc-wdth{
+    width:150px;
+}
+.inactivo {
+  float: left;
+  padding-right: 10px;
+}
+.b-icon-m {
+  margin: 0px 10px 0px 10px !important;
+  border: 0;
+  background: none;
+}
+
+section {
+  display: flex;
+  align-items: center;
+}
+
+.example-label {
+  font-size: 14px;
+  margin: 0 16px 0 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  max-width: 600px;
+}
+
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.p-botm{ padding-bottom:10px;}
+
+.my-date-field {
+  width: 100%; /* optional */
+  /* Border colors */
+  --mdc-outlined-text-field-outline-color: #28a745; /* normal */
+  --mdc-outlined-text-field-hover-outline-color: #218838; /* hover */
+  --mdc-outlined-text-field-focus-outline-color: #1e7e34; /* focused */
+}

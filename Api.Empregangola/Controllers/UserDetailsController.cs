@@ -1,5 +1,6 @@
 ﻿using Application.Empregangola.Features.UserDetails.Commands.CreateUserDetails;
 using Application.Empregangola.Features.UserDetails.Queries.GetUserDetails;
+using Application.Empregangola.Features.UserDetails.Queries.GetUsers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,17 @@ public class UserDetailsController : ControllerBase
     public async Task<IActionResult> GetUserDetails(string appUserId, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetUserProfileQuery(appUserId), cancellationToken);
+
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
+    }
+
+    [HttpGet("allUsers")]
+    public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetUsersQuery(), cancellationToken);
 
         if (result == null)
             return NotFound();

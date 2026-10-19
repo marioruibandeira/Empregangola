@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Empregangola.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260928195453_AddVacanciesModule2")]
-    partial class AddVacanciesModule2
+    [Migration("20261017123432_AddFuncionarioTblAndNull")]
+    partial class AddFuncionarioTblAndNull
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -277,6 +277,49 @@ namespace Infrastructure.Empregangola.Migrations
                     b.ToTable("EmployeeCount");
                 });
 
+            modelBuilder.Entity("Domain.Empregangola.Entities.EmployeeTable", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FullName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MaritalStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NationalityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PlaceOfBirth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmployeeId");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("NationalityId");
+
+                    b.ToTable("Employee");
+                });
+
             modelBuilder.Entity("Domain.Empregangola.Entities.InterestTable", b =>
                 {
                     b.Property<int>("InterestId")
@@ -327,6 +370,98 @@ namespace Infrastructure.Empregangola.Migrations
                     b.HasKey("PositionId");
 
                     b.ToTable("Position");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.PremiumServicesTable", b =>
+                {
+                    b.Property<int>("PremiumServiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PremiumServiceId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("DurationInDays")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PremiumServiceId");
+
+                    b.ToTable("PremiumServices");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.PremiumSubscriptionTable", b =>
+                {
+                    b.Property<int>("PremiumSubscriptionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PremiumSubscriptionId"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PremiumServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PremiumSubscriptionId");
+
+                    b.HasIndex("PremiumServiceId");
+
+                    b.ToTable("PremiumSubscriptions");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.PremiumVacanciesTable", b =>
+                {
+                    b.Property<int>("PremiumVacancyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PremiumVacancyId"));
+
+                    b.Property<int>("PremiumSubscriptionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PremiumVacancyId");
+
+                    b.HasIndex("PremiumSubscriptionId");
+
+                    b.HasIndex("VacancyId");
+
+                    b.ToTable("PremiumVacancies");
                 });
 
             modelBuilder.Entity("Domain.Empregangola.Entities.ProvinceTable", b =>
@@ -413,19 +548,19 @@ namespace Infrastructure.Empregangola.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ContractType")
+                    b.Property<int?>("ContractType")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Deadline")
+                    b.Property<DateTime?>("Deadline")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -453,8 +588,11 @@ namespace Infrastructure.Empregangola.Migrations
                     b.Property<int>("NumberOfVacancies")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProvinceId")
+                    b.Property<int?>("ProvinceId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("PublishedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal?>("SalaryMax")
                         .HasColumnType("decimal(18,2)");
@@ -473,7 +611,7 @@ namespace Infrastructure.Empregangola.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("WorkMode")
+                    b.Property<int?>("WorkMode")
                         .HasColumnType("int");
 
                     b.HasKey("VacanciesId");
@@ -795,6 +933,55 @@ namespace Infrastructure.Empregangola.Migrations
                     b.Navigation("EmployeeCount");
                 });
 
+            modelBuilder.Entity("Domain.Empregangola.Entities.EmployeeTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Empregangola.Entities.CountryTable", "NationalityCountry")
+                        .WithMany()
+                        .HasForeignKey("NationalityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("NationalityCountry");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.PremiumSubscriptionTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.PremiumServicesTable", "PremiumService")
+                        .WithMany()
+                        .HasForeignKey("PremiumServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PremiumService");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.PremiumVacanciesTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.PremiumSubscriptionTable", "PremiumSubscription")
+                        .WithMany()
+                        .HasForeignKey("PremiumSubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Empregangola.Entities.VacanciesTable", "Vacancy")
+                        .WithMany()
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PremiumSubscription");
+
+                    b.Navigation("Vacancy");
+                });
+
             modelBuilder.Entity("Domain.Empregangola.Entities.UserDetailsTable", b =>
                 {
                     b.HasOne("Domain.Empregangola.Entities.AppUser", "AppUser")
@@ -811,8 +998,7 @@ namespace Infrastructure.Empregangola.Migrations
                     b.HasOne("Domain.Empregangola.Entities.CategoryTable", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Domain.Empregangola.Entities.CompanyTable", "Company")
                         .WithMany()
@@ -823,8 +1009,7 @@ namespace Infrastructure.Empregangola.Migrations
                     b.HasOne("Domain.Empregangola.Entities.ProvinceTable", "Province")
                         .WithMany()
                         .HasForeignKey("ProvinceId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Category");
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-besidebar',
+  standalone: true,
   imports: [],
   templateUrl: './besidebar.component.html',
   styleUrl: './besidebar.component.css',

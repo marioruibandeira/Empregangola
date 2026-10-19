@@ -17,11 +17,10 @@ public class VacanciesTable
     [ForeignKey(nameof(CompanyId))]
     public CompanyTable Company { get; set; } = null!;
 
-    [Required]
-    public int CategoryId { get; set; }
+    public int? CategoryId { get; set; }
 
     [ForeignKey(nameof(CategoryId))]
-    public CategoryTable Category { get; set; } = null!;
+    public CategoryTable? Category { get; set; }
 
     [Required]
     [MaxLength(80)]
@@ -30,17 +29,14 @@ public class VacanciesTable
     [Required]
     public int NumberOfVacancies { get; set; }
 
-    [Required]
-    public EmploymentType ContractType { get; set; }
+    public EmploymentType? ContractType { get; set; }
 
-    [Required]
-    public WorkMode WorkMode { get; set; }
+    public WorkMode? WorkMode { get; set; }
 
-    [Required]
-    public int ProvinceId { get; set; }
+    public int? ProvinceId { get; set; }
 
     [ForeignKey(nameof(ProvinceId))]
-    public ProvinceTable Province { get; set; } = null!;
+    public ProvinceTable? Province { get; set; }
 
     [Required]
     [MaxLength(100)]
@@ -66,8 +62,7 @@ public class VacanciesTable
     [Required]
     public bool NegotiableSalary { get; set; }
 
-    [Required]
-    public DateTime Deadline { get; set; }
+    public DateTime? Deadline { get; set; }
 
     [Required]
     public ApplicationMethod ApplicationMethod { get; set; }
@@ -82,6 +77,8 @@ public class VacanciesTable
     public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
+
+    public DateTime? PublishedAt { get; set; }
 
     public ICollection<VacancyResponsibilitiesTable> Responsibilities { get; set; } = [];
 

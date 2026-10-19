@@ -4,6 +4,9 @@ namespace Domain.Empregangola.Enums;
 
 public enum EducationLevel
 {
+    [Display(Name = "Indiferente")]
+    Any = 0,
+
     [Display(Name = "7º / 8º Classe")]
     SeventhOrEighthGrade = 1,
 

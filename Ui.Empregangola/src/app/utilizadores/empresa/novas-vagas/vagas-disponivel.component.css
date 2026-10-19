@@ -2,4 +2,135 @@
   margin-bottom: 0px !important;
 }
 .tbl-wdth{ width:20px;}
-.acc-wdth{width:160px;}
+.acc-wdth{width:200px;}
+
+.btn-icone {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  margin:0px 0px 0px 10px !important;
+}
+
+.b-icon-m {
+  margin: 0px 10px 0px 10px !important;
+  border: 0;
+  background: none;
+}
+
+.txt-algn{
+    text-align:center;
+}
+.btn-n {
+  width:100%; height:42px; padding:6px!important;
+}
+
+
+
+
+/* Fundo escurecido */
+.painel-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 18, 7, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  z-index: 1040;
+}
+
+  .painel-fundo.aberto {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+  }
+
+/* Gaveta fixa à direita: começa fora do ecrã e desliza para a esquerda */
+.painel-direita {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(420px, 100vw);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0s linear 0.3s;
+  z-index: 1050;
+}
+
+  .painel-direita.aberto {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s ease;
+  }
+
+.painel-cab {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #eee7df;
+}
+
+.painel-titulo {
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1207;
+}
+
+.painel-titulo-segundo {
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #1a1207;
+}
+
+.painel-sub {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #7a6e64;
+}
+
+.painel-fechar {
+  background: none;
+  border: 0;
+  padding: 4px;
+  font-size: 18px;
+  line-height: 1;
+  color: #4a4038;
+  cursor: pointer;
+}
+
+  .painel-fechar:hover {
+    color: #f2670c;
+  }
+
+.painel-corpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+}
+
+.painel-rodape {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 24px;
+  border-top: 1px solid #eee7df;
+}
+
+.f-weight{
+    font-weight:bolder;
+    color:#1a1207 !important;
+}
+
+

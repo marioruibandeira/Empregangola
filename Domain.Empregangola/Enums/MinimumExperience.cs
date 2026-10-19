@@ -4,6 +4,9 @@ namespace Domain.Empregangola.Enums;
 
 public enum MinimumExperience
 {
+    [Display(Name = "Sem experiência")]
+    None = 0,
+
     [Display(Name = "1 ano")]
     OneYear = 1,
 

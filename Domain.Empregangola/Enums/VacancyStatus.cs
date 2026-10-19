@@ -3,6 +3,7 @@
 public enum VacancyStatus
 {
     Draft = 1, 
-    Published = 2, 
-    Closed = 3
+    Open = 2,
+    Published = 3, 
+    Closed = 4
 }

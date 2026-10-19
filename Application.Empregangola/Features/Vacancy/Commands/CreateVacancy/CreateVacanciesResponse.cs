@@ -10,15 +10,17 @@ public record CreateVacanciesResponse(
 
     string Title,
 
-    int CategoryId,
+    int? CategoryId,
     string CategoryName,
 
     int NumberOfVacancies,
-    EmploymentType ContractType,
-    WorkMode WorkMode,
+    EmploymentType? ContractType,
+    WorkMode? WorkMode,
 
-    int ProvinceId,
+    int? ProvinceId,
     string ProvinceName,
+
+    string Municipality,
 
     bool Diaspora,
     string Description,
@@ -29,7 +31,7 @@ public record CreateVacanciesResponse(
     decimal? SalaryMax,
     bool NegotiableSalary,
 
-    DateTime Deadline,
+    DateTime? Deadline,
 
     ApplicationMethod ApplicationMethod,
     string ApplicationTarget,

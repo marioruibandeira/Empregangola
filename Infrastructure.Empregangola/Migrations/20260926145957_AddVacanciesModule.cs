@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Infrastructure.Empregangola.Persistence;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 #nullable disable
 
 namespace Infrastructure.Empregangola.Migrations
 {
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20260926145957_AddVacanciesModule")]
     /// <inheritdoc />
     public partial class AddVacanciesModule : Migration
     {

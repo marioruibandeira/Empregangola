@@ -1,5 +1,6 @@
 ﻿using Application.Empregangola.Common;
 using Domain.Empregangola.Entities;
+using Domain.Empregangola.Enums;
 using Domain.Empregangola.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +21,9 @@ public class CreateVacanciesHandler : IRequestHandler<CreateVacanciesCommand, Cr
 
     public async Task<CreateVacanciesResponse> Handle(CreateVacanciesCommand request, CancellationToken cancellationToken)
     {
+        var Status = VacancyStatus.Open;
+        var CreatedAt = DateTime.UtcNow;
+
         var vacancyExist = await _vacancyepository.ExistsAsync(request.Title, cancellationToken);
 
         if (vacancyExist)
@@ -27,17 +31,30 @@ public class CreateVacanciesHandler : IRequestHandler<CreateVacanciesCommand, Cr
             throw new InvalidOperationException($"Já existe uma vaga com o título '{request.Title}'.");
         }
 
+        var companyId = await _vacancyepository.GetCompanyIdByUserAsync(request.AppUserId!, cancellationToken)
+            ?? throw new InvalidOperationException("O utilizador não tem nenhuma empresa associada.");
+
+        var nomesIdiomas = request.Languages
+        .Select(l => l.Trim())
+        .Where(l => l.Length > 0)
+        .Distinct(StringComparer.OrdinalIgnoreCase)
+        .ToList();
+
+        var idiomas = await _vacancyepository.GetLanguagesByNamesAsync(nomesIdiomas, cancellationToken);
+
+
         var vacancies = new VacanciesTable
         {
-            CompanyId = request.CompanyId,
+            CompanyId = companyId,
             Title = request.Title,
             CategoryId = request.CategoryId,
             NumberOfVacancies = request.NumberOfVacancies,
             ContractType = request.ContractType,
             WorkMode = request.WorkMode,
             ProvinceId = request.ProvinceId,
+            Municipality = request.Municipality?.Trim() ?? string.Empty,
             Diaspora = request.Diaspora,
-            Description = request.Description,
+            Description = request.Description ?? string.Empty,
             EducationLevel = request.EducationLevel,
             MinimumExperience = request.ExperienceLevel,
             SalaryMin = request.SalaryMin,
@@ -45,9 +62,11 @@ public class CreateVacanciesHandler : IRequestHandler<CreateVacanciesCommand, Cr
             NegotiableSalary = request.NegotiableSalary,
             Deadline = request.Deadline,
             ApplicationMethod = request.ApplicationMethod,
-            ApplicationTarget = request.ApplicationTarget,
-            Status = request.Status,
-            CreatedAt = DateTime.UtcNow,
+            ApplicationTarget = request.ApplicationTarget ?? string.Empty,
+            Status = request.IsDraft ? VacancyStatus.Draft : VacancyStatus.Open,
+            CreatedAt = CreatedAt,
+
+            Languages = idiomas,
 
             Responsibilities = request.Responsibilities
                 .Select((desc, index) => new VacancyResponsibilitiesTable { Description = desc, Order = index + 1 })
@@ -80,8 +99,9 @@ public class CreateVacanciesHandler : IRequestHandler<CreateVacanciesCommand, Cr
             WorkMode: result.WorkMode,
             ProvinceId: result.ProvinceId,
             ProvinceName: result.Province?.Name,
+            Municipality: result.Municipality?.Trim() ?? string.Empty,
             Diaspora: result.Diaspora,
-            Description: result.Description,
+            Description: result.Description ?? string.Empty,
             EducationLevel: result.EducationLevel,
             ExperienceLevel: result.MinimumExperience,
             SalaryMin: result.SalaryMin,
@@ -89,15 +109,15 @@ public class CreateVacanciesHandler : IRequestHandler<CreateVacanciesCommand, Cr
             NegotiableSalary: result.NegotiableSalary,
             Deadline: result.Deadline,
             ApplicationMethod: result.ApplicationMethod,
-            ApplicationTarget: result.ApplicationTarget,
-            Status: result.Status,
+            ApplicationTarget: result.ApplicationTarget ?? string.Empty,
+            Status: request.IsDraft ? VacancyStatus.Draft : VacancyStatus.Open,
             CreatedAt: result.CreatedAt,
             UpdatedAt: result.UpdatedAt,
             Responsibilities: result.Responsibilities.OrderBy(r => r.Order).Select(r => r.Description).ToList(),
             Requirements: result.Requirements.OrderBy(r => r.Order).Select(r => r.Description).ToList(),
             Skills: result.Skills.Select(s => s.Skill).ToList(),
             Benefits: result.Benefits.Select(b => b.Benefit).ToList(),
-            Languages: new List<string>()
+            Languages: result.Languages.Select(l => l.Name).ToList()
         );
     }
 }

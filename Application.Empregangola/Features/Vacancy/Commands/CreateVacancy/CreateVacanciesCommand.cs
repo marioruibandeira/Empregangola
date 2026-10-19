@@ -6,26 +6,24 @@ namespace Application.Empregangola.Features.Vacancy.Commands.CreateVacancy;
 public record CreateVacanciesCommand(
         int VacanciesId,
 
-        // Empresa (dados já resolvidos, não o Id cru)
         Guid CompanyId,
-        string CompanyName,
+        string? CompanyName,
 
         string Title,
 
-        // Categoria (nome, não o Id)
-        int CategoryId,
-        string CategoryName,
+        int? CategoryId,
+        string? CategoryName,
 
         int NumberOfVacancies,
-        EmploymentType ContractType,
-        WorkMode WorkMode,
+        EmploymentType? ContractType,
+        WorkMode? WorkMode,
 
-        // Localização (nome, não o Id)
-        int ProvinceId,
-        string ProvinceName,
+        int? ProvinceId,
+        string? ProvinceName,
+        string? Municipality,
 
         bool Diaspora,
-        string Description,
+        string? Description,
         EducationLevel EducationLevel,
         MinimumExperience ExperienceLevel,
 
@@ -33,20 +31,23 @@ public record CreateVacanciesCommand(
         decimal? SalaryMax,
         bool NegotiableSalary,
 
-        DateTime Deadline,
+        DateTime? Deadline,
 
         ApplicationMethod ApplicationMethod,
-        string ApplicationTarget,
+        string? ApplicationTarget,
 
         VacancyStatus Status,
 
         DateTime CreatedAt,
         DateTime? UpdatedAt,
 
-        // Listas (já achatadas para strings/simples, sem expor as tabelas filhas cruas)
+        // 
         List<string> Responsibilities,
         List<string> Requirements,
         List<string> Skills,
         List<string> Benefits,
-        List<string> Languages
+        List<string> Languages,
+
+        string? AppUserId = null,
+        bool IsDraft = false
     ) : IRequest<CreateVacanciesResponse>;
