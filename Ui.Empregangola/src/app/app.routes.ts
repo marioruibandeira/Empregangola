@@ -36,6 +36,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/vaga/vaga.component').then(m => m.VagaComponent)
   },
   {
+    path: 'vaga/:id',
+    loadComponent: () => import('./pages/vaga/vaga.component').then(m => m.VagaComponent)
+  },
+  {
     path: 'formulario',
     loadComponent: () => import('./pages/vaga/formulario/formulario.component').then(m => m.FormularioComponent)
   },
@@ -55,6 +59,10 @@ export const routes: Routes = [
     loadComponent: () => import('./utilizadores/utilizador/utilizador.component').then(m => m.UtilizadorComponent) 
   },
   {
+    path: 'utilizador/favoritos',
+    loadComponent: () => import('./utilizadores/utilizador/favoritos/favoritos.component').then(m => m.FavoritosComponent) 
+  },
+  {
     path: 'empresa',
     loadComponent: () => import('./utilizadores/empresa/empresa.component').then(m => m.EmpresaComponent)
   },
@@ -65,6 +73,38 @@ export const routes: Routes = [
   {
     path: 'empresa/novas-vagas',
     loadComponent: () => import('./utilizadores/empresa/novas-vagas/novas-vagas.component').then(m => m.NovasVagasComponent)
+  },
+  {
+    path: 'empresa/novas-vagas',
+    loadComponent: () => import('./utilizadores/empresa/novas-vagas/novas-vagas.component').then(m => m.NovasVagasComponent)
+  },
+  {
+    path: 'empresa/novas-vagas/:id',
+    loadComponent: () => import('./utilizadores/empresa/novas-vagas/novas-vagas.component').then(m => m.NovasVagasComponent)
+  },
+  {
+    path: 'empresa/vagas-disponivel',
+    loadComponent: () => import('./utilizadores/empresa/novas-vagas/vagas-disponivel.component').then(m => m.VagasDisponivelComponent)
+  },
+  {
+    path: 'empresa/vagas-destaques',
+    loadComponent: () => import('./utilizadores/empresa/novas-vagas/vagas-destaques.component').then(m => m.VagasDestaquesComponent)
+  },  
+  {
+    path: 'profissional/profissional',
+    loadComponent: () => import('./utilizadores/profissional/profissional.component').then(m => m.ProfissionalComponent)
+  },
+  {
+    path: 'administracao/v-verificados',
+    loadComponent: () => import('./administracao/v-verificados/v-verificados.component').then(m => m.VVerificadosComponent)
+  },
+  {
+    path: 'administracao/funcionarios',
+    loadComponent: () => import('./administracao/funcionarios/funcionarios.component').then(m => m.FuncionariosComponent)
+  },
+  {
+    path: 'administracao/utilizadores',
+    loadComponent: () => import('./administracao/utilizadores/utilizadores.component').then(m => m.UtilizadoresComponent)
   }
 ];
 

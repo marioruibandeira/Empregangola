@@ -5,9 +5,7 @@ import { BeheaderComponent } from '../../shared/beheader/beheader.component';
 import { BefooterComponent } from '../../shared/befooter/befooter.component';
 import { SuccessUtilizadorComponent } from '../../modals/success-utilizador/success-utilizador.component';
 import { MatDialog } from '@angular/material/dialog';
-
 import { AuthService } from '../../auth/auth.service';
-
 import { EmpresaService } from '../../services/empresa/empresa.service';
 // https:// labs.google/fx/pt/tools/flowhttps://labs.google/fx/pt/tools/flow deepmind.google/models/veo/ deepmind.google/models/veo/
 import{

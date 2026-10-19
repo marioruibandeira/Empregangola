@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CreateUserDetaisDTO } from './utilizador.dto';
+import { environment } from '../../../environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilizadorService {
-  private apiUrl = 'https://localhost:44372/api/UserDetails';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +20,7 @@ export class UtilizadorService {
       Authorization: `Bearer ${token}`
     };
 
-    return this.http.get<CreateUserDetaisDTO>(`${this.apiUrl}/${appUserId}`, { headers });
+    return this.http.get<CreateUserDetaisDTO>(`${environment.apiUrl}/api/UserDetails/${appUserId}`, { headers });
   }
 
   guardarUtilizador(dados: any)
@@ -29,6 +31,6 @@ export class UtilizadorService {
       Authorization: `Bearer ${token}`
     };
 
-    return this.http.post(this.apiUrl, dados, { headers });
+    return this.http.post(`${environment.apiUrl}/api/UserDetails/`, dados, { headers });
   }
 }

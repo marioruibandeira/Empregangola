@@ -1,6 +1,6 @@
 ﻿using Application.Empregangola.Features.UserDetails.Commands.CreateUserDetails;
-using Application.Empregangola.Features.UserDetails.Commands.UpdateUserDetails;
 using Application.Empregangola.Features.UserDetails.Queries.GetUserDetails;
+using Application.Empregangola.Features.UserDetails.Queries.GetUsers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,13 +38,14 @@ public class UserDetailsController : ControllerBase
         return Ok(result);
     }
 
-    /*
-    [HttpPut(Name = "UpdateUserDetails")]
-    [ProducesResponseType(typeof(UpdateUserDetailsResponse), StatusCodes.Status200OK)]
-    public async Task<IActionResult> UpdateUserDetails([FromBody] UpdateUserDetailsCommand command) 
+    [HttpGet("allUsers")]
+    public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken)
     {
-        var result = await _mediator.Send(command);
-        return Ok(result);
-    }*/
+        var result = await _mediator.Send(new GetUsersQuery(), cancellationToken);
 
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
+    }
 }

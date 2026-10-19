@@ -1,130 +1,470 @@
 <!-- utilizador.component.html -->
 <div class="wrapper">
   <app-besidebar />
-  <div class="main-panel">
-    <app-beheader [nomeUtilizador]="' Pedro'"
-                  [emailUtilizador]="'info@lea.co.ao'"
-                  [notificacoes]="4" />
+    <div class="main-panel">
+      <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
 
       <div class="container">
         <div class="page-inner">
-          <div class="row">
-            <div class="col-md-12">
 
-              <div class="alert alert-warning" role="alert"> Lerui Imoveis </div>
+          <div class="alert alert-warning" role="alert">
+            <h3 class="fw-bold mb-1">Nome da Empresa</h3>
+            <p class="nv-sub mb-0">Preencha os campos obrigatórios. Pode guardar como rascunho e continuar mais tarde.</p>
+          </div>
 
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-title">Nova Vaga</div>
+          @if (vagaEncerrada()) {
+            <div class="alert alert-danger" role="alert">Esta vaga está encerrada e não pode ser editada.</div>
+          } @else if (vagaPublicada()) {
+            <div class="alert alert-info" role="alert">
+              Vaga publicada: só pode alterar a descrição, as responsabilidades, os requisitos, as competências,
+              os idiomas, os benefícios, o prazo e a candidatura.
+            </div>
+          }
+
+          <form [formGroup]="form" (ngSubmit)="guardarNovaVaga()">
+            <div class="row g-2 g-xl-4">
+
+              <!-- ========== COLUNA PRINCIPAL ========== -->
+              <div class="col-lg-8">
+
+                <!-- Informação básica -->
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Informação básica</div>
+                    <p class="nv-sub mb-0">O título e a categoria são o que os candidatos vêem primeiro na listagem.</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="titulo">Título da vaga <span class="nv-obrig">*</span></label>
+                          <input type="text" id="titulo" formControlName="titulo" class="form-control" maxlength="80"
+                                 placeholder="Ex.: Técnico de armazém"
+                                 [class.is-invalid]="titulo?.invalid && titulo?.touched" />
+                          @if (titulo?.errors?.['required'] && titulo?.touched) {
+                          <div class="invalid-feedback d-block">O título é obrigatório.</div>
+                          }
+                          @if (titulo?.errors?.['minlength'] && titulo?.touched) {
+                          <div class="invalid-feedback d-block">O título deve ter pelo menos 3 caracteres.</div>
+                          }
+                        </div>
+                      </div>
+
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label for="categoria">Categoria <span class="nv-obrig">*</span></label>
+                          <select id="categoria" formControlName="categoria"
+                                  class="form-select" [class.is-invalid]="categoria?.invalid && categoria?.touched">
+                            <option value="">Seleccione</option>
+                            @for (c of categorias; track c.categoryId) {
+                            <option [value]="c.categoryId">{{ c.name }}</option>
+                            }
+                          </select>
+                          @if (categoria?.invalid && categoria?.touched) {
+                          <div class="invalid-feedback d-block">A categoria é obrigatória.</div>
+                          }
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="numeroVagas">Número de vagas</label>
+                          <input type="number" id="numeroVagas" formControlName="numeroVagas"
+                                 class="form-control" min="1"
+                                 [class.is-invalid]="numeroVagas?.invalid && numeroVagas?.touched" />
+                          @if (numeroVagas?.errors?.['required'] && numeroVagas?.touched) {
+                          <div class="invalid-feedback d-block">O número de vagas é obrigatório.</div>
+                          }
+                          @if (numeroVagas?.errors?.['max'] && numeroVagas?.touched) {
+                          <div class="invalid-feedback d-block">
+                            O número máximo de vagas é {{ numeroVagas?.errors?.['max']?.max }}.
+                          </div>
+                          }
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="nv-rotulo">Modalidade</span>
+                          <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Modalidade">
+                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade1" [value]="1" />
+                            <label class="nv-pilula" for="modalidade1">Presencial</label>
+                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade2" [value]="2" />
+                            <label class="nv-pilula" for="modalidade2">Híbrido</label>
+                            <input type="radio" class="btn-check" formControlName="modalidade" id="modalidade3" [value]="3" />
+                            <label class="nv-pilula" for="modalidade3">Remoto</label>
+                          </div>
+                          @if (modalidade?.invalid && modalidade?.touched) {
+                          <div class="invalid-feedback d-block">Escolha a modalidade.</div>
+                          }
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="nv-rotulo">Tipo de contrato</span>
+                          <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Tipo de contrato">
+                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato1" [value]="1" />
+                            <label class="nv-pilula" for="contrato1">Efectivo</label>
+                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato2" [value]="2" />
+                            <label class="nv-pilula" for="contrato2">Prazo certo</label>
+                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato3" [value]="3" />
+                            <label class="nv-pilula" for="contrato3">Estágio</label>
+                            <input type="radio" class="btn-check" formControlName="contrato" id="contrato4" [value]="4" />
+                            <label class="nv-pilula" for="contrato4">Freelance</label>
+                          </div>
+                          @if (contrato?.invalid && contrato?.touched) {
+                          <div class="invalid-feedback d-block">Escolha o tipo de contrato.</div>
+                          }
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
-                  
-                  <form>
-                    
-                    <div class="card-body">
-                          <div class="row">
-                            <div class="col-md-12 col-lg-12">
-                              
-                              <div class="form-group">
-                                <label for="nomeUtilizador">TItulo</label>
-                                <input type="text" class="form-control" placeholder="Titulo" formControlName="titulo" />
-                              </div>
 
-                              <div class="form-group">
-                                <label for="nomeUtilizador">Posição / Cargo</label>
-                                <input type="text" class="form-control" placeholder="Posição" formControlName="posicao" />
-                              </div>
+                <!-- Localização -->
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Localização</div>
+                    <p class="nv-sub mb-0">É o filtro mais usado na pesquisa de vagas.</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="provincia">Província <span class="nv-obrig">*</span></label>
+                          <select id="provincia" class="form-select" formControlName="provincia"
+                                  [class.is-invalid]="provincia?.invalid && provincia?.touched">
+                            <option value="">Seleccione</option>
+                            @for (p of provincias; track p.provinceId) {
+                            <option [value]="p.provinceId">{{ p.name }}</option>
+                            }
+                          </select>
+                          @if (provincia?.invalid && provincia?.touched) {
+                          <div class="invalid-feedback d-block">A província é obrigatória.</div>
+                          }
+                        </div>
+                      </div>
 
-                              <div class="form-group">
-                                <label for="nomeUtilizador">Sector</label>
-                                <select class="form-select" id="local" formControlName="local">
-                                  <option value="">Selecione um sector</option>
-                                  <option value="1">Oil & Gas</option>
-                                  <option value="2">Construção</option>
-                                  <option value="3">Logística</option>
-                                  <option value="4">Tecnologia</option>
-                                  <option value="5">Saúde</option>
-                                  <option value="6">Educação</option>
-                                  <option value="7">Outro</option>
-                                </select>
-                              </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="municipio">Município <span class="nv-obrig">*</span></label>
+                          <input type="text" id="municipio" class="form-control" formControlName="municipio"
+                                 placeholder="Ex.: Talatona"
+                                 [class.is-invalid]="municipio?.invalid && municipio?.touched" />
+                          @if (municipio?.errors?.['required'] && municipio?.touched) {
+                          <div class="invalid-feedback d-block">O município é obrigatório.</div>
+                          }
+                          @if (municipio?.errors?.['minlength'] && municipio?.touched) {
+                          <div class="invalid-feedback d-block">O município deve ter pelo menos 3 caracteres.</div>
+                          }
+                        </div>
+                      </div>
 
-                              <div class="form-group">
-                                <label for="local">Provincia</label>
-                                <select class="form-select" id="local" formControlName="local">
-                                  <option>Luanda</option>
-                                  <option>Lisboa</option>
-                                  <option>Lubango</option>
-                                  <option>Cidade da Praia</option>
-                                  <option>Maputo</option>
-                                </select>
-                              </div>
+                      <div class="col-12">
+                        <div class="form-check nv-caixa">
+                          <input class="form-check-input" type="checkbox" formControlName="diaspora" id="diaspora" />
+                          <label class="form-check-label" for="diaspora">
+                            <b>Aberta a profissionais na diáspora</b>
+                            <span class="d-block nv-sub">A vaga também aparece na secção Diáspora, para angolanos que vivem no estrangeiro.</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                              <div class="form-group">
-                                <label for="nomeUtilizador">Local / Cidade</label>
-                                <input type="text" class="form-control" placeholder="Local / Cidade" formControlName="local" />
-                              </div>
+                <!-- Descrição da vaga -->
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Descrição da vaga</div>
+                    <p class="nv-sub mb-0">Cada bloco aparece separado na página de detalhe da vaga.</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="descricao">Sobre a vaga <span class="nv-obrig">*</span></label>
+                          <textarea id="descricao" formControlName="descricao" class="form-control" rows="7"
+                                    placeholder="Explique em poucas linhas o contexto da vaga e o que a equipa faz."
+                                    [class.is-invalid]="descricao?.invalid && descricao?.touched"></textarea>
+                          @if (descricao?.invalid && descricao?.touched) {
+                          <div class="invalid-feedback d-block">A descrição é obrigatória.</div>
+                          }
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="responsabilidades">Responsabilidades</label>
+                          <textarea id="responsabilidades" formControlName="responsabilidades" class="form-control" rows="7" placeholder="Uma responsabilidade por linha."></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="requisitos">Requisitos</label>
+                          <textarea id="requisitos" formControlName="requisitos" class="form-control" rows="7" placeholder="Uma exigência por linha."></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                              <div class="form-group">
-                                <label for="local">Número de vagas</label>
-                                <select class="form-select" id="local" formControlName="local">
-                                  <option>1 Vaga</option>
-                                  <option>2 Vagas</option>
-                                  <option>3-5 Vagas</option>
-                                  <option>6-10 Vagas</option>
-                                  <option>11-15 Vagas</option>
-                                  <option>16-20 Vagas</option>
-                                </select>
-                              </div>
+                <!-- Perfil do candidato -->
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Perfil do candidato</div>
+                    <p class="nv-sub mb-0">Ajuda a receber candidaturas mais adequadas.</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="escolaridade">Nível de escolaridade</label>
+                          <select id="escolaridade" class="form-select" formControlName="escolaridade">
+                            <option [ngValue]="0">Indiferente</option>
+                            <option [ngValue]="1">7º / 8º Classe</option>
+                            <option [ngValue]="2">9º / 10º Classe</option>
+                            <option [ngValue]="3">11º / 13º Classe</option>
+                            <option [ngValue]="4">Médio</option>
+                            <option [ngValue]="5">Bacharel</option>
+                            <option [ngValue]="6">Licenciatura ou equivalente</option>
+                            <option [ngValue]="7">Mestrado</option>
+                            <option [ngValue]="8">Doutoramento</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="experiencia">Experiência mínima</label>
+                          <select id="experiencia" class="form-select" formControlName="experiencia">
+                            <option [ngValue]="0">Sem experiência</option>
+                            <option [ngValue]="1">1 ano</option>
+                            <option [ngValue]="2">2 a 3 anos</option>
+                            <option [ngValue]="3">4 a 5 anos</option>
+                            <option [ngValue]="4">Mais de 5 anos</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="idiomas">Idiomas</label>
+                          <input type="text" id="idiomas" formControlName="idiomas" class="form-control"
+                                 placeholder="Ex.: Português, Inglês" />
+                          <small class="nv-sub">Separe por vírgulas.</small>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="competencias">Competências</label>
+                          <input type="text" id="competencias" formControlName="competencias" class="form-control"
+                                 placeholder="Ex.: Excel, gestão de stock" />
+                          <small class="nv-sub">Separe por vírgulas.</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                              <div class="form-group">
-                                <label for="local">Educação Minima</label>
-                                <select class="form-select" id="local" formControlName="local">
-                                  <option>7º / 8º Classe</option>
-                                  <option>9º / 10º Classe</option>
-                                  <option>11º / 13º Classe</option>
-                                  <option>Medio</option>
-                                  <option>Bacharel</option>
-                                  <option>Licenciatura ou Equivalente</option>
-                                  <option>Mestrado</option>
-                                  <option>Doutoramento</option>
-                                </select>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="sobreEmpresa">Descrição</label>
-                                <textarea class="form-control" id="sobreEmpresa" rows="5" formControlName="sobreEmpresa"></textarea>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="nomeUtilizador">
-                                  Requisitos
-                                  <select class="form-select" id="local" formControlName="local">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                  <option>6</option>
-                                  <option>7</option>
-                                  <option>8</option>
-                                </select>
-                                </label>
-                                <input type="text" class="form-control" placeholder="Primeiro reuqisito" formControlName="local" />
-                              </div>
-
-                            </div>
+                <!-- Remuneração e benefícios -->
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Remuneração e benefícios</div>
+                    <p class="nv-sub mb-0">Vagas com salário indicado recebem mais candidaturas.</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="salarioMin">Salário mínimo</label>
+                          <div class="input-group">
+                            <input type="number" id="salarioMin" formControlName="salarioMin" class="form-control" min="0"
+                                   placeholder="250 000" />
+                            <span class="input-group-text">Kz</span>
                           </div>
                         </div>
-                        <div class="card-action">
-                          <button class="btn btn-success" type="submit">Guardar</button>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="salarioMax">Salário máximo</label>
+                          <div class="input-group">
+                            <input type="number" id="salarioMax" formControlName="salarioMax" class="form-control" min="0"
+                                   placeholder="400 000" />
+                            <span class="input-group-text">Kz</span>
+                          </div>
                         </div>
-                      </form>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-check nv-caixa">
+                          <input class="form-check-input" type="checkbox" id="aCombinar" formControlName="aCombinar" />
+                          <label class="form-check-label" for="aCombinar">
+                            <b>Salário a combinar</b>
+                            <span class="d-block nv-sub">Os valores não serão mostrados aos candidatos.</span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-group">
+                          <span class="nv-rotulo">Benefícios</span>
+                          <div class="d-flex flex-wrap gap-2" formArrayName="beneficios">
+                            @for (beneficio of beneficiosDisponiveis; track beneficio; let i = $index) {
+                            <input type="checkbox" class="btn-check" [formControlName]="i" [id]="'beneficio' + i" />
+                            <label class="nv-chip" [for]="'beneficio' + i">{{ beneficio }}</label>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Candidatura -->
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Candidatura</div>
+                    <p class="nv-sub mb-0">Defina até quando e como os candidatos se podem candidatar.</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="prazo">Prazo limite <span class="nv-obrig">*</span></label>
+                          <input type="date" id="prazo" class="form-control" formControlName="prazo"
+                                 [class.is-invalid]="prazo?.invalid && prazo?.touched" />
+                          @if (prazo?.invalid && prazo?.touched) {
+                          <div class="invalid-feedback d-block">O prazo limite é obrigatório.</div>
+                          }
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="nv-rotulo">Como se candidatar</span>
+                          <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-label="Forma de candidatura">
+                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura1" [value]="1" />
+                            <label class="nv-pilula" for="candidatura1">Na plataforma</label>
+                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura2" [value]="2" />
+                            <label class="nv-pilula" for="candidatura2">Por email</label>
+                            <input type="radio" class="btn-check" formControlName="candidatura" id="candidatura3" [value]="3" />
+                            <label class="nv-pilula" for="candidatura3">Link externo</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      @if (candidatura?.value === 2 || candidatura?.value === 3) {
+                        <div class="col-12">
+                          <div class="form-group">
+                            <label for="candidaturaDestino">
+                              Email ou link para candidaturas <span class="nv-obrig">*</span>
+                            </label>
+                            <input type="text" id="candidaturaDestino" formControlName="candidaturaDestino" class="form-control"
+                                   maxlength="200"
+                                   [placeholder]="candidatura?.value === 2 ? 'rh@empresa.co.ao' : 'https://empresa.co.ao/vagas'"
+                                   [class.is-invalid]="candidaturaDestino?.invalid && candidaturaDestino?.touched" />
+
+                            @if (candidaturaDestino?.touched) {
+                            @if (candidaturaDestino?.errors?.['required']) {
+                            <div class="invalid-feedback d-block">
+                              {{ candidatura?.value === 2 ? 'Indique o email para candidaturas.' : 'Indique o link para candidaturas.' }}
+                            </div>
+                            }
+                            @if (candidaturaDestino?.errors?.['email']) {
+                            <div class="invalid-feedback d-block">O email não é válido. Exemplo: rh@empresa.co.ao</div>
+                            }
+                            @if (candidaturaDestino?.errors?.['pattern']) {
+                            <div class="invalid-feedback d-block">O link deve começar por http:// ou https://.</div>
+                            }
+                            }
+
+                            <small class="nv-sub">Só é necessário se escolher "Por email" ou "Link externo".</small>
+                          </div>
+                        </div>
+                      }
+
+                    </div>
+                  </div>
+                </div>
 
               </div>
+
+              <!-- ========== COLUNA LATERAL ========== -->
+              <aside class="col-lg-4">
+                <div class="nv-lateral">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Pré-visualização</div>
+                      <p class="nv-sub mb-0">Como os candidatos vão ver esta vaga.</p>
+                    </div>
+                    <div class="card-body">
+
+                      <div class="nv-vaga">
+                        <div class="d-flex gap-3">
+                          <div class="nv-vaga__logo"><i class="bi bi-building"></i></div>
+                          <div>
+                            <h6 class="nv-vaga__titulo" [class.nv-vazio]="!previsao().titulo">
+                              {{ previsao().titulo || 'Título da vaga' }}
+                            </h6>
+                            <div class="nv-sub">Nome da empresa</div>
+                          </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 my-3">
+                          @if (previsao().contrato) {
+                          <span class="nv-etiqueta">{{ previsao().contrato }}</span>
+                          }
+                          @if (previsao().modalidade) {
+                          <span class="nv-etiqueta">{{ previsao().modalidade }}</span>
+                          }
+                        </div>
+
+                        <dl class="nv-vaga__dados">
+                          <dt>Local</dt>
+                          <dd [class.nv-vazio]="!previsao().local">{{ previsao().local || 'Por definir' }}</dd>
+                          <dt>Salário</dt>
+                          <dd [class.nv-vazio]="!previsao().salario">{{ previsao().salario || 'Não indicado' }}</dd>
+                          <dt>Candidaturas até</dt>
+                          <dd [class.nv-vazio]="!previsao().prazo">{{ previsao().prazo || 'Por definir' }}</dd>
+                        </dl>
+                      </div>
+
+                      <div class="mt-4">
+                        <div class="d-flex justify-content-between mb-1">
+                          <small>Campos obrigatórios</small>
+                          <small class="fw-bold">{{ progresso().preenchidos }} de {{ progresso().total }}</small>
+                        </div>
+                        <div class="progress nv-progresso">
+                          <div class="progress-bar" role="progressbar"
+                               [style.width.%]="progresso().percentagem"
+                               [attr.aria-valuenow]="progresso().percentagem"
+                               aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="card-action">
+                      <button type="submit" class="btn nv-btn-publicar w-100" [disabled]="form.invalid || vagaEncerrada()">
+                        {{ modoEdicao() ? 'Guardar alterações' : 'Publicar vaga' }}
+                      </button>
+                      @if (!modoEdicao()) {
+                      <button type="button" class="btn btn-outline-secondary w-100 mt-2" (click)="guardarRascunho()">
+                        Guardar rascunho
+                      </button>
+                      }
+                      <a href="empresa/vagas-disponivel" class="btn btn-outline-secondary w-100 mt-2">Todas Vagas</a>
+                      <p class="nv-sub text-center mt-3 mb-0">Depois de publicada, pode editar ou encerrar a vaga no painel.</p>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+
             </div>
-          </div>
+          </form>
+
         </div>
-      </div>
+    </div>
 
     <app-befooter />
   </div>

@@ -9,5 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="public\js\" />
+    <Folder Include="src\app\services\empresa\utilizador\" />
   </ItemGroup>
 </Project>

@@ -7,8 +7,7 @@ namespace Domain.Empregangola.Entities;
 public class CompanyInterestTable
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int CompanyInterestId { get; set; }
+    public Guid CompanyInterestId { get; set; }
 
     public string AppUserId { get; set; }
 

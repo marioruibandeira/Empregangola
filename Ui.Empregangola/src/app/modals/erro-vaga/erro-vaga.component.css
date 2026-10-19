@@ -1,0 +1,61 @@
+.sv {
+  padding: 24px 16px 8px;
+  text-align: center;
+}
+
+.sv__icone {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7cfcf;
+  color: #198754;
+  font-size: 32px;
+}
+
+.sv__titulo {
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #BA2507;
+  margin: 0 0 8px;
+}
+
+.sv__conteudo {
+  padding: 0 8px;
+}
+
+.sv__texto {
+  color: #4a4038;
+  margin: 0 0 8px;
+}
+
+.sv__nota {
+  font-size: 13px;
+  color: #7a6e64;
+  margin: 0;
+}
+
+.sv__btn {
+  min-width: 140px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: #f2670c;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+  .sv__btn:hover {
+    background: #c2410c;
+  }
+
+  .sv__btn:focus-visible {
+    outline: 3px solid rgba(242, 103, 12, 0.35);
+    outline-offset: 2px;
+  }

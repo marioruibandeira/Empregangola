@@ -1,4 +1,5 @@
 ﻿using Application.Empregangola.Features.CompanyDetails.Commands.CreateCompany;
+using Application.Empregangola.Features.CompanyDetails.Commands.UpdateCompanyDetails;
 using Application.Empregangola.Features.CompanyDetails.Queries.GetCompanyDetails;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -35,5 +36,4 @@ public class CompanyDetailsController : ControllerBase
 
         return Ok(result);
     }
-
 }

@@ -36,6 +36,10 @@ builder.Services.AddValidatorsFromAssembly(typeof(Application.Empregangola.Assem
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
 builder.Services.AddScoped<ICompanyDetailsRepository, CompanyDetailsRepository>();
+builder.Services.AddScoped<IProvinceRepository, ProvinceRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IVacanciesRepository, VacanciesRepository>();
+builder.Services.AddScoped<IEmployeeFromUsersRepository, EmployeeFromUsersRepository>();
 
 // Identity com AppUser
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>

@@ -8,8 +8,8 @@ public class UpdateUserDetailsCommandHandler : IRequestHandler<UpdateUserDetails
 {
     private readonly IUserDetailsRepository _repository;
 
-    public UpdateUserDetailsCommandHandler(IUserDetailsRepository repository) 
-    { 
+    public UpdateUserDetailsCommandHandler(IUserDetailsRepository repository)
+    {
         _repository = repository;
     }
 

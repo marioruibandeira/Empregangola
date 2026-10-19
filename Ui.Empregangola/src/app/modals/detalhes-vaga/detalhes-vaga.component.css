@@ -1,0 +1,180 @@
+.dv__estado {
+  padding: 48px 24px;
+  text-align: center;
+  color: #7a6e64;
+}
+
+.dv__estado--erro {
+  color: #ba2507;
+}
+
+.dv__cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px 0;
+}
+
+.dv__titulo {
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1207;
+  margin: 0;
+  padding: 0;
+}
+
+.dv__categoria {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #7a6e64;
+}
+
+.dv__corpo {
+  padding: 16px 24px;
+  max-height: 65vh;
+}
+
+/* ---------- Dados em grelha ---------- */
+.dv__dados {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+  margin: 0 0 16px;
+}
+
+  .dv__dados dt {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #7a6e64;
+  }
+
+  .dv__dados dd {
+    margin: 2px 0 0;
+    color: #1a1207;
+    font-weight: 500;
+  }
+
+.dv__destino {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #4a4038;
+  word-break: break-all;
+}
+
+.dv__aviso {
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #fff4e8;
+  color: #c2410c;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ---------- Secções de texto ---------- */
+.dv__secao {
+  margin-top: 20px;
+}
+
+  .dv__secao h3 {
+    margin: 0 0 8px;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1207;
+  }
+
+.dv__texto {
+  margin: 0;
+  color: #4a4038;
+  white-space: pre-line;
+}
+
+.dv__secao ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #4a4038;
+}
+
+.dv__secao li + li {
+  margin-top: 4px;
+}
+
+.dv__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dv__chip {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #f5f1ec;
+  color: #4a4038;
+  font-size: 13px;
+}
+
+/* ---------- Botão ---------- */
+.dv__btn {
+  min-width: 120px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: #f2670c;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+  .dv__btn:hover {
+    background: #c2410c;
+  }
+
+  .dv__btn:focus-visible {
+    outline: 3px solid rgba(242, 103, 12, 0.35);
+    outline-offset: 2px;
+  }
+
+.dv__btn--sec {
+  background: #fff;
+  color: #4a4038;
+  border: 1px solid #d9d0c7;
+  margin-right:15px;
+}
+
+  .dv__btn--sec:hover {
+    background: #f5f1ec;
+  }
+
+.dv__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dv__confirma {
+  margin-right: auto;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1207;
+}
+
+.dv__erro {
+  margin: 0 24px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #fdecea;
+  color: #ba2507;
+  font-size: 14px;
+}
+
+@media (max-width: 576px) {
+  .dv__dados {
+    grid-template-columns: 1fr;
+  }
+}

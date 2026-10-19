@@ -1,0 +1,416 @@
+<!-- utilizador.component.html -->
+<div class="wrapper">
+
+  <app-besidebar />
+
+  <div class="main-panel">
+
+    <app-beheader [nomeUtilizador]="'Mário'"
+                  [emailUtilizador]="'info@lea.co.ao'"
+                  [notificacoes]="4" />
+
+    <div class="container">
+      <div class="page-inner">
+
+        <!-- Main Header -->
+        <div class="alert alert-warning" role="alert">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="municipio">Empresa </label>
+                <input type="text" id="municipio" class="form-control"  placeholder="Emprega Angola" readonly />
+
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="municipio">Data </label>
+                <input type="text" id="municipio" class="form-control" placeholder="" readonly />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group" style="text-align:center;">
+                <label for="municipio">Acção </label>
+                <div class="modo-toggle">
+                  <span class="modo-label" [class.activo]="!modoNovo">Funcionários</span>
+                  <mat-slide-toggle [(ngModel)]="modoNovo" aria-label="Alternar entre lista de funcionários e novo funcionário">
+                  </mat-slide-toggle>
+                  <span class="modo-label" [class.activo]="modoNovo">Novo Funcionário</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Form Ends Here -->
+        @if (!modoNovo) {
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Funcionarios</div>
+            <p class="nv-sub mb-0">O título e a categoria são o que os candidatos vêem primeiro na listagem.</p>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card mbttom">
+
+                <div class="body table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>NOME</th>
+                        <th>CATEGORIA</th>
+                        <th>TELEFONE</th>
+                        <th class="acc-wdth">ACCAO</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th class="tbl-wdth">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-80 310-250l57-57 73 73v-166h80v165l72-73 58 58L480-80ZM250-310 80-480l169-169 57 57-72 72h166v80H235l73 72-58 58Zm460 0-57-57 73-73H560v-80h165l-73-72 58-58 170 170-170 170ZM440-560v-166l-73 73-57-57 170-170 170 170-57 57-73-73v166h-80Z" /></svg>
+
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
+                          <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M287-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm96.5-143.5Q760-287 760-320t-23.5-56.5Q713-400 680-400t-56.5 23.5Q600-353 600-320t23.5 56.5Q647-240 680-240t56.5-23.5Zm-280-320Q480-607 480-640t-23.5-56.5Q433-720 400-720t-56.5 23.5Q320-673 320-640t23.5 56.5Q367-560 400-560t56.5-23.5ZM400-640Zm12 400Z" /></svg>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="tbl-wdth">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="tbl-wdth">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="tbl-wdth">4</th>
+                        <td>Larry</td>
+                        <td>Jellybean</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="tbl-wdth">5</th>
+                        <td>Larry</td>
+                        <td>Kikat</td>
+                        <td>Otto</td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- #END# Striped Rows -->
+        </div>
+        } @else {
+
+        <!-- Dados Pessoais -->
+        <form>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Dados pessoais</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Nome completo</mat-label>
+                          <input matInput placeholder="Nome completo">
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="w-100 my-date-field">
+                          <mat-label>Data de Nascimento</mat-label>
+                          <input class="form-control" matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY">
+                          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group ng-r-p-l"><mat-label>Genero</mat-label></div>
+                      <div class="form-group">
+                        <mat-radio-group [formControl]="floatLabelControl">
+                          <mat-radio-button value="1">Masculino</mat-radio-button>
+                          <mat-radio-button value="1">Feminino</mat-radio-button>
+                        </mat-radio-group>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ng-r-p-l"><mat-label>Estado Civil</mat-label></div>
+                        <div class="form-group">
+                          <mat-radio-group [formControl]="floatLabelControl">
+                            <mat-radio-button value="1">Solteiro/a</mat-radio-button>
+                            <mat-radio-button value="2">Casado/a</mat-radio-button>
+                            <mat-radio-button value="3">Divorciado/a</mat-radio-button>
+                            <mat-radio-button value="4">Viuvo/a</mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Nacionalidade</mat-label>
+                          <mat-select required>
+                            <mat-option value="">-- None --</mat-option>
+                            <mat-option value="option1">Option 1</mat-option>
+                            <mat-option value="option2">Option 2</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Naturalidade</mat-label>
+                          <input matInput placeholder="Naturalidade">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- fim dos Dados Pessoais -->
+
+          <!-- Documentação -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Documentação</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Nº do Bilhete de Identidade</mat-label>
+                          <input matInput placeholder="Nº do Bilhete de Identidade">
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>NIF</mat-label>
+                          <input matInput placeholder="NIF">
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Nº de INSS</mat-label>
+                          <input matInput placeholder="Nº de INSS">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Carta de Condução</mat-label>
+                          <input matInput placeholder="Carta de Condução">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- fim Documentação -->
+
+          <!-- Contactos -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Contactos</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Telefone</mat-label>
+                          <input matInput placeholder="Telefone">
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Telefone alternativo</mat-label>
+                          <input matInput placeholder="Telefone alternativo">
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Email</mat-label>
+                          <input matInput placeholder="Email">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Contacto de emergência</mat-label>
+                          <input matInput placeholder="Contacto de emergência">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Endereço</mat-label>
+                          <textarea matInput rows="5" name="endereco" placeholder="Digite o endereço completo"></textarea>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fim Contactos -->
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Dados profissionais</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Código</mat-label>
+                          <input matInput placeholder="Código">
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Cargo/função</mat-label>
+                          <input matInput placeholder="Cargo/função">
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Departamento</mat-label>
+                          <input matInput placeholder="Departamento">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Chefia directa</mat-label>
+                          <input matInput placeholder="Chefia directa">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Data de admissão</mat-label>
+                          <input matInput placeholder="Data de admissão">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Tipo de contrato</mat-label>
+                          <input matInput placeholder="Tipo de contrato">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" class="my-date-field">
+                          <mat-label>Regime</mat-label>
+                          <input matInput placeholder="Regime">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group ng-r-p-l" style="padding-bottom:0px !important;">
+                        <label for="municipio">Estado: </label>
+                      </div>
+                        <div class="form-group" style="padding-top:0px !important;">
+                          <mat-radio-group [formControl]="floatLabelControl">
+                            <mat-radio-button value="1">Activo</mat-radio-button>
+                            <mat-radio-button value="2">Inactivo</mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
+                    <div class="card-action">
+                      <button class="btn btn-success" type="submit">Guardar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        }
+
+      </div>
+    </div>
+
+    <app-befooter />
+
+  </div>
+</div>
+

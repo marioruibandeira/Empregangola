@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Auditing\**" />
+    <Compile Remove="Persistence\StoredProcedures\**" />
     <EmbeddedResource Remove="Auditing\**" />
+    <EmbeddedResource Remove="Persistence\StoredProcedures\**" />
     <None Remove="Auditing\**" />
+    <None Remove="Persistence\StoredProcedures\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,7 +36,6 @@
   <ItemGroup>
     <!-- Mantém as tuas pastas organizadas -->
     <Folder Include="Migrations\" />
-    <Folder Include="Persistence\StoredProcedures\" />
     <!-- para auditing negócio -->
   </ItemGroup>
 

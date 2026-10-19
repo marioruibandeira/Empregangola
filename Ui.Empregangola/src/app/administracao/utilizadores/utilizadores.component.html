@@ -1,0 +1,139 @@
+<!-- utilizador.component.html -->
+<div class="wrapper">
+
+  <app-besidebar />
+
+  <div class="main-panel">
+
+    <app-beheader [nomeUtilizador]="'Mário'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+
+    <div class="container">
+      <div class="page-inner">
+        <!-- Inicio da Area Reservada -->
+
+        <div class="alert alert-warning" role="alert">
+          <h3 class="fw-bold mb-1">Utilizadores do Sistema</h3>
+          <p class="nv-sub mb-0">Aqui encontrara todos os utilizadores existentes no sistema</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Utilizadores</div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card mbttom">
+
+                <div class="body table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>NOME DE UTILIZADOR</th>
+                        <th>NOME COMPLETO</th>
+                        <th>TELEFONE</th>
+                        <th>ESTADO</th>
+                        <th class="acc-wdth">ACÇÃO</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @if (aCarregar()){
+                        <tr>
+                          <td colspan="6" class="text-center text-muted">A carregar...</td>
+                        </tr>
+                      } @else if (erro()) {
+                        <tr>
+                          <td colspan="6" class="text-center text-danger">
+                            Não foi possível carregar os utilizadores.
+                          </td>
+                        </tr>
+                      } @else if (utilizadores().length === 0) {
+                        <tr>
+                          <td colspan="6" class="text-center text-muted">
+                            Nenhum utilizador encontrado.
+                          </td>
+                        </tr>
+                      } @else {
+                      @for (v of utilizadores(); track v.appUserId; let i = $index)
+                      {
+                        <tr>
+                          <th class="tbl-wdth">{{ i + 1 }}</th>
+                          <td>{{ v.userName }}</td>
+                          <td>{{ v.fullName }}</td>
+                          <td>{{ v.phoneNumber }}</td>
+                          <td>
+                            <div class="form-check form-switch">
+                              <div class="form-check form-switch">
+                                <span class="inactivo"> Inactivo </span>
+                                <input class="form-check-input" type="checkbox" checked>
+                                <label class="form-check-label"> Activo </label>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="javascript:void(0)"
+                               class="b-icon-m"
+                               data-bs-toggle="modal"
+                               data-bs-target="#modalAddFuncionario"
+                               title=""
+                               (click)="selecionar(v)">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343">
+                                <path d="M720-400v-120H600v-80h120v-120h80v120h120v80H800v120h-80ZM247-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47ZM40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm80-80h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm296.5-343.5Q440-607 440-640t-23.5-56.5Q393-720 360-720t-56.5 23.5Q280-673 280-640t23.5 56.5Q327-560 360-560t56.5-23.5ZM360-640Zm0 400Z" />
+                              </svg>
+                            </a>
+                          </td>
+                        </tr>
+                      }
+                    }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- #END# Striped Rows -->
+        </div>
+
+        <!-- Fim da Area Reservada -->
+      </div>
+    </div>
+
+    <app-befooter />
+
+  </div>
+</div>
+
+<!-- Adicionar com funcionario -->
+<div class="modal fade" id="modalAddFuncionario" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="fw-bold mb-1">Adicionar Funcionario</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-warning" role="alert">
+          Ao aceitar e guardar, aceita o risco de tornar este utilizador funcionário da empresa Emprega Angola.
+        </div>
+        <div class="form-group" style="padding-bottom:0px !important;">
+          <mat-form-field appearance="outline" class="my-date-field">
+            <mat-label>Nome do utilizador</mat-label>
+            <input matInput placeholder="Nome do utilizador" readonly [value]="selectedUser()?.fullName ?? ''">
+          </mat-form-field>
+        </div>
+        <section class="example-section p-botm">
+          <mat-checkbox class="example-margin" [checked]="confirmado()" (change)="onConfirmar($event)">Confirmar!</mat-checkbox>
+        </section>
+        <mat-divider></mat-divider>
+        <div class="example-button-row" style="float:right; padding-top:10px;">
+          <button matButton="filled" [disabled]="!confirmado()" (click)="guardar()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-sucesso-u-funcionario [aberto]="resultadoAberto()"
+                           [tipo]="resultadoTipo()"
+                           [mensagem]="resultadoMensagem()"
+                           (fechar)="fecharResultado()" />

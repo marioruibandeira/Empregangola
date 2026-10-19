@@ -1,0 +1,156 @@
+@if (aCarregar()) {
+<div class="dv__estado">A carregar os detalhes...</div>
+} @else if (erro()) {
+<div class="dv__estado dv__estado--erro">Não foi possível carregar os detalhes da vaga.</div>
+<mat-dialog-actions align="end">
+  <button type="button" class="dv__btn" mat-dialog-close>Fechar</button>
+</mat-dialog-actions>
+} @else if (vaga(); as v) {
+
+<div class="dv__cabecalho">
+  <div>
+    <h2 mat-dialog-title class="dv__titulo">{{ v.title }}</h2>
+    <div class="dv__categoria">{{ v.categoryName }}</div>
+  </div>
+  <span [class]="'badge ' + estadoClasse(v)">{{ estado(v) }}</span>
+</div>
+
+<mat-dialog-content class="dv__corpo">
+
+  <dl class="dv__dados">
+    <div>
+      <dt>Local</dt>
+      <dd>{{ v.municipality }}, {{ v.provinceName }}</dd>
+    </div>
+    <div>
+      <dt>Tipo de contrato</dt>
+      <dd>{{ contrato(v) }}</dd>
+    </div>
+    <div>
+      <dt>Modalidade</dt>
+      <dd>{{ modalidade(v) }}</dd>
+    </div>
+    <div>
+      <dt>Número de vagas</dt>
+      <dd>{{ v.numberOfVacancies }}</dd>
+    </div>
+    <div>
+      <dt>Escolaridade</dt>
+      <dd>{{ escolaridade(v) }}</dd>
+    </div>
+    <div>
+      <dt>Experiência mínima</dt>
+      <dd>{{ experiencia(v) }}</dd>
+    </div>
+    <div>
+      <dt>Salário</dt>
+      <dd>{{ salario(v) }}</dd>
+    </div>
+    <div>
+      <dt>Prazo limite</dt>
+      <dd>{{ v.deadline | date:'dd-MM-yyyy' }}</dd>
+    </div>
+    <div>
+      <dt>Como se candidatar</dt>
+      <dd>
+        {{ candidatura(v) }}
+        @if (temDestino(v)) {
+        <span class="dv__destino">{{ v.applicationTarget }}</span>
+        }
+      </dd>
+    </div>
+    <div>
+      <dt>Criada em</dt>
+      <dd>{{ v.createdAt | date:'dd-MM-yyyy HH:mm' }}</dd>
+    </div>
+  </dl>
+
+  @if (v.diaspora) {
+  <div class="dv__aviso">Aberta a profissionais na diáspora</div>
+  }
+
+  <section class="dv__secao">
+    <h3>Sobre a vaga</h3>
+    <p class="dv__texto">{{ v.description }}</p>
+  </section>
+
+  @if (v.responsibilities.length) {
+  <section class="dv__secao">
+    <h3>Responsabilidades</h3>
+    <ul>
+      @for (r of v.responsibilities; track $index) {
+      <li>{{ r }}</li>
+      }
+    </ul>
+  </section>
+  }
+
+  @if (v.requirements.length) {
+  <section class="dv__secao">
+    <h3>Requisitos</h3>
+    <ul>
+      @for (r of v.requirements; track $index) {
+      <li>{{ r }}</li>
+      }
+    </ul>
+  </section>
+  }
+
+  @if (v.skills.length) {
+  <section class="dv__secao">
+    <h3>Competências</h3>
+    <div class="dv__chips">
+      @for (s of v.skills; track $index) {
+      <span class="dv__chip">{{ s }}</span>
+      }
+    </div>
+  </section>
+  }
+
+  @if (v.languages.length) {
+  <section class="dv__secao">
+    <h3>Idiomas</h3>
+    <div class="dv__chips">
+      @for (l of v.languages; track $index) {
+      <span class="dv__chip">{{ l }}</span>
+      }
+    </div>
+  </section>
+  }
+
+  @if (v.benefits.length) {
+  <section class="dv__secao">
+    <h3>Benefícios</h3>
+    <div class="dv__chips">
+      @for (b of v.benefits; track $index) {
+      <span class="dv__chip">{{ b }}</span>
+      }
+    </div>
+  </section>
+  }
+
+</mat-dialog-content>
+
+  @if (erroPublicar()) {
+<div class="dv__erro" role="alert">{{ erroPublicar() }}</div>
+  }
+
+<mat-dialog-actions align="end">
+  @if (confirmar()) {
+  <span class="dv__confirma">Publicar esta vaga para os candidatos?</span>
+  <button type="button" class="dv__btn dv__btn--sec" [disabled]="aPublicar()"
+          (click)="confirmar.set(false)">
+    Cancelar
+  </button>
+  <button type="button" class="dv__btn" [disabled]="aPublicar()"
+          (click)="publicar(v)">
+    {{ aPublicar() ? 'A publicar...' : 'Sim, publicar' }}
+  </button>
+  } @else {
+    <button type="button" class="dv__btn dv__btn--sec" mat-dialog-close>Fechar</button>
+    @if (podePublicar(v)) {
+    <button type="button" class="dv__btn" (click)="confirmar.set(true)">Publicar</button>
+    }
+  }
+</mat-dialog-actions>
+}

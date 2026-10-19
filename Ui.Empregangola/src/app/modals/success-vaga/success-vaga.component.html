@@ -1,0 +1,28 @@
+<div class="sv">
+  <div class="sv__icone" aria-hidden="true">
+    <i class="bi bi-check-lg"></i>
+  </div>
+
+  <h2 mat-dialog-title class="sv__titulo">
+    @if (data.rascunho) { Rascunho guardado com sucesso }
+    @else if (data.edicao) { Vaga atualizada com sucesso }
+    @else { Vaga guardada com sucesso }
+  </h2>
+
+  <mat-dialog-content class="sv__conteudo">
+    <p class="sv__texto">
+      @if (data.rascunho) { O rascunho <b>{{ data.titulo }}</b> foi guardado. }
+      @else if (data.edicao) { A vaga <b>{{ data.titulo }}</b> foi atualizada. }
+      @else { A vaga <b>{{ data.titulo }}</b> foi guardada e está em aberto. }
+    </p>
+    @if (data.rascunho) {
+    <p class="sv__nota">Ainda não está visível para os candidatos. Pode completá-lo mais tarde, a partir da lista de vagas.</p>
+    } @else if (!data.edicao) {
+    <p class="sv__nota">Ainda não está visível para os candidatos. Terá de ser publicada num passo seguinte.</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="center">
+    <button type="button" class="sv__btn" mat-dialog-close>Concluir</button>
+  </mat-dialog-actions>
+</div>

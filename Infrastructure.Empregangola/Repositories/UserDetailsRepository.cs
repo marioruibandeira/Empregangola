@@ -51,5 +51,13 @@ namespace Infrastructure.Empregangola.Repositories
             await _context.SaveChangesAsync(cancellationToken);
             return userDetails;
         }
+
+        //public async Task<List<AppUser>> GetUserAsync(CancellationToken cancellationToken)
+        //{
+        //    return await _context.Users
+        //        .AsNoTracking()
+        //        .OrderByDescending(v => v.UserName)
+        //        .ToListAsync(cancellationToken);
+        //}
     }
 }

@@ -1,0 +1,55 @@
+.modo-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: #f5f6f8;
+  border: 1px solid #e2e5ea;
+  border-radius: 999px;
+}
+
+.modo-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a909b;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+  .modo-label.activo {
+    color: #1f2937;
+    font-weight: 600;
+  }
+
+.mbttom {
+  margin-bottom: 0px !important;
+}
+
+.r-spaco-r{
+    padding-right:20px;
+}
+.r-spaco-l {
+  padding-left: 5px;
+}
+
+/* Modern way (Angular Material 15+) */
+.my-date-field {
+  width: 100%;
+}
+
+:host ::ng-deep .my-date-field .mdc-notched-outline__leading,
+:host ::ng-deep .my-date-field .mdc-notched-outline__notch,
+:host ::ng-deep .my-date-field .mdc-notched-outline__trailing {
+  border-color: #ccc !important;
+}
+
+:host ::ng-deep .my-date-field.mat-focused .mdc-notched-outline__leading,
+:host ::ng-deep .my-date-field.mat-focused .mdc-notched-outline__notch,
+:host ::ng-deep .my-date-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #ccc !important;
+}
+
+.ng-r-p-l {
+  padding: 0px !important;
+  padding-left: 13px !important;
+}
