@@ -200,6 +200,13 @@ public class AppDbContext : IdentityDbContext<AppUser>
                     join.HasKey("VacancyId", "LanguageId");
                 });
 
+        modelBuilder.Entity<JobApplicationTable>(entity =>
+        {
+            entity.Property(e => e.PresentationLetter)
+                .HasMaxLength(2000)
+                .IsRequired(false);
+        });
+
         modelBuilder.Entity<PremiumServicesTable>(entity =>
         {
             entity.Property(x => x.ServiceName)
@@ -276,6 +283,8 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<CategoryTable> Categories { get; set; }
 
     public DbSet<ProvinceTable> Provinces { get; set; }
+    public DbSet<FeaturedVacanciesTable> FeaturedVacancies {  get; set; }
+    public DbSet<JobApplicationTable> JobApplication { get; set; }
 
     //Planos
     public DbSet<PremiumServicesTable> PremiumServices { get; set; }

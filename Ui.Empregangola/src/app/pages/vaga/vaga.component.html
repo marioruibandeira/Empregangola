@@ -42,14 +42,16 @@
 
 <ng-template #candidatar let-extra="extra">
   @if (v.isExpired) {
-  <span [class]="'vaga-btn-candidatar vaga-btn-desactivado ' + extra">Prazo terminado</span>
+    <span [class]="'vaga-btn-candidatar vaga-btn-desactivado ' + extra">Prazo terminado</span>
+  } @else if (candidaturaNoSite(v)) {
+    <a [routerLink]="rotaCandidatura(v)" [class]="'vaga-btn-candidatar ' + extra">Candidatar-se</a>
   } @else if (v.applicationMethod === 2) {
-  <a [href]="mailto(v)" [class]="'vaga-btn-candidatar ' + extra">Candidatar-se</a>
+    <a [href]="mailto(v)" [class]="'vaga-btn-candidatar ' + extra">Candidatar-se</a>
   } @else if (v.applicationMethod === 3) {
-  <a [href]="v.applicationTarget" target="_blank" rel="noopener noreferrer"
+    <a [href]="v.applicationTarget" target="_blank" rel="noopener noreferrer"
      [class]="'vaga-btn-candidatar ' + extra">Candidatar-se</a>
   } @else {
-  <span [class]="'vaga-btn-candidatar vaga-btn-desactivado ' + extra">Candidaturas na plataforma em breve</span>
+    <span [class]="'vaga-btn-candidatar vaga-btn-desactivado ' + extra">Candidatura indisponível</span>
   }
 </ng-template>
 
@@ -168,6 +170,7 @@
 
       <div class="container-fluid vaga-acao-repetida py-4 mb-4">
         <div class="row px-2 px-md-3 px-xl-5 align-items-center">
+
           <div class="col-lg-12">
             <div class="vaga-salario">
               @if (v.negotiableSalary) {
@@ -181,6 +184,20 @@
             </div>
           </div>
 
+          <ng-template #candidatar let-extra="extra">
+            @if (v.isExpired) {
+            <span [class]="'vaga-btn-candidatar vaga-btn-desactivado ' + extra">Prazo terminado</span>
+            } @else if (candidaturaNoSite(v)) {
+            <a [routerLink]="rotaCandidatura(v)" [class]="'vaga-btn-candidatar ' + extra">Candidatar-se</a>
+            } @else if (v.applicationMethod === 2) {
+            <a [href]="mailto(v)" [class]="'vaga-btn-candidatar ' + extra">Candidatar-se</a>
+            } @else if (v.applicationMethod === 3) {
+            <a [href]="v.applicationTarget" target="_blank" rel="noopener noreferrer"
+               [class]="'vaga-btn-candidatar ' + extra">Candidatar-se</a>
+            } @else {
+            <span [class]="'vaga-btn-candidatar vaga-btn-desactivado ' + extra">Candidatura indisponível</span>
+            }
+          </ng-template>
           <div class="col-lg-12 mt-4">
             <ng-container [ngTemplateOutlet]="candidatar" [ngTemplateOutletContext]="{ extra: 'wdth' }" />
           </div>

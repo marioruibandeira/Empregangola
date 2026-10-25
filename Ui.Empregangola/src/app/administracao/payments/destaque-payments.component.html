@@ -1,0 +1,165 @@
+<!-- payments.component.html (vista da empresa) -->
+<div class="wrapper">
+  <app-besidebar />
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+
+    <div class="container">
+      <div class="page-inner">
+
+        <section class="pay" aria-labelledby="pay-title">
+
+          <header class="pay-top">
+            <h2 id="pay-title">Pagamentos</h2>
+            <p>Pague para destacar as suas vagas e consulte o histórico de pagamentos.</p>
+          </header>
+
+          <!-- Aviso depois de voltar da Stripe -->
+          @if (banner(); as b) {
+          <div [class]="'pay-banner pay-banner--' + b.kind" role="status">
+            <p>{{ b.text }}</p>
+            <button type="button" class="pay-text" (click)="dismissBanner()">Fechar</button>
+          </div>
+          }
+
+          <!-- ============ 1. Destacar uma vaga ============ -->
+          <div class="pay-checkout">
+
+            <div class="pay-steps">
+
+              <div class="pay-card">
+                <h3>1. Escolha a vaga</h3>
+                <label class="pay-field">
+                  <span class="pay-sr">Vaga a destacar</span>
+                  <select [value]="selectedJobId() ?? ''" (change)="onJobChange($event)">
+                    <option value="">Seleccione uma vaga publicada</option>
+                    @for (j of jobs(); track j.id) {
+                    <option [value]="j.id">{{ j.title }} ({{ j.location }})</option>
+                    }
+                  </select>
+                </label>
+              </div>
+
+              <fieldset class="pay-card pay-plans">
+                <legend><h3>2. Escolha a duração do destaque</h3></legend>
+
+                <div class="pay-plans__grid">
+                  @for (p of plans(); track p.id) {
+                  <label class="pay-plan" [class.pay-plan--selected]="selectedPlanId() === p.id">
+                    <input class="pay-sr"
+                           type="radio"
+                           name="plan"
+                           [value]="p.id"
+                           [checked]="selectedPlanId() === p.id"
+                           (change)="selectedPlanId.set(p.id)" />
+
+                    <span class="pay-plan__name">
+                      {{ p.name }}
+                      @if (p.recommended) {
+                      <span class="pay-tag">Mais escolhido</span>
+                      }
+                    </span>
+                    <strong class="pay-plan__price">{{ formatKz(p.price) }} Kz</strong>
+                    <span class="pay-plan__day">{{ pricePerDay(p) }}</span>
+                  </label>
+                  }
+                </div>
+              </fieldset>
+
+            </div>
+
+            <!-- Resumo e botão de pagar -->
+            <aside class="pay-summary" aria-labelledby="pay-summary-title">
+              <h3 id="pay-summary-title">Resumo</h3>
+
+              <dl class="pay-summary__list">
+                <div>
+                  <dt>Vaga</dt>
+                  <dd>{{ selectedJob()?.title ?? 'Ainda não escolhida' }}</dd>
+                </div>
+                <div>
+                  <dt>Duração</dt>
+                  <dd>{{ selectedPlan()?.name ?? 'Ainda não escolhida' }}</dd>
+                </div>
+              </dl>
+
+              <div class="pay-summary__total">
+                <span>Total</span>
+                <strong>{{ selectedPlan() ? formatKz(selectedPlan()!.price) + ' Kz' : '—' }}</strong>
+              </div>
+
+              @if (errorMessage()) {
+              <p class="pay-error" role="alert">{{ errorMessage() }}</p>
+              }
+
+              <!--<button type="button" class="pay-button" [disabled]="!canPay()" (click)="pay()">
+                {{ isPaying() ? 'A abrir a Stripe...' : 'Pagar com Stripe' }}
+              </button>-->
+              <a href="administracao/checkout">Pagar</a>
+
+              <p class="pay-note">
+                Vai ser levado para a página segura da Stripe. Os dados do seu cartão
+                não passam pelo nosso site.
+              </p>
+            </aside>
+
+          </div>
+
+          <!-- ============ 2. Histórico ============ -->
+          <div class="pay-history">
+
+            <div class="pay-history__top">
+              <div>
+                <h3>Histórico de pagamentos</h3>
+                <p>Total pago: <strong>{{ formatKz(totalPaid()) }} Kz</strong></p>
+              </div>
+            </div>
+
+            <div class="pay-filters" role="group" aria-label="Filtrar por estado">
+              @for (f of filters; track f.value) {
+              <button type="button"
+                      class="pay-chip"
+                      [class.pay-chip--active]="statusFilter() === f.value"
+                      [attr.aria-pressed]="statusFilter() === f.value"
+                      (click)="statusFilter.set(f.value)">
+                {{ f.label }} <span class="pay-chip__n">{{ counts()[f.value] }}</span>
+              </button>
+              }
+            </div>
+
+            @if (filteredPayments().length > 0) {
+            <ul class="pay-list">
+              @for (p of filteredPayments(); track p.id) {
+              <li class="pay-item">
+                <div class="pay-item__main">
+                  <h4>{{ p.jobTitle }}</h4>
+                  <p>Destaque de {{ p.planName }}, {{ p.createdAt | date: 'dd/MM/yyyy' }}</p>
+                </div>
+
+                <strong class="pay-item__amount">{{ formatKz(p.amount) }} Kz</strong>
+
+                <span [class]="'pay-status pay-status--' + p.status">{{ statusText(p.status) }}</span>
+
+                @if (p.receiptUrl) {
+                <a class="pay-text" [href]="p.receiptUrl" target="_blank" rel="noopener">Ver recibo</a>
+                }
+              </li>
+              }
+            </ul>
+            } @else {
+            <div class="pay-empty" role="status">
+              <h4>Nenhum pagamento encontrado</h4>
+              <p>Não há pagamentos com este estado.</p>
+            </div>
+            }
+
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+
+    <app-befooter />
+  </div>
+</div>

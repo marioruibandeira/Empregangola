@@ -1,0 +1,318 @@
+<!-- invoices.component.html (versão estática, só HTML e texto de exemplo) -->
+<div class="wrapper">
+  <app-besidebar />
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+
+    <div class="container">
+      <div class="page-inner">
+
+        <section class="inv" aria-labelledby="inv-title">
+
+          <div class="alert alert-warning" role="alert">
+            <h3 class="fw-bold mb-1">Facturas</h3>
+            <p class="nv-sub mb-0">Preencha os dados do titular e do cartão para concluir o pagamento.</p>
+          </div>
+
+          <!-- Cabeçalho -->
+          <header class="inv-top">
+            <div>
+              <p>12 facturas em 2026, 540.000 Kz facturados.</p>
+            </div>
+            <a class="inv-button inv-button--secondary" href="#">Descarregar todas de 2026</a>
+          </header>
+
+          <div class="inv-layout">
+
+            <!-- ============ Lista de facturas ============ -->
+            <div class="inv-main">
+
+              <!-- Pesquisa e filtros -->
+              <div class="inv-controls">
+                <label class="inv-field inv-field--search">
+                  <span class="inv-sr">Pesquisar facturas</span>
+                  <input type="search" placeholder="Pesquisar por número ou descrição" />
+                </label>
+
+                <label class="inv-field">
+                  <span class="inv-sr">Ano</span>
+                  <select>
+                    <option>2026</option>
+                    <option>2025</option>
+                    <option>2024</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="inv-filters" role="group" aria-label="Filtrar por estado">
+                <button type="button" class="inv-chip inv-chip--active" aria-pressed="true">
+                  Todas <span class="inv-chip__n">12</span>
+                </button>
+                <button type="button" class="inv-chip" aria-pressed="false">
+                  Pagas <span class="inv-chip__n">9</span>
+                </button>
+                <button type="button" class="inv-chip" aria-pressed="false">
+                  Por pagar <span class="inv-chip__n">2</span>
+                </button>
+                <button type="button" class="inv-chip" aria-pressed="false">
+                  Anuladas <span class="inv-chip__n">1</span>
+                </button>
+              </div>
+
+              <ul class="inv-list">
+
+                <li class="inv-item">
+                  <div class="inv-item__main">
+                    <h3>FT 2026/0142</h3>
+                    <p>Destaque de vaga: Supervisor(a) de Loja, 15 dias</p>
+                  </div>
+                  <div class="inv-item__date">
+                    <span>Emitida em</span>
+                    <strong>21/10/2026</strong>
+                  </div>
+                  <strong class="inv-item__amount">45.000 Kz</strong>
+                  <span class="inv-status inv-status--paid">Paga</span>
+                  <div class="inv-item__actions">
+                    <a class="inv-link" href="#">Descarregar PDF</a>
+                    <button type="button" class="inv-link" (click)="openDetails()">Ver detalhes</button>
+                  </div>
+                </li>
+
+                <li class="inv-item">
+                  <div class="inv-item__main">
+                    <h3>FT 2026/0138</h3>
+                    <p>Destaque de curso: Excel Avançado, 30 dias</p>
+                  </div>
+                  <div class="inv-item__date">
+                    <span>Vence em</span>
+                    <strong>30/10/2026</strong>
+                  </div>
+                  <strong class="inv-item__amount">80.000 Kz</strong>
+                  <span class="inv-status inv-status--due">Por pagar</span>
+                  <div class="inv-item__actions">
+                    <a class="inv-link" href="#">Descarregar PDF</a>
+                    <button type="button" class="inv-link" (click)="openDetails()">Ver detalhes</button>
+                  </div>
+                </li>
+
+                <li class="inv-item">
+                  <div class="inv-item__main">
+                    <h3>FT 2026/0127</h3>
+                    <p>Destaque de vaga: Engenheiro de Software .NET e Angular, 15 dias</p>
+                  </div>
+                  <div class="inv-item__date">
+                    <span>Emitida em</span>
+                    <strong>12/10/2026</strong>
+                  </div>
+                  <strong class="inv-item__amount">45.000 Kz</strong>
+                  <span class="inv-status inv-status--paid">Paga</span>
+                  <div class="inv-item__actions">
+                    <a class="inv-link" href="#">Descarregar PDF</a>
+                    <button type="button" class="inv-link" (click)="openDetails()">Ver detalhes</button>
+                  </div>
+                </li>
+
+                <li class="inv-item">
+                  <div class="inv-item__main">
+                    <h3>FT 2026/0119</h3>
+                    <p>Destaque de curso: Gestão de Projectos, 7 dias</p>
+                  </div>
+                  <div class="inv-item__date">
+                    <span>Emitida em</span>
+                    <strong>03/10/2026</strong>
+                  </div>
+                  <strong class="inv-item__amount">25.000 Kz</strong>
+                  <span class="inv-status inv-status--paid">Paga</span>
+                  <div class="inv-item__actions">
+                    <a class="inv-link" href="#">Descarregar PDF</a>
+                    <button type="button" class="inv-link" (click)="openDetails()">Ver detalhes</button>
+                  </div>
+                </li>
+
+                <li class="inv-item">
+                  <div class="inv-item__main">
+                    <h3>FT 2026/0104</h3>
+                    <p>Destaque de vaga: Designer de Produto Digital, 30 dias</p>
+                  </div>
+                  <div class="inv-item__date">
+                    <span>Emitida em</span>
+                    <strong>14/09/2026</strong>
+                  </div>
+                  <strong class="inv-item__amount">80.000 Kz</strong>
+                  <span class="inv-status inv-status--void">Anulada</span>
+                  <div class="inv-item__actions">
+                    <a class="inv-link" href="#">Descarregar PDF</a>
+                    <button type="button" class="inv-link" (click)="openDetails()">Ver detalhes</button>
+                  </div>
+                </li>
+
+                <li class="inv-item">
+                  <div class="inv-item__main">
+                    <h3>FT 2026/0093</h3>
+                    <p>Destaque de vaga: Gestor de Operações Logísticas, 15 dias</p>
+                  </div>
+                  <div class="inv-item__date">
+                    <span>Emitida em</span>
+                    <strong>29/08/2026</strong>
+                  </div>
+                  <strong class="inv-item__amount">45.000 Kz</strong>
+                  <span class="inv-status inv-status--paid">Paga</span>
+                  <div class="inv-item__actions">
+                    <a class="inv-link" href="#">Descarregar PDF</a>
+                    <button type="button" class="inv-link" (click)="openDetails()">Ver detalhes</button>
+                  </div>
+                </li>
+
+              </ul>
+
+              <!-- Paginação -->
+              <nav class="inv-pager" aria-label="Paginação das facturas">
+                <p>A mostrar 1 a 6 de 12 facturas</p>
+                <div class="inv-pager__buttons">
+                  <button type="button" class="inv-button inv-button--secondary" disabled>Anterior</button>
+                  <button type="button" class="inv-button inv-button--secondary">Seguinte</button>
+                </div>
+              </nav>
+
+            </div>
+
+            <!-- ============ Dados de facturação ============ -->
+            <aside class="inv-billing" aria-labelledby="inv-billing-title">
+              <h3 id="inv-billing-title">Dados de facturação</h3>
+
+              <dl class="inv-billing__list">
+                <div>
+                  <dt>Nome</dt>
+                  <dd>Empresa Exemplo, Lda.</dd>
+                </div>
+                <div>
+                  <dt>NIF</dt>
+                  <dd>5000000000</dd>
+                </div>
+                <div>
+                  <dt>Morada</dt>
+                  <dd>Rua Exemplo, n.º 123, Talatona, Luanda</dd>
+                </div>
+                <div>
+                  <dt>Email para facturas</dt>
+                  <dd>facturacao&#64;empresa.co.ao</dd>
+                </div>
+              </dl>
+
+              <a class="inv-button inv-button--secondary inv-button--full" href="#">Descarregar Factura</a>
+
+              <p class="inv-note">
+                As facturas novas são emitidas com estes dados. Confirme que o NIF e a morada
+                estão certos antes de pagar.
+              </p>
+            </aside>
+
+          </div>
+
+
+          <!-- ============ Modal: detalhes da factura ============ -->
+          <!-- <dialog> nativo: o navegador trata do foco, da tecla Esc e do fundo bloqueado. -->
+          <dialog #detailsDialog class="inv-modal" aria-labelledby="inv-modal-title" (click)="onDialogClick($event)">
+
+            <header class="inv-modal__head">
+              <div>
+                <p class="inv-modal__kicker">Factura</p>
+                <h3 id="inv-modal-title">FT 2026/0142</h3>
+              </div>
+              <span class="inv-status inv-status--paid">Paga</span>
+              <button type="button" class="inv-modal__close" (click)="closeDetails()" aria-label="Fechar detalhes da factura">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+                </svg>
+              </button>
+            </header>
+
+            <div class="inv-modal__body">
+
+              <!-- Datas e pagamento -->
+              <dl class="inv-modal__facts">
+                <div>
+                  <dt>Emitida em</dt>
+                  <dd>21/10/2026</dd>
+                </div>
+                <div>
+                  <dt>Vencimento</dt>
+                  <dd>30/10/2026</dd>
+                </div>
+                <div>
+                  <dt>Pago em</dt>
+                  <dd>21/10/2026</dd>
+                </div>
+                <div>
+                  <dt>Método de pagamento</dt>
+                  <dd>Cartão (Stripe)</dd>
+                </div>
+              </dl>
+
+              <!-- Emitente e cliente -->
+              <div class="inv-modal__parties">
+                <section aria-labelledby="inv-from">
+                  <h4 id="inv-from">Emitida por</h4>
+                  <p><strong>Empregangola, Lda.</strong></p>
+                  <p>NIF 5417000000</p>
+                  <p>Rua Exemplo, n.º 1, Maianga, Luanda</p>
+                </section>
+
+                <section aria-labelledby="inv-to">
+                  <h4 id="inv-to">Facturada a</h4>
+                  <p><strong>Empresa Exemplo, Lda.</strong></p>
+                  <p>NIF 5000000000</p>
+                  <p>Rua Exemplo, n.º 123, Talatona, Luanda</p>
+                </section>
+              </div>
+
+              <!-- Itens facturados -->
+              <section aria-labelledby="inv-items">
+                <h4 id="inv-items">Itens facturados</h4>
+
+                <ul class="inv-modal__items">
+                  <li>
+                    <div>
+                      <strong>Destaque de vaga: Supervisor(a) de Loja</strong>
+                      <p>Duração de 15 dias, quantidade 1</p>
+                    </div>
+                    <strong>39.473,68 Kz</strong>
+                  </li>
+                </ul>
+              </section>
+
+              <!-- Totais -->
+              <dl class="inv-modal__totals">
+                <div>
+                  <dt>Total sem IVA</dt>
+                  <dd>39.473,68 Kz</dd>
+                </div>
+                <div>
+                  <dt>IVA (14%)</dt>
+                  <dd>5.526,32 Kz</dd>
+                </div>
+                <div class="inv-modal__grand">
+                  <dt>Total pago</dt>
+                  <dd>45.000,00 Kz</dd>
+                </div>
+              </dl>
+
+              <p class="inv-modal__ref">Referência do pagamento: pi_3Q0000000000000</p>
+
+            </div>
+
+            <footer class="inv-modal__foot">
+              <button type="button" class="inv-button inv-button--secondary" (click)="closeDetails()">Fechar</button>
+              <a class="inv-button" href="#">Descarregar PDF</a>
+            </footer>
+
+          </dialog>
+
+        </section>
+
+      </div>
+    </div>
+
+    <app-befooter />
+  </div>
+</div>

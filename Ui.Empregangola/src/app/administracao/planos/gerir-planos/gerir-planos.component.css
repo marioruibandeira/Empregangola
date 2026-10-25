@@ -1,0 +1,224 @@
+/* O template do painel corta o position: sticky se o .container esconder o overflow */
+.main-panel .container {
+  overflow: visible;
+}
+
+/* Evita o scroll horizontal causado pelas margens negativas do .row */
+.gp-pagina {
+  overflow-x: clip;
+}
+
+/* Textos auxiliares usados nas outras páginas do painel */
+.nv-sub {
+  font-size: 13px;
+  color: #7a6e64;
+}
+
+.nv-obrig {
+  color: #dc3545;
+}
+
+/* ---------- Botões de ícone ---------- */
+.gp-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: #4a4038;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+  .gp-icone:hover:not(:disabled) {
+    background: #f5f1ec;
+    color: #f2670c;
+  }
+
+  .gp-icone:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+.gp-icone--activo {
+  color: #f2a507;
+}
+
+.gp-icone--perigo:hover:not(:disabled) {
+  background: #fdecea;
+  color: #ba2507;
+}
+
+.gp-confirmar {
+  margin-right: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ba2507;
+}
+
+/* ---------- Lista ---------- */
+.gp-ordem {
+  white-space: nowrap;
+}
+
+  .gp-ordem span {
+    display: inline-block;
+    min-width: 18px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+.gp-inactivo td {
+  opacity: 0.6;
+}
+
+  .gp-inactivo td:last-child {
+    opacity: 1;
+  }
+
+.gp-badge-recomendado {
+  background: #f2670c;
+  color: #fff;
+}
+
+/* ---------- Formulário ---------- */
+.gp-caixa {
+  padding: 12px 12px 12px 40px;
+  border: 1px solid #e8e0d8;
+  border-radius: 8px;
+  background: #fcfaf8;
+}
+
+.gp-beneficio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.gp-beneficio-incluido {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ---------- Pré-visualização (cartão do plano) ---------- */
+.gp-lateral {
+  position: sticky;
+  top: 90px;
+}
+
+.gp-prev {
+  position: relative;
+  padding: 28px 20px 20px;
+  border: 1px solid #e8e0d8;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.gp-prev--recomendado {
+  border-color: #f2670c;
+}
+
+.gp-fita {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: #f2670c;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.gp-prev-nome {
+  margin: 0 0 4px;
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1207;
+}
+
+.gp-vazio {
+  color: #b5aaa0;
+}
+
+.gp-prev-descricao {
+  min-height: 20px;
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #7a6e64;
+}
+
+.gp-prev-preco {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.gp-prev-valor {
+  font-family: 'Sora', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1a1207;
+}
+
+.gp-prev-moeda {
+  font-size: 15px;
+  font-weight: 600;
+  color: #4a4038;
+}
+
+.gp-prev-duracao {
+  min-height: 18px;
+  margin: 4px 0 16px;
+  font-size: 13px;
+  color: #7a6e64;
+}
+
+.gp-prev-beneficios {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+  .gp-prev-beneficios li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 0;
+    font-size: 14px;
+    color: #4a4038;
+  }
+
+    .gp-prev-beneficios li i {
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 16px;
+    }
+
+.gp-prev-fora {
+  color: #a79c92 !important;
+}
+
+.gp-sim {
+  color: #198754;
+}
+
+.gp-nao {
+  color: #c9c0b8;
+}
+
+@media (max-width: 576px) {
+  .gp-beneficio {
+    flex-wrap: wrap;
+  }
+}

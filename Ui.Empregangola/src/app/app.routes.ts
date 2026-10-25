@@ -40,12 +40,24 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/vaga/vaga.component').then(m => m.VagaComponent)
   },
   {
+    path: 'vaga/:id/candidatura',
+    loadComponent: () => import('./pages/vaga/candidatura.component').then(m => m.CandidaturaComponent)
+  },
+  {
     path: 'formulario',
     loadComponent: () => import('./pages/vaga/formulario/formulario.component').then(m => m.FormularioComponent)
   },
   {
     path: 'formacao',
     loadComponent: () => import('./pages/formacao/formacao.component').then(m => m.FormacaoComponent)
+  },
+  // {
+  //   path: 'gerir-formacao',
+  //   loadComponent: () => import('./utilizadores/empresa/centro-formacao/gerir-formacoes/gerir-formacoes.component').then(m => m.GerirFormacoesComponent)
+  // },
+  {
+    path: 'plano/gerir-plano',
+    loadComponent: () => import('./administracao/planos/gerir-planos/gerir-planos.component').then(m => m.GerirPlanosComponent)
   },
   {
     path: 'formacao-detalhes',
@@ -57,6 +69,10 @@ export const routes: Routes = [
   {
     path: 'utilizador',
     loadComponent: () => import('./utilizadores/utilizador/utilizador.component').then(m => m.UtilizadorComponent) 
+  },
+  {
+    path: 'utilizador/perfil',
+    loadComponent: () => import('./utilizadores/utilizador/perfil-candidato/perfil-candidato.component').then(m => m.PerfilCandidatoComponent) 
   },
   {
     path: 'utilizador/favoritos',
@@ -99,12 +115,28 @@ export const routes: Routes = [
     loadComponent: () => import('./administracao/v-verificados/v-verificados.component').then(m => m.VVerificadosComponent)
   },
   {
+    path: 'administracao/plano',
+    loadComponent: () => import('./administracao/planos/planos.component').then(m => m.PlanosComponent)
+  },
+  {
     path: 'administracao/funcionarios',
     loadComponent: () => import('./administracao/funcionarios/funcionarios.component').then(m => m.FuncionariosComponent)
   },
   {
     path: 'administracao/utilizadores',
     loadComponent: () => import('./administracao/utilizadores/utilizadores.component').then(m => m.UtilizadoresComponent)
+  },
+  {
+    path: 'administracao/destaque-pagamentos',
+    loadComponent: () => import('./administracao/payments/destaque-payments.component').then(m => m.PaymentsComponent)
+  },
+  {
+    path: 'administracao/checkout',
+    loadComponent: () => import('./administracao/payments/checkout.component').then(m => m.CheckoutComponent)
+  },
+  {
+    path: 'administracao/facturas',
+    loadComponent: () => import('./administracao/facturas/facturas.component').then(m => m.FacturasComponent)
   }
 ];
 

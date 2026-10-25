@@ -1,0 +1,287 @@
+<app-header></app-header>
+
+<div class="cd-pagina">
+  <div class="container-fluid px-2 px-md-3 px-xl-5 py-4">
+
+    @if (aCarregar()) {
+      <div class="cd-estado">A carregar a vaga...</div>
+    } @else if (naoEncontrada()) {
+      <div class="cd-estado cd-estado--cartao">
+        <h1 class="cd-titulo">Esta vaga não está disponível</h1>
+        <p class="cd-sub">Pode já ter sido removida ou ainda não estar publicada.</p>
+        <a routerLink="/vagas" class="cd-btn">Ver todas as vagas</a>
+      </div>
+    } @else if (erroVaga()) {
+      <div class="cd-estado cd-estado--erro">
+        Não foi possível carregar a vaga. Tente novamente mais tarde.
+      </div>
+    } @else if (vaga(); as v) {
+
+      <a [routerLink]="['/vaga', v.vacanciesId]" class="cd-voltar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" /></svg>
+        Voltar à vaga
+      </a>
+
+    @if (resultado(); as r) {
+
+    <!-- ============================================================ -->
+    <!--  CANDIDATURA ENVIADA                                          -->
+    <!-- ============================================================ -->
+    <div class="cd-sucesso">
+      <div class="cd-sucesso-icone" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg>
+      </div>
+
+      <h1 class="cd-titulo">Candidatura enviada!</h1>
+      <p class="cd-sub">
+        A sua candidatura a <strong>{{ v.title }}</strong> na <strong>{{ v.companyName }}</strong>
+        foi enviada com sucesso.
+      </p>
+
+      <div class="cd-referencia">
+        Referência <strong>{{ r.referencia }}</strong> · {{ r.enviadaEm | date:'dd-MM-yyyy HH:mm' }}
+      </div>
+
+      <div class="cd-passos">
+        <h2 class="cd-cartao-titulo">O que acontece a seguir</h2>
+        <ol>
+          <li>A empresa recebe o seu perfil, o seu CV e a sua carta de apresentação.</li>
+          <li>Se o seu perfil avançar, será contactado pelo email ou telefone que tem no perfil.</li>
+          <li>Mantenha os seus contactos actualizados para não perder nenhuma oportunidade.</li>
+        </ol>
+      </div>
+
+      <div class="cd-acoes">
+        <a routerLink="/vagas" class="cd-btn">Ver mais vagas</a>
+        <a [routerLink]="['/vaga', v.vacanciesId]" class="cd-btn cd-btn--sec">Voltar à vaga</a>
+      </div>
+    </div>
+
+    } @else if (v.isExpired) {
+
+    <!-- ============================================================ -->
+    <!--  PRAZO TERMINADO                                              -->
+    <!-- ============================================================ -->
+    <div class="cd-estado cd-estado--cartao">
+      <h1 class="cd-titulo">O prazo desta vaga terminou</h1>
+      <p class="cd-sub">Já não é possível candidatar-se a <strong>{{ v.title }}</strong>.</p>
+      <a routerLink="/vagas" class="cd-btn">Ver outras vagas</a>
+    </div>
+
+    } @else if (!autenticado()) {
+
+    <!-- ======= SEM SESSÃO INICIADA ================= -->
+    <div class="cd-estado cd-estado--cartao">
+      <h1 class="cd-titulo">Inicie sessão para se candidatar</h1>
+      <p class="cd-sub">
+        Para se candidatar a <strong>{{ v.title }}</strong> precisa de uma conta e de um perfil preenchido.
+        Assim a empresa recebe os seus dados e o seu CV.
+      </p>
+      <div class="cd-acoes">
+        <a routerLink="/login" [queryParams]="{ returnUrl: voltarPara() }" class="cd-btn">Iniciar sessão</a>
+        <a routerLink="/register" class="cd-btn cd-btn--sec">Criar conta</a>
+      </div>
+    </div>
+
+    } @else {
+
+    <!-- ======= FORMULÁRIO DE CANDIDATURA =================== -->
+    <div class="row g-3 g-xl-4">
+
+      <!-- ===== COLUNA PRINCIPAL ===== -->
+      <div class="col-lg-8">
+
+        <h1 class="cd-titulo">Candidatar-se</h1>
+        <p class="cd-sub">{{ v.title }} · {{ v.companyName }}</p>
+
+        @if (erroEnvio(); as mensagem) {
+          <div class="alert alert-danger" role="alert">{{ mensagem }}</div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+
+          <!-- 1. Os seus dados -->
+          <section class="cd-cartao">
+            <div class="cd-cartao-cab">
+              <h2 class="cd-cartao-titulo">Os seus dados</h2>
+              <a routerLink="/profissional/profissional" class="cd-link">Actualizar perfil</a>
+            </div>
+
+            @if (perfil(); as p) {
+            <div class="cd-candidato">
+              <div class="cd-avatar" aria-hidden="true">{{ iniciais(p.nomeCompleto) }}</div>
+              <div>
+                <div class="cd-candidato-nome">{{ p.nomeCompleto }}</div>
+                <div class="cd-candidato-titulo">{{ p.titulo }}</div>
+                <ul class="cd-contactos">
+                  @if (p.email) {
+                  <li>{{ p.email }}</li> }
+                  @if (p.telefone) {
+                  <li>{{ p.telefone }}</li> }
+                  @if (p.localizacao) {
+                  <li>{{ p.localizacao }}</li> }
+                </ul>
+              </div>
+            </div>
+            <p class="cd-nota mb-0">Estes são os dados do seu perfil e seguem com a candidatura.</p>
+            } @else {
+            <p class="cd-nota mb-0">A carregar os seus dados...</p>
+            }
+          </section>
+
+          <!-- 2. Currículo -->
+          <section class="cd-cartao">
+            <h2 class="cd-cartao-titulo">Currículo (CV) <span class="cd-obrig">*</span></h2>
+
+            @if (perfil()?.cvNome) {
+            <label class="cd-opcao" [class.cd-opcao--activa]="form.value.origemCv === 'perfil'">
+              <input type="radio" formControlName="origemCv" value="perfil" />
+              <span class="cd-opcao-texto">
+                <strong>Usar o CV do meu perfil</strong>
+                <small>{{ perfil()?.cvNome }}</small>
+              </span>
+            </label>
+            }
+
+            <label class="cd-opcao" [class.cd-opcao--activa]="form.value.origemCv === 'novo'">
+              <input type="radio" formControlName="origemCv" value="novo" />
+              <span class="cd-opcao-texto">
+                <strong>Carregar outro CV</strong>
+                <small>PDF, DOC ou DOCX, até {{ maxCvMb }} MB</small>
+              </span>
+            </label>
+
+            @if (form.value.origemCv === 'novo') {
+            <div class="cd-ficheiro">
+              <input type="file" id="cv" class="form-control" accept=".pdf,.doc,.docx"
+                     aria-label="Carregar CV" (change)="aoEscolherFicheiro($event)" />
+              @if (ficheiro(); as f) {
+              <div class="cd-ficheiro-nome">{{ f.name }} · {{ tamanhoLegivel(f) }}</div>
+              }
+            </div>
+            }
+
+            @if (erroFicheiro(); as erro) {
+            <div class="invalid-feedback d-block">{{ erro }}</div>
+            }
+            @if (tentou() && !cvOk()) {
+            <div class="invalid-feedback d-block">Escolha o CV do perfil ou carregue um ficheiro.</div>
+            }
+          </section>
+
+          <!-- 3. Carta de apresentação -->
+          <section class="cd-cartao">
+            <h2 class="cd-cartao-titulo">Carta de apresentação <span class="cd-opcional">(opcional)</span></h2>
+            <p class="cd-nota">Diga, em poucas linhas, porque é a pessoa certa para esta vaga.</p>
+
+            <textarea id="carta" formControlName="carta" rows="8" class="form-control"
+                      [maxLength]="maxCarta" aria-label="Carta de apresentação"
+                      placeholder="Ex.: Tenho 5 anos de experiência em ... e gostaria de contribuir para ..."></textarea>
+            <div class="cd-contador">{{ cartaTamanho }} / {{ maxCarta }}</div>
+          </section>
+
+          <!-- 4. Informação adicional -->
+          <section class="cd-cartao">
+            <h2 class="cd-cartao-titulo">Informação adicional <span class="cd-opcional">(opcional)</span></h2>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="pretensao">Pretensão salarial</label>
+                  <div class="input-group">
+                    <input type="number" id="pretensao" formControlName="pretensao" class="form-control"
+                           min="0" placeholder="650 000"
+                           [class.is-invalid]="pretensao?.invalid" />
+                    <span class="input-group-text">Kz</span>
+                  </div>
+                  @if (pretensao?.invalid) {
+                  <div class="invalid-feedback d-block">Indique um valor igual ou superior a zero.</div>
+                  }
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="disponibilidade">Disponibilidade para começar</label>
+                  <select id="disponibilidade" formControlName="disponibilidade" class="form-select">
+                    <option [ngValue]="null">Seleccione</option>
+                    @for (d of disponibilidades; track d.dias) {
+                      <option [ngValue]="d.dias">{{ d.texto }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. Consentimento e envio -->
+          <section class="cd-cartao">
+            <div class="form-check cd-consentimento">
+              <input class="form-check-input" type="checkbox" id="consentimento" formControlName="consentimento"
+                     [class.is-invalid]="consentimento?.invalid && (consentimento?.touched || tentou())" />
+              <label class="form-check-label" for="consentimento">
+                Autorizo a Empregangola a partilhar o meu perfil e o meu CV com
+                <strong>{{ v.companyName }}</strong> para esta candidatura. Li a
+                <a routerLink="/privacidade" target="_blank">Política de Privacidade</a>.
+              </label>
+            </div>
+            @if (consentimento?.invalid && (consentimento?.touched || tentou())) {
+            <div class="invalid-feedback d-block">É necessário o seu consentimento para enviar a candidatura.</div>
+            }
+
+            <div class="cd-acoes mt-3">
+              <button type="submit" class="cd-btn" [disabled]="aEnviar()">
+                {{ aEnviar() ? 'A enviar...' : 'Enviar candidatura' }}
+              </button>
+              <a [routerLink]="['/vaga', v.vacanciesId]" class="cd-btn cd-btn--sec">Cancelar</a>
+            </div>
+          </section>
+
+        </form>
+      </div>
+
+      <!-- ===== COLUNA LATERAL ===== -->
+      <aside class="col-lg-4">
+        <div class="cd-lateral">
+
+          <section class="cd-cartao">
+            <h2 class="cd-cartao-titulo">A vaga</h2>
+            <div class="cd-vaga-titulo">{{ v.title }}</div>
+            <div class="cd-vaga-empresa">{{ v.companyName }}</div>
+
+            <ul class="cd-vaga-dados">
+              @if (local(v)) {
+              <li>{{ local(v) }}</li> }
+              @if (contrato(v)) {
+              <li>{{ contrato(v) }}</li> }
+              @if (modalidade(v)) {
+              <li>{{ modalidade(v) }}</li> }
+              @if (v.deadline) {
+              <li>Candidaturas até {{ v.deadline | date:'dd-MM-yyyy' }}</li> }
+            </ul>
+
+            <a [routerLink]="['/vaga', v.vacanciesId]" class="cd-link">Ver a vaga completa</a>
+          </section>
+
+          <section class="cd-cartao">
+            <h2 class="cd-cartao-titulo">Antes de enviar</h2>
+            <ul class="cd-dicas">
+              <li>Confirme que o seu CV está actualizado.</li>
+              <li>Adapte a carta de apresentação a esta vaga.</li>
+              <li>Verifique o seu email e telefone: é por aí que a empresa o vai contactar.</li>
+            </ul>
+          </section>
+
+        </div>
+      </aside>
+
+    </div>
+
+    }
+
+    }
+    <div style="margin-bottom:140px;"></div>
+  </div>
+</div>
+
+<app-footer></app-footer>

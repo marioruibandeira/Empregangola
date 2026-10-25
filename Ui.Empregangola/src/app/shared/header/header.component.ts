@@ -38,7 +38,7 @@ export class HeaderComponent { // MUDOU: O nome da classe deve ser HeaderCompone
 
   logout() {
     this.authService.logout();
-    this.isMenuOpen.set(false); // Fecha o menu ao sair
+    this.isMenuOpen.set(false); 
     this.router.navigate(['/']); 
   }
 }

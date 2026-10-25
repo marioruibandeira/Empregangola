@@ -1,0 +1,351 @@
+<div class="wrapper">
+  <app-besidebar />
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+
+    <div class="container">
+      <div class="page-inner gp-pagina">
+
+        @if (mensagem(); as m) {
+        <div class="alert d-flex justify-content-between align-items-start"
+             [class.alert-success]="m.tipo === 'sucesso'"
+             [class.alert-danger]="m.tipo === 'erro'" role="alert">
+          <span>{{ m.texto }}</span>
+          <button type="button" class="btn-close" aria-label="Fechar" (click)="mensagem.set(null)"></button>
+        </div>
+        }
+
+        <!-- ============================================================ -->
+        <!--  LISTA                                                        -->
+        <!-- ============================================================ -->
+        @if (vista() === 'lista') {
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+          <div>
+            <h3 class="fw-bold mb-1">Planos de destaque</h3>
+            <p class="nv-sub mb-0">
+              Os planos activos aparecem às empresas, pela ordem desta lista.
+            </p>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="novoPlano()">
+            <i class="bi bi-plus-lg"></i> Novo plano
+          </button>
+        </div>
+
+        @if (activos() === 0) {
+        <div class="alert alert-warning" role="alert">
+          Não há nenhum plano activo. Enquanto assim for, a página de planos das empresas fica vazia.
+        </div>
+        }
+
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th>ORDEM</th>
+                    <th>NOME</th>
+                    <th>DURAÇÃO</th>
+                    <th>PREÇO</th>
+                    <th>BENEFÍCIOS</th>
+                    <th>ESTADO</th>
+                    <th class="text-end">ACÇÕES</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (p of planos(); track p.id; let i = $index; let ultimo = $last) {
+                  <tr [class.gp-inactivo]="!p.activo">
+                    <td class="gp-ordem">
+                      <button type="button" class="gp-icone" aria-label="Subir plano" title="Subir"
+                              [disabled]="i === 0" (click)="mover(i, -1)">
+                        <i class="bi bi-chevron-up"></i>
+                      </button>
+                      <span>{{ i + 1 }}</span>
+                      <button type="button" class="gp-icone" aria-label="Descer plano" title="Descer"
+                              [disabled]="ultimo" (click)="mover(i, 1)">
+                        <i class="bi bi-chevron-down"></i>
+                      </button>
+                    </td>
+
+                    <td>
+                      <strong>{{ p.nome }}</strong>
+                      @if (p.recomendado) {
+                      <span class="badge gp-badge-recomendado ms-2">Mais escolhido</span>
+                      }
+                      <div class="nv-sub">{{ p.descricao }}</div>
+                    </td>
+
+                    <td>{{ p.duracaoDias }} dias</td>
+                    <td>{{ textoPreco(p.preco) }}</td>
+                    <td>{{ textoBeneficios(p) }}</td>
+
+                    <td>
+                      <span class="badge" [class.bg-success]="p.activo" [class.bg-secondary]="!p.activo">
+                        {{ p.activo ? 'Activo' : 'Inactivo' }}
+                      </span>
+                    </td>
+
+                    <td class="text-end">
+                      @if (eliminarId() === p.id) {
+                      <span class="gp-confirmar">Eliminar?</span>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(p)">Sim</button>
+                      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="cancelarEliminar()">Não</button>
+                      } @else {
+                      <button type="button" class="gp-icone" aria-label="Editar plano" title="Editar"
+                              (click)="editar(p)">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+
+                      <button type="button" class="gp-icone" [class.gp-icone--activo]="p.recomendado"
+                              [attr.aria-pressed]="p.recomendado"
+                              aria-label="Marcar como mais escolhido"
+                              [title]="p.recomendado ? 'Tirar a fita Mais escolhido' : 'Marcar como Mais escolhido'"
+                              (click)="alternarRecomendado(p)">
+                        <i class="bi" [class.bi-star-fill]="p.recomendado" [class.bi-star]="!p.recomendado"></i>
+                      </button>
+
+                      <button type="button" class="gp-icone" aria-label="Activar ou desactivar plano"
+                              [title]="p.activo ? 'Desactivar' : 'Activar'"
+                              (click)="alternarActivo(p)">
+                        <i class="bi" [class.bi-eye]="p.activo" [class.bi-eye-slash]="!p.activo"></i>
+                      </button>
+
+                      <button type="button" class="gp-icone gp-icone--perigo" aria-label="Eliminar plano" title="Eliminar"
+                              (click)="pedirEliminar(p.id)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      }
+                    </td>
+                  </tr>
+                  } @empty {
+                  <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                      Ainda não há planos. Carregue em "Novo plano" para criar o primeiro.
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+
+            <p class="nv-sub mb-0 mt-2">
+              Dica: em vez de eliminar um plano que já foi usado, desactive-o. Assim o histórico mantém-se.
+            </p>
+          </div>
+        </div>
+
+        } @else {
+
+        <!-- ============================================================ -->
+        <!--  FORMULÁRIO                                                   -->
+        <!-- ============================================================ -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+          <div>
+            <h3 class="fw-bold mb-1">{{ editandoId() === null ? 'Novo plano' : 'Editar plano' }}</h3>
+            <p class="nv-sub mb-0">O cartão à direita mostra como a empresa vai ver o plano.</p>
+          </div>
+          <button type="button" class="btn btn-outline-secondary" (click)="cancelar()">
+            <i class="bi bi-arrow-left"></i> Voltar à lista
+          </button>
+        </div>
+
+        @if (erroForm(); as erro) {
+        <div class="alert alert-danger" role="alert">{{ erro }}</div>
+        }
+
+        <form [formGroup]="form" class="row g-2 g-xl-4" (ngSubmit)="guardar()">
+
+          <!-- ===== COLUNA PRINCIPAL ===== -->
+          <div class="col-lg-7">
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Dados do plano</div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="nome">Nome <span class="nv-obrig">*</span></label>
+                      <input type="text" id="nome" formControlName="nome" class="form-control" maxlength="40"
+                             placeholder="Ex.: Profissional"
+                             [class.is-invalid]="nome?.invalid && nome?.touched" />
+                      @if (nome?.touched) {
+                      @if (nome?.errors?.['required']) {
+                      <div class="invalid-feedback d-block">O nome é obrigatório.</div>
+                      }
+                      @if (nome?.errors?.['minlength']) {
+                      <div class="invalid-feedback d-block">O nome deve ter pelo menos 3 caracteres.</div>
+                      }
+                      @if (nome?.errors?.['duplicado']) {
+                      <div class="invalid-feedback d-block">Já existe um plano com este nome.</div>
+                      }
+                      }
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="descricao">Descrição</label>
+                      <input type="text" id="descricao" formControlName="descricao" class="form-control" maxlength="120"
+                             placeholder="Uma frase curta que diz a quem se destina o plano." />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="duracaoDias">Duração <span class="nv-obrig">*</span></label>
+                      <div class="input-group">
+                        <input type="number" id="duracaoDias" formControlName="duracaoDias" class="form-control" min="1" max="365"
+                               [class.is-invalid]="duracaoDias?.invalid && duracaoDias?.touched" />
+                        <span class="input-group-text">dias</span>
+                      </div>
+                      @if (duracaoDias?.invalid && duracaoDias?.touched) {
+                      <div class="invalid-feedback d-block">Indique um número inteiro de dias, entre 1 e 365.</div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="preco">Preço por vaga <span class="nv-obrig">*</span></label>
+                      <div class="input-group">
+                        <input type="number" id="preco" formControlName="preco" class="form-control" min="0"
+                               placeholder="35 000"
+                               [class.is-invalid]="preco?.invalid && preco?.touched" />
+                        <span class="input-group-text">Kz</span>
+                      </div>
+                      @if (preco?.invalid && preco?.touched) {
+                      <div class="invalid-feedback d-block">Indique o preço (zero ou mais).</div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-check gp-caixa">
+                      <input class="form-check-input" type="checkbox" id="recomendado" formControlName="recomendado" />
+                      <label class="form-check-label" for="recomendado">
+                        <b>Mais escolhido</b>
+                        <span class="d-block nv-sub">Mostra a fita no cartão. Só um plano de cada vez a tem.</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-check gp-caixa">
+                      <input class="form-check-input" type="checkbox" id="activo" formControlName="activo" />
+                      <label class="form-check-label" for="activo">
+                        <b>Activo</b>
+                        <span class="d-block nv-sub">Só os planos activos aparecem às empresas.</span>
+                      </label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Benefícios</div>
+                <p class="nv-sub mb-0">
+                  Marque o que está incluído. Mantenha os mesmos benefícios em todos os planos, para as empresas os compararem.
+                </p>
+              </div>
+              <div class="card-body">
+                <div formArrayName="beneficios">
+                  @for (b of beneficiosArr.controls; track b; let i = $index) {
+                  <div class="gp-beneficio" [formGroupName]="i">
+                    <div class="form-check gp-beneficio-incluido">
+                      <input class="form-check-input" type="checkbox" formControlName="incluido"
+                             [id]="'incluido-' + i" />
+                      <label class="form-check-label" [for]="'incluido-' + i">Incluído</label>
+                    </div>
+                    <input type="text" class="form-control" formControlName="texto" maxlength="80"
+                           [attr.aria-label]="'Benefício ' + (i + 1)"
+                           placeholder="Ex.: Relatório de visualizações" />
+                    <button type="button" class="gp-icone gp-icone--perigo" aria-label="Remover benefício"
+                            (click)="removerBeneficio(i)">
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
+                  }
+                </div>
+
+                <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="adicionarBeneficio()">
+                  <i class="bi bi-plus-lg"></i> Adicionar benefício
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ===== COLUNA LATERAL ===== -->
+          <aside class="col-lg-5">
+            <div class="gp-lateral">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Pré-visualização</div>
+                </div>
+                <div class="card-body">
+
+                  <div class="gp-prev" [class.gp-prev--recomendado]="previsao().recomendado">
+                    @if (previsao().recomendado) {
+                    <span class="gp-fita">Mais escolhido</span>
+                    }
+
+                    <h5 class="gp-prev-nome" [class.gp-vazio]="!previsao().nome">
+                      {{ previsao().nome || 'Nome do plano' }}
+                    </h5>
+                    <p class="gp-prev-descricao">{{ previsao().descricao }}</p>
+
+                    <div class="gp-prev-preco">
+                      <span class="gp-prev-valor">
+                        {{ previsao().preco === null ? '—' : formatarKz(previsao().preco!) }}
+                      </span>
+                      @if (previsao().preco !== null) { <span class="gp-prev-moeda">Kz</span> }
+                    </div>
+                    <div class="gp-prev-duracao">{{ textoDuracao(previsao()) }}</div>
+
+                    <ul class="gp-prev-beneficios">
+                      @for (b of previsao().beneficios; track $index) {
+                      <li [class.gp-prev-fora]="!b.incluido">
+                        @if (b.incluido) {
+                        <i class="bi bi-check-circle-fill gp-sim" aria-hidden="true"></i>
+                        <span class="visually-hidden">Incluído:</span>
+                        } @else {
+                        <i class="bi bi-dash-circle gp-nao" aria-hidden="true"></i>
+                        <span class="visually-hidden">Não incluído:</span>
+                        }
+                        {{ b.texto }}
+                      </li>
+                      }
+                    </ul>
+                  </div>
+
+                  @if (!previsao().activo) {
+                  <p class="nv-sub mt-3 mb-0">Este plano está inactivo e não aparece às empresas.</p>
+                  }
+                </div>
+
+                <div class="card-action">
+                  <button type="submit" class="btn btn-primary w-100">
+                    {{ editandoId() === null ? 'Criar plano' : 'Guardar alterações' }}
+                  </button>
+                  <button type="button" class="btn btn-link w-100 mt-2" (click)="cancelar()">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+        </form>
+        }
+
+      </div>
+    </div>
+
+    <app-befooter />
+  </div>
+</div>

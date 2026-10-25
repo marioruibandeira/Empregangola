@@ -1,0 +1,193 @@
+/* Evita o scroll horizontal causado pelas margens negativas do .row */
+.pl-pagina {
+  overflow-x: clip;
+}
+
+.pl-cabecalho {
+  margin-bottom: 24px;
+}
+
+/* ---------- Cartão do plano ---------- */
+.pl-card {
+  position: relative;
+  border: 1px solid #e8e0d8;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+  .pl-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(26, 18, 7, 0.1);
+  }
+
+.pl-card--recomendado {
+  border-color: #f2670c;
+}
+
+.pl-card--seleccionado {
+  border-color: #c2410c;
+  box-shadow: 0 0 0 3px rgba(242, 103, 12, 0.25);
+}
+
+.pl-fita {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: #f2670c;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pl-card .card-body {
+  padding: 28px 24px 24px;
+}
+
+/* ---------- Textos ---------- */
+.pl-nome {
+  margin: 0 0 4px;
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1207;
+}
+
+.pl-descricao {
+  min-height: 40px;
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: #7a6e64;
+}
+
+.pl-preco {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.pl-valor {
+  font-family: 'Sora', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #1a1207;
+}
+
+.pl-moeda {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a4038;
+}
+
+.pl-duracao {
+  margin: 4px 0 20px;
+  font-size: 13px;
+  color: #7a6e64;
+}
+
+/* ---------- Benefícios ---------- */
+.pl-beneficios {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+  .pl-beneficios li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 14px;
+    color: #4a4038;
+  }
+
+.pl-beneficio--fora {
+  color: #a79c92 !important;
+}
+
+.pl-icone {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 16px;
+}
+
+.pl-icone--sim {
+  color: #198754;
+}
+
+.pl-icone--nao {
+  color: #c9c0b8;
+}
+
+/* ---------- Botões ---------- */
+.pl-btn {
+  width: 100%;
+  padding: 11px 20px;
+  border: 1px solid #f2670c;
+  border-radius: 8px;
+  background: #fff;
+  color: #f2670c;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+  .pl-btn:hover {
+    background: #fff4e8;
+  }
+
+.pl-btn--seleccionado,
+.pl-btn--seleccionado:hover {
+  background: #f2670c;
+  color: #fff;
+}
+
+.pl-btn:focus-visible {
+  outline: 3px solid rgba(242, 103, 12, 0.35);
+  outline-offset: 2px;
+}
+
+/* ---------- Resumo da escolha ---------- */
+.pl-resumo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 16px 24px;
+  border: 1px solid #e8e0d8;
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.pl-resumo--activo {
+  border-color: #f2670c;
+  background: #fff9f3;
+}
+
+.pl-resumo-texto {
+  color: #1a1207;
+}
+
+.pl-btn--continuar {
+  width: auto;
+  min-width: 160px;
+  background: #f2670c;
+  color: #fff;
+}
+
+  .pl-btn--continuar:hover {
+    background: #c2410c;
+  }
+
+  .pl-btn--continuar:disabled {
+    border-color: #d9d0c7;
+    background: #d9d0c7;
+    color: #fff;
+    cursor: not-allowed;
+  }
