@@ -1,0 +1,202 @@
+<!-- checkout.component.html -->
+<div class="wrapper">
+  <app-besidebar></app-besidebar>
+
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Pedro'"
+                  [emailUtilizador]="'info@lea.co.ao'"
+                  [notificacoes]="4">
+    </app-beheader>
+
+    <div class="container">
+      <div class="page-inner">
+
+        <section class="ck" aria-labelledby="ck-title">
+
+          <div class="alert alert-warning" role="alert">
+            <h3 class="fw-bold mb-1">Pagamento</h3>Resumo da compra
+            <p class="nv-sub mb-0">Preencha os dados do titular e do cartão para concluir o pagamento.</p>
+          </div>
+          
+
+          <form id="checkout-form" class="ck-layout">
+
+            <div class="ck-steps">
+
+              <!-- ============ Dados do titular ============ -->
+              <fieldset class="ck-card">
+                <legend>
+                  <h3>Dados do titular do cartão</h3>
+                </legend>
+
+                <div class="ck-grid">
+
+                  <div class="ck-field ck-field--full">
+                    <label for="holderName">
+                      Nome como aparece no cartão
+                    </label>
+
+                    <input id="holderName"
+                           type="text"
+                           name="holderName"
+                           autocomplete="cc-name"
+                           placeholder="Ex.: Ana Beatriz Fernandes"
+                           value="João Silva Pereira">
+                  </div>
+
+                  <div class="ck-field ck-field--full">
+                    <label for="email">
+                      Email para receber o recibo
+                    </label>
+
+                    <input id="email"
+                           type="email"
+                           name="email"
+                           autocomplete="email"
+                           placeholder="nome@empresa.co.ao"
+                           value="joao.silva@exemplo.co.ao">
+                  </div>
+
+                  <div class="ck-field ck-field--full">
+                    <label for="address">Morada</label>
+
+                    <input id="address"
+                           type="text"
+                           name="address"
+                           autocomplete="address-line1"
+                           placeholder="Rua, número, bairro"
+                           value="Rua das Acácias, 123">
+                  </div>
+
+                  <div class="ck-field">
+                    <label for="city">Cidade</label>
+
+                    <input id="city"
+                           type="text"
+                           name="city"
+                           autocomplete="address-level2"
+                           placeholder="Luanda"
+                           value="Luanda">
+                  </div>
+
+                  <div class="ck-field">
+                    <label for="country">País</label>
+
+                    <select id="country"
+                            name="country"
+                            autocomplete="country">
+
+                      <option value="AO" selected>Angola</option>
+                      <option value="PT">Portugal</option>
+                      <option value="MZ">Moçambique</option>
+                      <option value="BR">Brasil</option>
+
+                    </select>
+                  </div>
+
+                </div>
+              </fieldset>
+
+              <!-- ============ Dados do cartão ============ -->
+              <fieldset class="ck-card">
+                <legend>
+                  <h3>Dados do cartão</h3>
+                </legend>
+
+                <div class="ck-grid">
+
+                  <div class="ck-field ck-field--full">
+                    <label for="cardNumber">
+                      Número do cartão
+                    </label>
+
+                    <input id="cardNumber"
+                           type="text"
+                           name="cardNumber"
+                           placeholder="4242 4242 4242 4242"
+                           value="4242 4242 4242 4242"
+                           autocomplete="off"
+                           disabled>
+                  </div>
+
+                  <div class="ck-field">
+                    <label for="cardExpiry">Validade</label>
+
+                    <input id="cardExpiry"
+                           type="text"
+                           name="cardExpiry"
+                           placeholder="MM/AA"
+                           value="12/28"
+                           disabled>
+                  </div>
+
+                  <div class="ck-field">
+                    <label for="cardCvc">
+                      Código de segurança
+                    </label>
+
+                    <input id="cardCvc"
+                           type="text"
+                           name="cardCvc"
+                           placeholder="CVC"
+                           value="123"
+                           disabled>
+                  </div>
+
+                </div>
+
+                <p class="ck-secure">
+                  Os dados do cartão são enviados directamente para a Stripe,
+                  através de campos seguros. Nós nunca os vemos nem os guardamos.
+                </p>
+              </fieldset>
+
+            </div>
+
+            <!-- ============ Resumo e botão ============ -->
+            <aside class="ck-summary" aria-labelledby="ck-summary-title">
+
+              <h3 id="ck-summary-title">Resumo da compra</h3>
+
+              <dl class="ck-summary__list">
+
+                <div>
+                  <dt>Vaga a destacar</dt>
+                  <dd>Desenvolvedor .NET</dd>
+                </div>
+
+                <div>
+                  <dt>Duração do destaque</dt>
+                  <dd>30 dias</dd>
+                </div>
+
+              </dl>
+
+              <div class="ck-summary__total">
+                <span>Total a pagar</span>
+                <strong>25 000 Kz</strong>
+              </div>
+
+              <button type="button"
+                      class="ck-button">
+                Pagar 25 000 Kz
+              </button>
+
+              <p class="ck-note">
+                Pagamento processado pela Stripe. Se o seu banco pedir
+                confirmação, aparecerá uma janela para a autorizar.
+              </p>
+
+            </aside>
+
+          </form>
+
+        </section>
+
+      </div>
+    </div>
+
+    <app-befooter></app-befooter>
+
+  </div>
+</div>

@@ -1,0 +1,362 @@
+/* checkout.component.css
+   Estilos isolados no componente (prefixo ck-). Herdam a fonte do template. */
+
+:host {
+  --ck-ink: #16283a;
+  --ck-text: #3b4b5a;
+  --ck-soft: #6b7a89;
+  --ck-line: #dde4ea;
+  --ck-bg: #f3f6f8;
+  --ck-surface: #ffffff;
+  --ck-accent: #c2410c;
+  --ck-accent-dark: #9a3412;
+  --ck-accent-light: #fdeadc;
+  --ck-bad: #b42318;
+  --ck-bad-light: #fdecea;
+  display: block;
+  color: var(--ck-text);
+}
+
+.ck * {
+  box-sizing: border-box;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.ck-top {
+  margin-bottom: 20px;
+}
+
+.ck-back {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--ck-accent-dark);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+  .ck-back:hover {
+    text-decoration: underline;
+  }
+
+.ck-top h2 {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ck-ink);
+}
+
+.ck-top p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ck-soft);
+}
+
+.ck-alert {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--ck-bad-light);
+  color: var(--ck-bad);
+  font-size: 0.9rem;
+}
+
+  .ck-alert p {
+    margin: 0;
+  }
+
+.ck-link {
+  color: var(--ck-accent-dark);
+  font-weight: 600;
+}
+
+/* ---------- Estrutura ---------- */
+
+.ck-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 1000px) {
+  .ck-layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+  }
+
+  .ck-summary {
+    position: sticky;
+    top: 16px;
+  }
+}
+
+.ck-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.ck-card {
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--ck-line);
+  border-radius: 12px;
+  background: var(--ck-surface);
+}
+
+  .ck-card legend {
+    float: left;
+    width: 100%;
+    padding: 0;
+  }
+
+    .ck-card legend h3 {
+      margin: 0 0 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ck-ink);
+    }
+
+.ck-grid {
+  clear: both;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 560px) {
+  .ck-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ck-field--full {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Campos ---------- */
+
+.ck-field {
+  min-width: 0;
+}
+
+  .ck-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ck-ink);
+  }
+
+  .ck-field input,
+  .ck-field select,
+  .ck-stripe {
+    width: 100%;
+    height: 46px;
+    padding: 0 12px;
+    border: 1px solid var(--ck-line);
+    border-radius: 8px;
+    background-color: var(--ck-surface);
+    color: var(--ck-ink);
+    font: inherit;
+    font-size: 1rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+    .ck-field input::placeholder {
+      color: var(--ck-soft);
+    }
+
+/* O campo da Stripe fica dentro de uma caixa igual às outras */
+.ck-stripe {
+  display: flex;
+  align-items: center;
+}
+
+  .ck-stripe > div {
+    width: 100%;
+  }
+
+.ck-field input:focus,
+.ck-field select:focus,
+.ck-stripe--focus {
+  outline: none;
+  border-color: var(--ck-accent);
+  box-shadow: 0 0 0 3px var(--ck-accent-light);
+}
+
+.ck-invalid,
+.ck-field input.ck-invalid {
+  border-color: var(--ck-bad);
+}
+
+.ck-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%236b7a89' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px 8px;
+}
+
+.ck-msg {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: var(--ck-bad);
+}
+
+.ck-msg--card {
+  margin: 14px 0 0;
+}
+
+.ck-secure {
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--ck-line);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ck-soft);
+}
+
+/* ---------- Resumo ---------- */
+
+.ck-summary {
+  padding: 20px;
+  border: 1px solid var(--ck-line);
+  border-radius: 12px;
+  background: var(--ck-surface);
+}
+
+  .ck-summary h3 {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ck-ink);
+  }
+
+.ck-summary__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+
+  .ck-summary__list dt {
+    margin: 0 0 2px;
+    font-size: 0.78rem;
+    color: var(--ck-soft);
+  }
+
+  .ck-summary__list dd {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ck-ink);
+  }
+
+.ck-summary__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--ck-line);
+  border-bottom: 1px solid var(--ck-line);
+}
+
+  .ck-summary__total strong {
+    font-size: 1.4rem;
+    color: var(--ck-ink);
+  }
+
+.ck-loading {
+  margin: 0 0 16px;
+  color: var(--ck-soft);
+  font-size: 0.9rem;
+}
+
+.ck-error {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--ck-bad-light);
+  color: var(--ck-bad);
+  font-size: 0.85rem;
+}
+
+.ck-button {
+  width: 100%;
+  height: 48px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--ck-accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+  .ck-button:hover:not(:disabled) {
+    background: var(--ck-accent-dark);
+  }
+
+  .ck-button:disabled {
+    background: #d5dbe1;
+    color: #8995a1;
+    cursor: not-allowed;
+  }
+
+.ck-note {
+  margin: 12px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ck-soft);
+}
+
+/* ---------- Acessibilidade ---------- */
+
+.ck-button:focus-visible,
+.ck-back:focus-visible,
+.ck-link:focus-visible {
+  outline: 2px solid var(--ck-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ck-field input,
+  .ck-field select,
+  .ck-stripe,
+  .ck-button {
+    transition: none;
+  }
+}
+
+@media (min-width: 1000px) {
+  .ck-layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start; /* sem isto o resumo estica e o sticky não tem efeito */
+  }
+
+  .ck-summary {
+    position: sticky;
+    top: 90px;
+    align-self: start;
+  }
+}
+
+.main-panel .container {
+  overflow: visible;
+  display: flow-root;
+}

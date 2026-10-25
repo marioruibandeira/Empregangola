@@ -1,0 +1,193 @@
+/* O template do painel corta o position: sticky se o .container esconder o overflow */
+.main-panel .container {
+  overflow: visible;
+}
+
+/* Evita o scroll horizontal causado pelas margens negativas do .row */
+.gf-pagina {
+  overflow-x: clip;
+}
+
+/* Textos auxiliares usados nas outras páginas do painel */
+.nv-sub {
+  font-size: 13px;
+  color: #7a6e64;
+}
+
+.nv-obrig {
+  color: #dc3545;
+}
+
+/* ---------- Botões de ícone ---------- */
+.gf-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: #4a4038;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+  .gf-icone:hover {
+    background: #f5f1ec;
+    color: #f2670c;
+  }
+
+.gf-icone--perigo:hover {
+  background: #fdecea;
+  color: #ba2507;
+}
+
+.gf-confirmar {
+  margin-right: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ba2507;
+}
+
+/* ---------- Listas de itens (objectivos, requisitos...) ---------- */
+.gf-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.gf-rotulo {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1207;
+}
+
+/* ---------- Módulos e aulas ---------- */
+.gf-modulo {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #e8e0d8;
+  border-radius: 10px;
+  background: #fcfaf8;
+}
+
+.gf-modulo-cab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+  .gf-modulo-cab input {
+    font-weight: 600;
+  }
+
+.gf-modulo-info {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: #7a6e64;
+  white-space: nowrap;
+}
+
+.gf-aula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.gf-aula-nome {
+  flex: 1 1 220px;
+}
+
+.gf-aula-tipo {
+  flex: 0 0 120px;
+}
+
+.gf-aula-duracao {
+  flex: 0 0 90px;
+}
+
+.gf-aula-preview {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.gf-aula-erro {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+/* ---------- Barra lateral ---------- */
+.gf-lateral {
+  position: sticky;
+  top: 90px;
+}
+
+.gf-resumo {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 12px;
+  margin: 0;
+  font-size: 14px;
+}
+
+  .gf-resumo dt {
+    font-weight: 400;
+    color: #7a6e64;
+  }
+
+  .gf-resumo dd {
+    margin: 0;
+    font-weight: 600;
+    color: #1a1207;
+    text-align: right;
+  }
+
+.gf-checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+  .gf-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 13px;
+    color: #7a6e64;
+  }
+
+    .gf-checklist li i {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #c9c0b8;
+    }
+
+.gf-checklist--ok {
+  color: #1a1207 !important;
+}
+
+  .gf-checklist--ok i {
+    color: #198754 !important;
+  }
+
+@media (max-width: 576px) {
+  .gf-modulo-cab {
+    flex-wrap: wrap;
+  }
+
+  .gf-modulo-info {
+    order: 3;
+    flex-basis: 100%;
+  }
+}

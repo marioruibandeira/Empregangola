@@ -1,0 +1,509 @@
+<div class="wrapper">
+  <app-besidebar />
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+
+    <div class="container">
+      <div class="page-inner gf-pagina">
+
+        @if (mensagem(); as m) {
+        <div class="alert d-flex justify-content-between align-items-start"
+             [class.alert-success]="m.tipo === 'sucesso'"
+             [class.alert-danger]="m.tipo === 'erro'" role="alert">
+          <span>{{ m.texto }}</span>
+          <button type="button" class="btn-close" aria-label="Fechar" (click)="mensagem.set(null)"></button>
+        </div>
+        }
+
+        <!-- ============================================================ -->
+        <!--  LISTA                                                        -->
+        <!-- ============================================================ -->
+        @if (vista() === 'lista') {
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+          <div>
+            <h3 class="fw-bold mb-1">Formações</h3>
+            <p class="nv-sub mb-0">Crie, edite e publique as formações do seu centro.</p>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="novaFormacao()">
+            <i class="bi bi-plus-lg"></i> Nova formação
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+
+            <div class="row g-2 mb-3">
+              <div class="col-md-8">
+                <input type="search" class="form-control" placeholder="Pesquisar por título ou área"
+                       aria-label="Pesquisar formações"
+                       [value]="filtroTexto()" (input)="filtroTexto.set(valorDe($event))">
+              </div>
+              <div class="col-md-4">
+                <select class="form-select" aria-label="Filtrar por estado"
+                        (change)="filtroEstado.set($any($event.target).value)">
+                  <option value="">Todos os estados</option>
+                  <option value="rascunho">Rascunho</option>
+                  <option value="publicada">Publicada</option>
+                  <option value="arquivada">Arquivada</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>TÍTULO</th>
+                    <th>ÁREA</th>
+                    <th>PREÇO</th>
+                    <th>ESTADO</th>
+                    <th>ACTUALIZADA</th>
+                    <th class="text-end">ACÇÕES</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (f of lista(); track f.id; let i = $index) {
+                  <tr>
+                    <th>{{ i + 1 }}</th>
+                    <td>{{ f.titulo }}</td>
+                    <td>{{ f.area || '—' }}</td>
+                    <td>{{ textoPreco(f) }}</td>
+                    <td><span [class]="'badge ' + estadoClasse(f.estado)">{{ estadoTexto(f.estado) }}</span></td>
+                    <td>{{ f.actualizadaEm | date:'dd-MM-yyyy' }}</td>
+                    <td class="text-end">
+                      @if (eliminarId() === f.id) {
+                      <span class="gf-confirmar">Eliminar?</span>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(f)">Sim</button>
+                      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="cancelarEliminar()">Não</button>
+                      } @else {
+                      <button type="button" class="gf-icone" title="Editar" aria-label="Editar formação" (click)="editar(f)">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+
+                      @if (f.estado === 'publicada') {
+                      <button type="button" class="gf-icone" title="Arquivar" aria-label="Arquivar formação"
+                              (click)="alterarEstado(f, 'arquivada')">
+                        <i class="bi bi-archive"></i>
+                      </button>
+                      } @else {
+                      <button type="button" class="gf-icone" aria-label="Publicar formação"
+                              [title]="f.estado === 'arquivada' ? 'Republicar' : 'Publicar'"
+                              (click)="alterarEstado(f, 'publicada')">
+                        <i class="bi bi-cloud-arrow-up"></i>
+                      </button>
+                      }
+
+                      <button type="button" class="gf-icone gf-icone--perigo" title="Eliminar" aria-label="Eliminar formação"
+                              (click)="pedirEliminar(f.id)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      }
+                    </td>
+                  </tr>
+                  } @empty {
+                  <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                      @if (formacoes().length === 0) {
+                      Ainda não tem formações. Carregue em "Nova formação" para começar.
+                      } @else {
+                      Nenhuma formação corresponde aos filtros.
+                      }
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        } @else {
+
+        <!-- ============================================================ -->
+        <!--  EDITOR                                                       -->
+        <!-- ============================================================ -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+          <div>
+            <h3 class="fw-bold mb-1">{{ editandoId() === null ? 'Nova formação' : 'Editar formação' }}</h3>
+            <p class="nv-sub mb-0">Os campos seguem a página pública da formação.</p>
+          </div>
+          <button type="button" class="btn btn-outline-secondary" (click)="cancelar()">
+            <i class="bi bi-arrow-left"></i> Voltar à lista
+          </button>
+        </div>
+
+        @if (faltas().length) {
+        <div class="alert alert-danger" role="alert">
+          <strong>Complete antes de continuar:</strong>
+          <ul class="mb-0 mt-2">
+            @for (t of faltas(); track t) {
+            <li>{{ t }}</li> }
+          </ul>
+        </div>
+        }
+
+        <form [formGroup]="form" class="row g-2 g-xl-4">
+
+          <!-- ===== COLUNA PRINCIPAL ===== -->
+          <div class="col-lg-8">
+
+            <!-- Informação básica -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Informação básica</div>
+                <p class="nv-sub mb-0">O título, o subtítulo e a área são o que os formandos vêem primeiro.</p>
+              </div>
+              <div class="card-body">
+                <div class="row">
+
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="titulo">Título da formação <span class="nv-obrig">*</span></label>
+                      <input type="text" id="titulo" formControlName="titulo" class="form-control" maxlength="120"
+                             placeholder="Ex.: Bootcamp Completo de Python"
+                             [class.is-invalid]="titulo?.invalid && titulo?.touched" />
+                      @if (titulo?.errors?.['required'] && titulo?.touched) {
+                      <div class="invalid-feedback d-block">O título é obrigatório.</div>
+                      }
+                      @if (titulo?.errors?.['minlength'] && titulo?.touched) {
+                      <div class="invalid-feedback d-block">O título deve ter pelo menos 5 caracteres.</div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="subtitulo">Subtítulo</label>
+                      <textarea id="subtitulo" formControlName="subtitulo" class="form-control" rows="2" maxlength="250"
+                                placeholder="Uma frase que resume o que o formando vai conseguir fazer."></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="area">Área</label>
+                      <select id="area" formControlName="area" class="form-select">
+                        <option value="">Seleccione</option>
+                        @for (a of areas; track a) {
+                        <option [value]="a">{{ a }}</option> }
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="subarea">Subárea</label>
+                      <input type="text" id="subarea" formControlName="subarea" class="form-control"
+                             placeholder="Ex.: Linguagens de Programação" />
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="topico">Tópico</label>
+                      <input type="text" id="topico" formControlName="topico" class="form-control"
+                             placeholder="Ex.: Python" />
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="idioma">Idioma</label>
+                      <select id="idioma" formControlName="idioma" class="form-select">
+                        @for (i of idiomas; track i) {
+                        <option [value]="i">{{ i }}</option> }
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label for="imagem">Imagem de capa</label>
+                      <input type="text" id="imagem" formControlName="imagem" class="form-control"
+                             placeholder="Caminho ou endereço da imagem" />
+                      <small class="nv-sub">O carregamento de ficheiros fica para quando houver backend.</small>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- O que vão aprender -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">O que vão aprender</div>
+                <p class="nv-sub mb-0">Um objectivo por linha, em frases curtas.</p>
+              </div>
+              <div class="card-body">
+                <div formArrayName="aprender">
+                  @for (c of aprenderArr.controls; track c; let i = $index) {
+                  <div class="gf-item">
+                    <input type="text" class="form-control" [formControlName]="i"
+                           [attr.aria-label]="'Objectivo ' + (i + 1)"
+                           placeholder="Ex.: Vais dominar Python construindo 100 projectos." />
+                    <button type="button" class="gf-icone gf-icone--perigo" aria-label="Remover objectivo"
+                            (click)="removerItem(aprenderArr, i)">
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
+                  }
+                </div>
+                <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="adicionarItem(aprenderArr)">
+                  <i class="bi bi-plus-lg"></i> Adicionar objectivo
+                </button>
+              </div>
+            </div>
+
+            <!-- Esta formação inclui -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Esta formação inclui</div>
+                <p class="nv-sub mb-0">O que o formando recebe (horas de vídeo, recursos, certificado...).</p>
+              </div>
+              <div class="card-body">
+                <div formArrayName="inclui">
+                  @for (c of incluiArr.controls; track c; let i = $index) {
+                  <div class="gf-item">
+                    <input type="text" class="form-control" [formControlName]="i"
+                           [attr.aria-label]="'Item incluído ' + (i + 1)"
+                           placeholder="Ex.: 52 horas de vídeo sob demanda" />
+                    <button type="button" class="gf-icone gf-icone--perigo" aria-label="Remover item"
+                            (click)="removerItem(incluiArr, i)">
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
+                  }
+                </div>
+                <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="adicionarItem(incluiArr)">
+                  <i class="bi bi-plus-lg"></i> Adicionar item
+                </button>
+              </div>
+            </div>
+
+            <!-- Conteúdo programático -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Conteúdo programático</div>
+                <p class="nv-sub mb-0">Módulos e aulas. A duração escreve-se como mm:ss (ex.: 3:27).</p>
+              </div>
+              <div class="card-body">
+                <div formArrayName="modulos">
+                  @for (modulo of modulosArr.controls; track modulo; let mi = $index) {
+                  <div class="gf-modulo" [formGroupName]="mi">
+
+                    <div class="gf-modulo-cab">
+                      <input type="text" class="form-control" formControlName="titulo"
+                             [attr.aria-label]="'Título do módulo ' + (mi + 1)"
+                             placeholder="Título do módulo (ex.: Dia 1 - Variáveis)" />
+                      <span class="gf-modulo-info">{{ resumoModulo(modulo) }}</span>
+                      <button type="button" class="gf-icone gf-icone--perigo" aria-label="Remover módulo"
+                              (click)="removerModulo(mi)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+
+                    <div formArrayName="aulas">
+                      @for (aula of aulasDe(mi).controls; track aula; let ai = $index) {
+                      <div class="gf-aula" [formGroupName]="ai">
+                        <input type="text" class="form-control gf-aula-nome" formControlName="nome"
+                               [attr.aria-label]="'Nome da aula ' + (ai + 1)"
+                               placeholder="Nome da aula" />
+
+                        <select class="form-select gf-aula-tipo" formControlName="tipo" aria-label="Tipo de aula">
+                          @for (t of tiposAula; track t.valor) {
+                          <option [value]="t.valor">{{ t.texto }}</option> }
+                        </select>
+
+                        <input type="text" class="form-control gf-aula-duracao" formControlName="duracao"
+                               placeholder="mm:ss" aria-label="Duração da aula"
+                               [class.is-invalid]="aula.get('duracao')?.invalid && aula.get('duracao')?.touched" />
+
+                        <div class="form-check gf-aula-preview">
+                          <input class="form-check-input" type="checkbox" formControlName="preview"
+                                 [id]="'preview-' + mi + '-' + ai" />
+                          <label class="form-check-label" [for]="'preview-' + mi + '-' + ai">Pré-visualização</label>
+                        </div>
+
+                        <button type="button" class="gf-icone gf-icone--perigo" aria-label="Remover aula"
+                                (click)="removerAula(mi, ai)">
+                          <i class="bi bi-x-lg"></i>
+                        </button>
+
+                        @if (aula.get('duracao')?.invalid && aula.get('duracao')?.touched) {
+                        <div class="invalid-feedback d-block gf-aula-erro">Use o formato mm:ss (ex.: 3:27).</div>
+                        }
+                      </div>
+                      }
+                    </div>
+
+                    <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="adicionarAula(mi)">
+                      <i class="bi bi-plus-lg"></i> Adicionar aula
+                    </button>
+                  </div>
+                  }
+                </div>
+
+                <button type="button" class="btn btn-outline-primary btn-sm mt-3" (click)="adicionarModulo()">
+                  <i class="bi bi-plus-lg"></i> Adicionar módulo
+                </button>
+              </div>
+            </div>
+
+            <!-- Requisitos, descrição e tópicos -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Requisitos e descrição</div>
+              </div>
+              <div class="card-body">
+
+                <label class="gf-rotulo">Requisitos</label>
+                <div formArrayName="requisitos">
+                  @for (c of requisitosArr.controls; track c; let i = $index) {
+                  <div class="gf-item">
+                    <input type="text" class="form-control" [formControlName]="i"
+                           [attr.aria-label]="'Requisito ' + (i + 1)"
+                           placeholder="Ex.: Não é necessária experiência em programação" />
+                    <button type="button" class="gf-icone gf-icone--perigo" aria-label="Remover requisito"
+                            (click)="removerItem(requisitosArr, i)">
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
+                  }
+                </div>
+                <button type="button" class="btn btn-outline-secondary btn-sm mt-2 mb-3" (click)="adicionarItem(requisitosArr)">
+                  <i class="bi bi-plus-lg"></i> Adicionar requisito
+                </button>
+
+                <div class="form-group">
+                  <label for="descricao">Descrição</label>
+                  <textarea id="descricao" formControlName="descricao" class="form-control" rows="8"
+                            placeholder="Apresente a formação, a quem se destina e o que o formando vai construir."></textarea>
+                </div>
+
+                <div class="form-group mb-0">
+                  <label for="topicos">Tópicos relacionados</label>
+                  <input type="text" id="topicos" formControlName="topicos" class="form-control"
+                         placeholder="Ex.: Python, Ciência de Dados, Flask" />
+                  <small class="nv-sub">Separe por vírgulas.</small>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Preço e formador -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Preço e formador</div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="preco">Preço individual</label>
+                      <div class="input-group">
+                        <input type="number" id="preco" formControlName="preco" class="form-control" min="0"
+                               placeholder="85 990" />
+                        <span class="input-group-text">Kz</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 d-flex align-items-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="incluidaSubscricao" formControlName="incluidaSubscricao" />
+                      <label class="form-check-label" for="incluidaSubscricao">
+                        <b>Incluída na subscrição</b>
+                        <span class="d-block nv-sub">Disponível para quem tem a subscrição da plataforma.</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="formador">Formador</label>
+                      <input type="text" id="formador" formControlName="formador" class="form-control"
+                             placeholder="Nome do formador" />
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group mb-0">
+                      <label for="formadorBio">Sobre o formador</label>
+                      <textarea id="formadorBio" formControlName="formadorBio" class="form-control" rows="4"
+                                placeholder="Experiência e percurso do formador."></textarea>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ===== COLUNA LATERAL ===== -->
+          <aside class="col-lg-4">
+            <div class="gf-lateral">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Resumo</div>
+                </div>
+                <div class="card-body">
+
+                  <dl class="gf-resumo">
+                    <dt>Módulos</dt>
+                    <dd>{{ resumo().modulos }}</dd>
+                    <dt>Aulas</dt>
+                    <dd>{{ resumo().aulas }}</dd>
+                    <dt>Duração total</dt>
+                    <dd>{{ resumo().duracao }}</dd>
+                  </dl>
+
+                  <h6 class="gf-rotulo mt-3">Para publicar</h6>
+                  <ul class="gf-checklist">
+                    @for (v of resumo().verificacoes; track v.texto) {
+                    <li [class.gf-checklist--ok]="v.ok">
+                      @if (v.ok) {
+                      <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                      <span class="visually-hidden">Feito:</span>
+                      } @else {
+                      <i class="bi bi-circle" aria-hidden="true"></i>
+                      <span class="visually-hidden">Em falta:</span>
+                      }
+                      {{ v.texto }}
+                    </li>
+                    }
+                  </ul>
+
+                </div>
+                <div class="card-action">
+                  @if (podeRascunho()) {
+                  <button type="button" class="btn btn-primary w-100" (click)="publicar()">Publicar formação</button>
+                  <button type="button" class="btn btn-outline-secondary w-100 mt-2" (click)="guardarRascunho()">
+                    Guardar rascunho
+                  </button>
+                  <p class="nv-sub text-center mt-3 mb-0">
+                    O rascunho só exige o título. Para publicar, a formação tem de estar completa.
+                  </p>
+                  } @else {
+                  <button type="button" class="btn btn-primary w-100" (click)="guardarAlteracoes()">Guardar alterações</button>
+                  }
+                  <button type="button" class="btn btn-link w-100 mt-2" (click)="cancelar()">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+        </form>
+        }
+
+      </div>
+    </div>
+
+    <app-befooter />
+  </div>
+</div>

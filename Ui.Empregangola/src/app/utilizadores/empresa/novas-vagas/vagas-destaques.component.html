@@ -1,19 +1,184 @@
-<!-- utilizador.component.html -->
+<!-- vagas-destaques.component.html (vista da empresa) -->
 <div class="wrapper">
   <app-besidebar />
-    <div class="main-panel">
-      <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
 
-      <div class="container">
-        <div class="page-inner">
+    <div class="container">
+      <div class="page-inner">
 
-          
-
+        <div class="alert alert-warning" role="alert">
+          <h3 class="fw-bold mb-1">Nome da Empresa</h3>
+          <p class="nv-sub mb-0">Preencha os campos obrigatórios. Pode guardar como rascunho e continuar mais tarde.</p>
         </div>
+
+        <section class="vd" aria-labelledby="vd-titulo">
+
+          <!-- Cabeçalho -->
+          <header class="vd-topo">
+            <div class="vd-topo__texto">
+              <h2 id="vd-titulo">Vagas em destaque</h2>
+              <p>
+                @if (resumo().vagas === 0) {
+                Destaque uma vaga para chegar a mais candidatos.
+                } @else {
+                {{ resumo().vagas }} {{ resumo().vagas === 1 ? 'vaga destacada' : 'vagas destacadas' }},
+                {{ resumo().candidaturas }} candidaturas recebidas
+                @if (resumo().novas > 0) {
+                ({{ resumo().novas }} {{ resumo().novas === 1 ? 'nova' : 'novas' }} por ver)
+                }
+                }
+              </p>
+            </div>
+
+            <a class="vd-botao" href="empresa/vagas-disponivel">Destacar outra vaga</a>
+          </header>
+
+          @if (vagas().length > 0) {
+
+          <!-- Pesquisa e ordenação -->
+          <div class="vd-controlos">
+            <label class="vd-campo vd-campo--pesquisa">
+              <span class="vd-sr">Pesquisar nas vagas destacadas</span>
+              <input type="search" placeholder="Pesquisar por cargo ou área" [value]="termo()" (input)="aoPesquisar($event)" />
+            </label>
+
+            <label class="vd-campo">
+              <span class="vd-sr">Ordenar por</span>
+              <select [value]="ordem()" (change)="aoOrdenar($event)">
+                <option value="candidaturas">Mais candidaturas</option>
+                <option value="visualizacoes">Mais visualizações</option>
+                <option value="prazo">Destaque termina primeiro</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Filtro por situação do destaque -->
+          <div class="vd-filtros" role="group" aria-label="Filtrar por situação">
+            @for (f of filtros; track f.valor) {
+            <button type="button"
+                    class="vd-chip"
+                    [class.vd-chip--activo]="filtro() === f.valor"
+                    [attr.aria-pressed]="filtro() === f.valor"
+                    (click)="filtro.set(f.valor)">
+              {{ f.texto }} <span class="vd-chip__n">{{ contagens()[f.valor] }}</span>
+            </button>
+            }
+          </div>
+
+          <!-- Lista de vagas -->
+          @if (filtradas().length > 0) {
+          <ul class="vd-lista">
+            @for (v of filtradas(); track v.id) {
+            <li class="vd-item">
+              <article class="vd-cartao" [class.vd-cartao--inactivo]="situacao(v) === 'terminada' || situacao(v) === 'pausada'">
+
+                <div class="vd-cartao__topo">
+                  <div class="vd-cartao__titulos">
+                    <h3>{{ v.titulo }}</h3>
+                    <p class="vd-sub">{{ v.area }}, {{ localizacao(v) }}</p>
+                  </div>
+                  <span [class]="'vd-estado vd-estado--' + situacao(v)">{{ textoSituacao(v) }}</span>
+                </div>
+
+                <!-- Período do destaque -->
+                <div class="vd-periodo">
+                  <div class="vd-periodo__texto">
+                    <span>{{ textoDestaque(v) }}</span>
+                    @if (textoPrazo(v)) {
+                    <strong [class.vd-periodo--curto]="situacao(v) === 'a-terminar'">{{ textoPrazo(v) }}</strong>
+                    }
+                  </div>
+                  <div class="vd-barra" aria-hidden="true">
+                    <div class="vd-barra__cheia" [style.width.%]="progresso(v)"></div>
+                  </div>
+                </div>
+
+                <!-- Resultados -->
+                <dl class="vd-resultados">
+                  <div>
+                    <dt>Visualizações</dt>
+                    <dd>{{ v.visualizacoes }}</dd>
+                  </div>
+                  <div>
+                    <dt>Candidaturas</dt>
+                    <dd>
+                      {{ v.candidaturas }}
+                      @if (v.novasCandidaturas > 0) {
+                      <span class="vd-novas">+{{ v.novasCandidaturas }} novas</span>
+                      }
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Taxa de candidatura</dt>
+                    <dd>{{ conversao(v) }}</dd>
+                  </div>
+                </dl>
+
+                <p class="vd-detalhes">
+                  {{ v.modalidade }}, {{ v.contrato }}. {{ textoSalario(v) }}
+                </p>
+
+                <!-- Acções -->
+                @if (aConfirmar() === v.id) {
+                <div class="vd-confirmar" role="alertdialog" [attr.aria-label]="'Remover destaque de ' + v.titulo">
+                  <p>Remover esta vaga dos destaques? Ela continua publicada, só deixa de ser promovida.</p>
+                  <div class="vd-accoes">
+                    <button type="button" class="vd-botao vd-botao--perigo" (click)="confirmarRemocao(v.id)">
+                      Remover destaque
+                    </button>
+                    <button type="button" class="vd-botao vd-botao--secundario" (click)="cancelarRemocao()">
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+                } @else {
+                <div class="vd-accoes">
+                  <a class="vd-botao" [routerLink]="[rotaCandidatos, v.id]">
+                    Ver candidatos ({{ v.candidaturas }})
+                  </a>
+                  <a class="vd-botao vd-botao--secundario" [routerLink]="[rotaEditar, v.id]">Editar</a>
+
+                  <span class="vd-accoes__fim">
+                    @if (podeRenovar(v)) {
+                    <button type="button" class="vd-texto" (click)="renovar(v.id)">
+                      Renovar por 7 dias
+                    </button>
+                    }
+                    <button type="button" class="vd-texto vd-texto--perigo" (click)="pedirRemocao(v.id)">
+                      Remover destaque
+                    </button>
+                  </span>
+                </div>
+                }
+
+              </article>
+            </li>
+            }
+          </ul>
+          } @else {
+          <div class="vd-vazio" role="status">
+            <h3>Nenhuma vaga encontrada</h3>
+            <p>Tente outra palavra na pesquisa ou escolha outra situação.</p>
+            <button type="button" class="vd-botao vd-botao--secundario" (click)="limparFiltros()">
+              Limpar filtros
+            </button>
+          </div>
+          }
+
+          } @else {
+          <div class="vd-vazio" role="status">
+            <h3>Ainda não destacou nenhuma vaga</h3>
+            <p>As vagas em destaque aparecem primeiro aos candidatos e recebem mais candidaturas.</p>
+            <a class="vd-botao" [routerLink]="rotaDestacar">Escolher uma vaga para destacar</a>
+          </div>
+          }
+
+        </section>
+
+      </div>
     </div>
 
     <app-befooter />
   </div>
 </div>
-
-

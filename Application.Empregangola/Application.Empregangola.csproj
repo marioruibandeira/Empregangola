@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Administration\Employee\Queries\" />
+    <Folder Include="Features\Vacancy\JobApplication\Queries\" />
   </ItemGroup>
 
 </Project>

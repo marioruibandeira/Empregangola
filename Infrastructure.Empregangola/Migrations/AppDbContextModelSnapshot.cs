@@ -317,6 +317,39 @@ namespace Infrastructure.Empregangola.Migrations
                     b.ToTable("Employee");
                 });
 
+            modelBuilder.Entity("Domain.Empregangola.Entities.FeaturedVacanciesTable", b =>
+                {
+                    b.Property<int>("FeaturedVacancyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeaturedVacancyId"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Paused")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("RemovedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FeaturedVacancyId");
+
+                    b.HasIndex("VacancyId");
+
+                    b.ToTable("VagaDestaque");
+                });
+
             modelBuilder.Entity("Domain.Empregangola.Entities.InterestTable", b =>
                 {
                     b.Property<int>("InterestId")
@@ -332,6 +365,52 @@ namespace Infrastructure.Empregangola.Migrations
                     b.HasKey("InterestId");
 
                     b.ToTable("Interest");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.JobApplicationTable", b =>
+                {
+                    b.Property<int>("JobApplicationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobApplicationId"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AppliedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NewCv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PresentationLetter")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<decimal?>("SalaryPretention")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("ShareCv")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("StartAvailability")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("UseProfileCv")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("JobApplicationId");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("VacancyId");
+
+                    b.ToTable("JobApplication");
                 });
 
             modelBuilder.Entity("Domain.Empregangola.Entities.LanguagesTable", b =>
@@ -945,6 +1024,36 @@ namespace Infrastructure.Empregangola.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("NationalityCountry");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.FeaturedVacanciesTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.VacanciesTable", "Vacancy")
+                        .WithMany()
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vacancy");
+                });
+
+            modelBuilder.Entity("Domain.Empregangola.Entities.JobApplicationTable", b =>
+                {
+                    b.HasOne("Domain.Empregangola.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Empregangola.Entities.VacanciesTable", "Vacancy")
+                        .WithMany()
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Vacancy");
                 });
 
             modelBuilder.Entity("Domain.Empregangola.Entities.PremiumSubscriptionTable", b =>

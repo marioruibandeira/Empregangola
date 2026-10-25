@@ -1,0 +1,94 @@
+<div class="wrapper">
+  <app-besidebar />
+  <div class="main-panel">
+    <app-beheader [nomeUtilizador]="' Pedro'" [emailUtilizador]="'info@lea.co.ao'" [notificacoes]="4" />
+
+    <div class="container">
+      <div class="page-inner pl-pagina">
+
+        <div class="pl-cabecalho">
+          <h3 class="fw-bold mb-1">Planos de destaque</h3>
+          <p class="nv-sub mb-0">
+            Escolha por quanto tempo quer destacar a sua vaga. Os valores são por vaga.
+          </p>
+        </div>
+
+        <div class="row g-3 g-xl-4 justify-content-center">
+
+          @for (p of planos; track p.id) {
+          <div class="col-lg-4 col-md-6">
+            <div class="card pl-card h-100"
+                 [class.pl-card--recomendado]="p.recomendado"
+                 [class.pl-card--seleccionado]="planoSeleccionadoId() === p.id">
+
+              @if (p.recomendado) {
+              <span class="pl-fita">Mais escolhido</span>
+              }
+
+              <div class="card-body d-flex flex-column">
+                <h4 class="pl-nome">{{ p.nome }}</h4>
+                <p class="pl-descricao">{{ p.descricao }}</p>
+
+                <div class="pl-preco">
+                  <span class="pl-valor">{{ formatarKz(p.preco) }}</span>
+                  <span class="pl-moeda">Kz</span>
+                </div>
+                <div class="pl-duracao">
+                  por {{ p.duracaoDias }} dias · cerca de {{ formatarKz(precoPorDia(p)) }} Kz por dia
+                </div>
+
+                <ul class="pl-beneficios">
+                  @for (b of p.beneficios; track b.texto) {
+                  <li [class.pl-beneficio--fora]="!b.incluido">
+                    @if (b.incluido) {
+                    <i class="bi bi-check-circle-fill pl-icone pl-icone--sim" aria-hidden="true"></i>
+                    <span class="visually-hidden">Incluído:</span>
+                    } @else {
+                    <i class="bi bi-dash-circle pl-icone pl-icone--nao" aria-hidden="true"></i>
+                    <span class="visually-hidden">Não incluído:</span>
+                    }
+                    {{ b.texto }}
+                  </li>
+                  }
+                </ul>
+
+                <button type="button" class="pl-btn mt-auto"
+                        [class.pl-btn--seleccionado]="planoSeleccionadoId() === p.id"
+                        [attr.aria-pressed]="planoSeleccionadoId() === p.id"
+                        (click)="seleccionar(p.id)">
+                  @if (planoSeleccionadoId() === p.id) {
+                  <i class="bi bi-check-lg" aria-hidden="true"></i> Plano escolhido
+                  } @else {
+                  Escolher este plano
+                  }
+                </button>
+              </div>
+            </div>
+          </div>
+          }
+
+        </div>
+
+        <!-- Resumo da escolha -->
+        <div class="pl-resumo" [class.pl-resumo--activo]="planoSeleccionado()">
+          @if (planoSeleccionado(); as p) {
+          <div class="pl-resumo-texto">
+            <strong>{{ p.nome }}</strong>
+            · {{ p.duracaoDias }} dias ·
+            <strong>{{ formatarKz(p.preco) }} Kz</strong>
+          </div>
+          <button type="button" class="pl-btn pl-btn--continuar" (click)="continuar()">
+            Continuar
+          </button>
+          } @else {
+          <div class="pl-resumo-texto text-muted">Escolha um plano para continuar.</div>
+          <button type="button" class="pl-btn pl-btn--continuar" disabled>Continuar</button>
+          }
+        </div>
+
+      </div>
+    </div>
+
+    <app-befooter />
+  </div>
+</div>

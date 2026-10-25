@@ -6,6 +6,10 @@ import {
   VagaDetalheDTO
 } from '../../../services/empresa/novas-vagas/novas-vagas.service';
 
+import { BesidebarComponent } from '../../../shared/besidebar/besidebar.component';
+import { BeheaderComponent } from '../../../shared/beheader/beheader.component';
+import { BefooterComponent } from '../../../shared/befooter/befooter.component';
+
 export interface DetalhesVagaData {
   vacanciesId: number;
 }
@@ -13,7 +17,13 @@ export interface DetalhesVagaData {
 @Component({
   selector: 'app-detalhes-vaga',
   standalone: true,
-  imports: [MatDialogModule, DatePipe],
+  imports: [
+    MatDialogModule,
+    DatePipe,
+    BesidebarComponent,
+    BeheaderComponent,
+    BefooterComponent
+  ],
   templateUrl: './detalhes-vaga.component.html',
   styleUrl: './detalhes-vaga.component.css',
 })

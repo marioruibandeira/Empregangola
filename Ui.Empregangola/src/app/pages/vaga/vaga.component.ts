@@ -1,12 +1,10 @@
 // =====================================================================
-//  VagaComponent  (detalhe público de uma vaga)
-//  Rota:  vaga/:id   ->   GET /api/public/vacancies/{id}   (sem token)
-//  Só abre vagas publicadas; as outras dão "não encontrada".
+//  Detalhe público de uma vaga
 // =====================================================================
 
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { HeaderComponent } from '../../shared/header/header.component';
@@ -19,6 +17,7 @@ import { VagaPublicaDetalheDTO } from '../../services/empresa/novas-vagas/public
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     HeaderComponent,
     FooterComponent
   ],
@@ -159,5 +158,30 @@ export class VagaComponent implements OnInit {
   mailto(v: VagaPublicaDetalheDTO): string {
     const assunto = encodeURIComponent('Candidatura: ' + v.title);
     return `mailto:${v.applicationTarget}?subject=${assunto}`;
+  }
+
+  candidaturaNoSite(v: VagaPublicaDetalheDTO): boolean {
+    return v.applicationMethod === 1;
+  }
+
+  rotaCandidatura(v: VagaPublicaDetalheDTO): (string | number)[] {
+    return ['/vaga', v.vacanciesId, 'candidatura'];
+  }
+
+  // TESTE TEMPORÁRIO — remover depois de testar
+  testarCandidatura(): void {
+    const v = this.vaga();
+
+    if (!v) {
+      console.log('A vaga ainda não foi carregada.');
+      return;
+    }
+
+    console.log('ID da vaga:', v.vacanciesId);
+    console.log('Título:', v.title);
+    console.log('Vaga expirada:', v.isExpired);
+    console.log('Método de candidatura:', v.applicationMethod);
+    console.log('Candidatura no site:', this.candidaturaNoSite(v));
+    console.log('Rota de candidatura:', this.rotaCandidatura(v));
   }
 }
